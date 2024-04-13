@@ -9,6 +9,7 @@ export type BuildPaths = {
     entry: string;
     build: string;
     HTML: string;
+    src: string;
 };
 
 export type BuildOptions = {
