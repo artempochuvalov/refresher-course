@@ -4,6 +4,7 @@ import { RouteProvider } from 'app/providers/routeConfig';
 import { useTheme } from 'shared/providers/theme';
 import { classNames } from 'shared/lib/classNames';
 import { Navbar } from 'widgets/Navbar';
+import { Sidebar } from 'widgets/Sidebar';
 
 const App = () => {
     const { theme } = useTheme();
@@ -11,7 +12,12 @@ const App = () => {
     return (
         <div className={classNames('app', {}, [theme])}>
             <Navbar />
-            <RouteProvider />
+            <div className="content-page">
+                <Sidebar />
+                <div className="page-wrapper">
+                    <RouteProvider />
+                </div>
+            </div>
         </div>
     );
 };
