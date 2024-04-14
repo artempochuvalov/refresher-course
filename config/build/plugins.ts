@@ -1,6 +1,11 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import { ProgressPlugin, DefinePlugin, type WebpackPluginInstance } from 'webpack';
+import {
+    ProgressPlugin,
+    DefinePlugin,
+    HotModuleReplacementPlugin,
+    type WebpackPluginInstance,
+} from 'webpack';
 import { BuildOptions } from './types/config';
 
 export function buildPlugins({ paths, isDev }: BuildOptions): WebpackPluginInstance[]  {
@@ -15,6 +20,7 @@ export function buildPlugins({ paths, isDev }: BuildOptions): WebpackPluginInsta
         }),
         new DefinePlugin({
             __IS_DEV__: isDev
-        })
+        }),
+        new HotModuleReplacementPlugin(),
     ];
 }
