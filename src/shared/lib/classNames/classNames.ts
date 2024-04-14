@@ -15,5 +15,5 @@ export function classNames(classNames: string, mods: Mods = {}, additional: stri
         classNames,
         ...additional,
         ...conditionalClassNames
-    ].join(' ');
+    ].filter(Boolean).join(' ');
 }

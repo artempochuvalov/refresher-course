@@ -30,8 +30,20 @@ export function buildLoaders(options: BuildOptions):  ModuleOptions['rules'] {
         ],
     };
 
+    const svgLoader = {
+        test: /\.svg$/,
+        use: '@svgr/webpack'
+    };
+
+    const fileLoader = {
+        test: /\.(png|jpg|jpeg)$/i,
+        loader: 'url-loader',
+        type: 'javascript/auto',
+    }
+
     return [
         typescriptLoader,
-        stylesLoader
+        stylesLoader,
+        svgLoader
     ];
 }

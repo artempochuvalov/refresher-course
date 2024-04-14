@@ -12,7 +12,7 @@
 			"export const ${TM_FILENAME_BASE}: FC<${TM_FILENAME_BASE}Props> = (props) => {",
 			"\tconst { className } = props;\n",
 			"\treturn (",
-			"\t\t<div className={classNames(cls.${TM_FILENAME_BASE/(.*)/${1:/downcase}/}, {}, [className])}>",
+			"\t\t<div className={classNames(cls.${TM_FILENAME_BASE}, {}, [className])}>",
 			"\t\t\t $1",
 			"\t\t</div>",
 			"\t);",    

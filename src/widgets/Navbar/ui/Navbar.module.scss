@@ -1,5 +1,6 @@
 .navbar {
     width: 100%;
+    padding: 1.5rem;
     height: var(--navbar-height);
     background-color: var(--inverted-bg-color);
     display: flex;
@@ -9,6 +10,5 @@
 .links {
     display: flex;
     gap: 1rem;
-    margin-right: 1.5rem;
     margin-left: auto;
 }
