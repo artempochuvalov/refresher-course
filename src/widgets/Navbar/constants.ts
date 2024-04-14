@@ -1,15 +1,18 @@
+import type { TFunction } from 'i18next';
+
 type NavbarLinkConfig = {
-    title: string;
+    title: (t: TFunction) => string;
     to: string;
 };
 
 export const navbarLinks: NavbarLinkConfig[] = [
     {
-        title: 'Главная',
-        to: '/'
+        title: (t => t('Главная страница')),
+        to: '/',
+        
     },
     {
-        title: 'О нас',
+        title: (t => t('О сайте')),
         to: '/about'
     }
 ];

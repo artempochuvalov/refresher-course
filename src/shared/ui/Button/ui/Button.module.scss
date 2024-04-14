@@ -1,10 +1,11 @@
-.button {
+.Button {
     cursor: pointer;
+    color: var(--primary-color);
 }
 
-.button.blank {
+.Button.blank {
     padding: 0;
-    margin: 0;
     border: none;
+    background: none;
     outline: none;
 }
