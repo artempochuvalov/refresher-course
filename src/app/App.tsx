@@ -1,11 +1,6 @@
 import './styles/index.scss';
 
-import { Route, Routes } from 'react-router-dom';
-import { Suspense } from 'react';
-
-import { MainPage } from 'pages/Main';
-import { AboutPage } from 'pages/About';
-
+import { RouteProvider } from 'app/providers/routeConfig';
 import { useTheme } from 'shared/providers/theme';
 import { classNames } from 'shared/lib/classNames';
 
@@ -15,12 +10,7 @@ const App = () => {
     return (
         <div className={classNames('app', {}, [theme])}>
             <button onClick={toggleTheme}>Toggle</button>
-            <Suspense>
-                <Routes>
-                    <Route path={'/'} element={<MainPage />} />
-                    <Route path={'/about'} element={<AboutPage />} />
-                </Routes>
-            </Suspense>
+            <RouteProvider />
         </div>
     );
 };
