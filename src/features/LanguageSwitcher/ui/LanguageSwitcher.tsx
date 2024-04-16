@@ -3,8 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames';
 import { Button, ButtonTheme } from 'shared/ui/Button';
 
-import cls from './LanguageSwitcher.module.scss';
-
 enum Lang {
     En = 'en',
     Ru = 'ru'
@@ -27,7 +25,7 @@ export const LanguageSwitcher: FC<LanguageSwitcherProps> = (props) => {
         <Button
             theme={ButtonTheme.Blank}
             onClick={toggleLanguage}
-            className={classNames(cls.LanguageSwitcher, {}, [className])}
+            className={classNames('', {}, [className])}
         >
             {t('Язык')}
         </Button>
