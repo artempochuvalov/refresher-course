@@ -18,7 +18,7 @@ module.exports = {
     plugins: [
         'react',
         '@typescript-eslint',
-        'simple-import-sort'
+        'simple-import-sort',
     ],
     rules: {
         'react/jsx-indent': [2, 4],
@@ -36,8 +36,8 @@ module.exports = {
         'import/extensions': 'off',
         'import/no-extraneous-dependencies': 'off',
         'no-underscore-dangle': 'off',
-        'simple-import-sort/imports': "error",
-        'simple-import-sort/exports': "error"
+        'simple-import-sort/imports': 'error',
+        'simple-import-sort/exports': 'error',
     },
     globals: {
         __IS_DEV__: true,
