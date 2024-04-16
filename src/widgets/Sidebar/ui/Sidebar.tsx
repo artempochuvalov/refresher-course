@@ -1,9 +1,10 @@
-import { useState, type FC } from 'react';
-import { classNames } from 'shared/lib/classNames';
-import cls from './Sidebar.module.scss';
-import { Button } from 'shared/ui/Button';
-import { ThemeSwitcher } from 'features/ThemeSwitcher';
 import { LanguageSwitcher } from 'features/LanguageSwitcher';
+import { ThemeSwitcher } from 'features/ThemeSwitcher';
+import { type FC, useCallback, useState } from 'react';
+import { classNames } from 'shared/lib/classNames';
+import { Button } from 'shared/ui/Button';
+
+import cls from './Sidebar.module.scss';
 
 type SidebarProps = {
     className?: string;
@@ -14,9 +15,9 @@ export const Sidebar: FC<SidebarProps> = (props) => {
 
     const [collapsed, setCollapsed] = useState(true);
 
-    function toggleCollapsed() {
-        setCollapsed(collapsed => !collapsed);
-    }
+    const toggleCollapsed = useCallback(() => {
+        setCollapsed(!collapsed);
+    }, [collapsed]);
 
     return (
         <div

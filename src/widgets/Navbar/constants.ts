@@ -7,13 +7,12 @@ type NavbarLinkConfig = {
 
 export const navbarLinks: NavbarLinkConfig[] = [
     {
-        title: (t => t('Главная страница')),
+        title: ((t) => t('Главная страница')),
         to: '/',
-        
+
     },
     {
-        title: (t => t('О сайте')),
-        to: '/about'
-    }
+        title: ((t) => t('О сайте')),
+        to: '/about',
+    },
 ];
-

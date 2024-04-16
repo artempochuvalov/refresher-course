@@ -4,7 +4,7 @@ type Mods = {
 
 export function classNames(classNames: string, mods: Mods = {}, additional: string[] = []) {
     const conditionalClassNames = Object.entries(mods).reduce((classNames, [className, flag]) => {
-        if (Boolean(flag)) {
+        if (flag) {
             return [...classNames, className];
         }
 
@@ -14,6 +14,6 @@ export function classNames(classNames: string, mods: Mods = {}, additional: stri
     return [
         classNames,
         ...additional,
-        ...conditionalClassNames
+        ...conditionalClassNames,
     ].filter(Boolean).join(' ');
 }

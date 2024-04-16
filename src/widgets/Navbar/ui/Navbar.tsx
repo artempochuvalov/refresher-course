@@ -1,9 +1,10 @@
 import type { FC } from 'react';
-import { classNames } from 'shared/lib/classNames';
-import cls from './Navbar.module.scss';
-import { navbarLinks } from '../constants';
-import { AppLink, AppLinkTheme } from 'shared/ui/AppLink';
 import { useTranslation } from 'react-i18next';
+import { classNames } from 'shared/lib/classNames';
+import { AppLink, AppLinkTheme } from 'shared/ui/AppLink';
+
+import { navbarLinks } from '../constants';
+import cls from './Navbar.module.scss';
 
 type NavbarProps = {
     className?: string;

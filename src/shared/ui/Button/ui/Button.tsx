@@ -1,9 +1,10 @@
 import type { ButtonHTMLAttributes, FC } from 'react';
 import { classNames } from 'shared/lib/classNames';
+
 import cls from './Button.module.scss';
 
 export enum ButtonTheme {
-    'Blank' = 'blank'
+    Blank = 'blank'
 }
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -16,11 +17,13 @@ export const Button: FC<ButtonProps> = (props) => {
         className,
         theme,
         children,
+        type,
         ...restProps
     } = props;
 
     return (
         <button
+            type="button"
             className={classNames(cls.Button, {}, [className, cls[theme]])}
             {...restProps}
         >
