@@ -36,8 +36,6 @@ class ErrorBoundary extends Component<
         const { children } = this.props;
 
         if (hasError) {
-            console.log(hasError);
-
             return (
                 <Suspense>
                     <PageError />
