@@ -1,4 +1,5 @@
 import type { Config } from 'jest';
+import path from 'path';
 
 const config: Config = {
     clearMocks: true,
@@ -27,6 +28,7 @@ const config: Config = {
     verbose: true,
     moduleNameMapper: {
         '\\.s?css$': 'identity-obj-proxy',
+        '\\.svg$': path.resolve(__dirname, 'fileTransformer.tsx'),
     },
 };
 
