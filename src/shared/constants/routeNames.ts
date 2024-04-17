@@ -1,4 +1,5 @@
 export enum RouteNames {
-    Main = 'main',
-    About = 'about',
+    Main = 'Main',
+    About = 'About',
+    NotFound = 'NotFound',
 }

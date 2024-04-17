@@ -13,7 +13,7 @@ type SidebarProps = {
 export const Sidebar: FC<SidebarProps> = (props) => {
     const { className } = props;
 
-    const [collapsed, setCollapsed] = useState(true);
+    const [collapsed, setCollapsed] = useState(false);
 
     const toggleCollapsed = useCallback(() => {
         setCollapsed(!collapsed);

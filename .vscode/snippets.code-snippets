@@ -4,7 +4,7 @@
 		"prefix": "rc",
 		"body": [
 			"import type { FC } from 'react';",
-			"import { classNames } from 'shared/lib/classNames';",
+			"import { classNames } from 'shared/lib/classNames';\n",
 			"import cls from './${TM_FILENAME_BASE}.module.scss';\n",
 			"type ${TM_FILENAME_BASE}Props = {",
 			"\tclassName?: string;",
