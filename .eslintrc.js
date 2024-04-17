@@ -33,7 +33,7 @@ module.exports = {
         ],
         'import/no-unresolved': 'off',
         'import/prefer-default-export': 'off',
-        'no-unused-vars': 'warn',
+        '@typescript-eslint/no-unused-vars': 'warn',
         'react/require-default-props': 'off',
         'react/react-in-jsx-scope': 'off',
         'react/jsx-props-no-spreading': 'warn',
@@ -44,8 +44,17 @@ module.exports = {
         'no-underscore-dangle': 'off',
         'simple-import-sort/imports': 'error',
         'simple-import-sort/exports': 'error',
-        'i18next/no-literal-string': ['error', { markupOnly: true }],
-        'max-len': ['error', { ignoreComments: true }],
+        'i18next/no-literal-string': [
+            'error',
+            {
+                markupOnly: true,
+                ignoreAttribute: [
+                    'data-testid',
+                    'to',
+                ],
+            },
+        ],
+        'max-len': ['error', { ignoreComments: true, code: 100 }],
         'comma-dangle': ['error', {
             functions: 'never',
             objects: 'always-multiline',
@@ -53,8 +62,23 @@ module.exports = {
             imports: 'never',
             exports: 'never',
         }],
+        'no-console': ['error', { allow: ['warn', 'error'] }],
     },
     globals: {
         __IS_DEV__: true,
     },
+    overrides: [
+        {
+            files: ['**/src/**/*.test.{ts,tsx}'],
+            rules: {
+                'i18next/no-literal-string': 'off',
+            },
+        },
+        {
+            files: ['**/src/shared/ui/**/*.tsx'],
+            rules: {
+                'react/jsx-props-no-spreading': 'off',
+            },
+        },
+    ],
 };

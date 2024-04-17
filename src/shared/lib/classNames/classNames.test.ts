@@ -12,8 +12,7 @@ describe('classNames', () => {
 
         expect(
             classNames('someClass', {}, ['class1', 'class2'])
-        )
-            .toBe(expected);
+        ).toBe(expected);
     });
 
     test('classNames with mods', () => {
@@ -21,8 +20,7 @@ describe('classNames', () => {
 
         expect(
             classNames('someClass', { hovered: true, clicked: true }, ['class'])
-        )
-            .toBe(expected);
+        ).toBe(expected);
     });
 
     test('classNames with false mods', () => {
@@ -32,8 +30,7 @@ describe('classNames', () => {
             'someClass',
             { hovered: false, clicked: true },
             ['class']
-        ))
-            .toBe(expected);
+        )).toBe(expected);
     });
 
     test('classNames with undefined mods', () => {
@@ -44,5 +41,11 @@ describe('classNames', () => {
             { hovered: undefined, clicked: true },
             ['class']
         )).toBe(expected);
+    });
+
+    test('classNames with undefined additional', () => {
+        const expected = 'someClass additional';
+
+        expect(classNames('someClass', {}, [undefined, 'additional'])).toBe(expected);
     });
 });

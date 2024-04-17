@@ -10,7 +10,7 @@ type ThemeSwitcherProps = {
     className?: string;
 };
 
-export const ThemeSwitcher: FC<ThemeSwitcherProps> = (props) => {
+export const ThemeSwitcher: FC<ThemeSwitcherProps> = (props: ThemeSwitcherProps) => {
     const { className } = props;
 
     const { theme, toggleTheme } = useTheme();
@@ -21,7 +21,7 @@ export const ThemeSwitcher: FC<ThemeSwitcherProps> = (props) => {
             className={classNames(cls.ThemeSwitcher, {}, [className])}
             onClick={toggleTheme}
         >
-            {theme === Theme.Light ? <ThemeLight /> : <ThemeDark /> }
+            {theme === Theme.Dark ? <ThemeDark /> : <ThemeLight /> }
         </Button>
     );
 };

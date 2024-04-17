@@ -8,7 +8,7 @@ type PageLoaderProps = {
     className?: string;
 };
 
-export const PageLoader: FC<PageLoaderProps> = (props) => {
+export const PageLoader: FC<PageLoaderProps> = (props: PageLoaderProps) => {
     const { className } = props;
 
     return (
