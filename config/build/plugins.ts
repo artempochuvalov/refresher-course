@@ -6,6 +6,7 @@ import {
     ProgressPlugin,
     type WebpackPluginInstance
 } from 'webpack';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 import { BuildOptions } from './types/config';
 
@@ -25,5 +26,6 @@ export function buildPlugins(
             __IS_DEV__: isDev,
         }),
         new HotModuleReplacementPlugin(),
-    ];
+        process.env.analyze && new BundleAnalyzerPlugin(),
+    ].filter(Boolean);
 }
