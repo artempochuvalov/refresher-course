@@ -16,9 +16,7 @@ const App = () => {
                 <Navbar />
                 <div className="content-page">
                     <Sidebar />
-                    <div className="page-wrapper">
-                        <RouteProvider />
-                    </div>
+                    <RouteProvider />
                 </div>
             </div>
         </Suspense>
