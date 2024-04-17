@@ -1,4 +1,6 @@
 {
-    "Перевод": "Translate",
-    "Язык": "English"
+    "Язык": "English",
+    "Произошла ошибка": "Unexpected error occured",
+    "Обновить страницу": "Reload the page",
+    "Развернуть": "Toggle"
 }

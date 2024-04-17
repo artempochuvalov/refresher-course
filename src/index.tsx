@@ -1,16 +1,20 @@
 import 'shared/config/i18n/i18n';
 
 import { App } from 'app';
-import { render } from 'react-dom';
+import { ErrorBoundary } from 'app/providers/ErrorBoundary';
+import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import { ThemeProvider } from 'shared/providers/theme';
 
-import { ThemeProvider } from './shared/providers/theme';
+const appContainer = document.getElementById('root');
+const root = createRoot(appContainer!);
 
-render(
+root.render(
     <BrowserRouter>
-        <ThemeProvider>
-            <App />
-        </ThemeProvider>
-    </BrowserRouter>,
-    document.getElementById('root')
+        <ErrorBoundary>
+            <ThemeProvider>
+                <App />
+            </ThemeProvider>
+        </ErrorBoundary>
+    </BrowserRouter>
 );
