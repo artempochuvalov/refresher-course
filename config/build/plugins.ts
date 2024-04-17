@@ -4,12 +4,14 @@ import {
     DefinePlugin,
     HotModuleReplacementPlugin,
     ProgressPlugin,
-    type WebpackPluginInstance,
+    type WebpackPluginInstance
 } from 'webpack';
 
 import { BuildOptions } from './types/config';
 
-export function buildPlugins({ paths, isDev }: BuildOptions): WebpackPluginInstance[] {
+export function buildPlugins(
+    { paths, isDev }: BuildOptions
+): WebpackPluginInstance[] {
     return [
         new HtmlWebpackPlugin({
             template: paths.HTML,

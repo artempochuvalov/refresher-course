@@ -19,7 +19,11 @@ export const Navbar: FC<NavbarProps> = (props) => {
         <div className={classNames(cls.navbar, {}, [className])}>
             <div className={classNames(cls.links)}>
                 {navbarLinks.map((link) => (
-                    <AppLink to={link.to} key={link.to} theme={AppLinkTheme.Secondary}>
+                    <AppLink
+                        to={link.to}
+                        key={link.to}
+                        theme={AppLinkTheme.Secondary}
+                    >
                         {link.title(t)}
                     </AppLink>
                 ))}
