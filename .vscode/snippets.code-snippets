@@ -1,0 +1,23 @@
+{
+	"React component initializer": {
+		"scope": "typescriptreact",
+		"prefix": "rc",
+		"body": [
+			"import type { FC } from 'react';",
+			"import { classNames } from 'shared/lib/classNames';\n",
+			"import cls from './${TM_FILENAME_BASE}.module.scss';\n",
+			"type ${TM_FILENAME_BASE}Props = {",
+			"\tclassName?: string;",
+			"};\n",
+			"export const ${TM_FILENAME_BASE}: FC<${TM_FILENAME_BASE}Props> = (props) => {",
+			"\tconst { className } = props;\n",
+			"\treturn (",
+			"\t\t<div className={classNames(cls.${TM_FILENAME_BASE}, {}, [className])}>",
+			"\t\t\t $1",
+			"\t\t</div>",
+			"\t);",    
+			"};\n"
+		],
+		"description": "Snippet for quick react component initializing"
+	}
+}

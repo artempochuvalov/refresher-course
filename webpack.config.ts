@@ -1,9 +1,10 @@
 import path from 'path';
-import type { BuildEnv, BuildMode, BuildPaths } from './config/build/types/config';
+
+import type { BuildEnv, BuildPaths } from './config/build/types/config';
 import { buildWebpackConfig } from './config/build/webpackConfig';
 
 export default (env: BuildEnv) => {
-   const { port: PORT = 3000, mode = 'development' } = env;
+    const { port: PORT = 3000, mode = 'development' } = env;
     const isDev = mode === 'development';
 
     const paths: BuildPaths = {
@@ -17,8 +18,8 @@ export default (env: BuildEnv) => {
         mode,
         isDev,
         paths,
-        port: PORT
+        port: PORT,
     });
 
-    return config
+    return config;
 };
