@@ -16,6 +16,9 @@ const config: Config = {
         'json',
         'node',
     ],
+    modulePaths: [
+        '<rootDir>src',
+    ],
     rootDir: '../../',
     testMatch: [
         '<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)',
