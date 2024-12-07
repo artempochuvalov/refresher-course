@@ -7,7 +7,7 @@ type LoaderProps = {
     className?: string;
 };
 
-export const Loader: FC<LoaderProps> = (props) => {
+export const Loader: FC<LoaderProps> = (props: LoaderProps) => {
     const { className } = props;
 
     return (

@@ -8,7 +8,7 @@ type NotFoundProps = {
     className?: string;
 };
 
-export const NotFound: FC<NotFoundProps> = (props) => {
+export const NotFound: FC<NotFoundProps> = (props: NotFoundProps) => {
     const { className } = props;
     const { t } = useTranslation('not_found');
 
