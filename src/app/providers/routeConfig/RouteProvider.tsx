@@ -1,11 +1,11 @@
-import { Suspense, useMemo } from 'react';
+import { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { PageLoader } from 'widgets/PageLoader';
 
 import { routeConfig } from './routeConfig';
 
 const RouteProvider = () => {
-    const routes = useMemo(() => Object.values(routeConfig), [routeConfig]);
+    const routes = Object.values(routeConfig);
 
     return (
         <Routes>
