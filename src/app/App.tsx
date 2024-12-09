@@ -1,5 +1,3 @@
-import './styles/index.scss';
-
 import { RouteProvider } from 'app/providers/routeConfig';
 import { Suspense } from 'react';
 import { classNames } from 'shared/lib/classNames';

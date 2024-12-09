@@ -3,11 +3,15 @@
     color: var(--secondary-color);
     padding: 0.75rem 1rem;
 
-    &.blank {
+    &:is(.blank, .blankInverted) {
         padding: 0;
         border: none;
         background: none;
         outline: none;
+    }
+
+    &.blankInverted {
+        color: var(--inverted-primary-color);
     }
 
     &.outline {
