@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
+import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator';
+import { Theme } from 'shared/providers/theme';
 
 import { Button, ButtonSize, ButtonTheme } from './Button';
 
@@ -28,6 +30,14 @@ export const Blank: Story = {
     },
 };
 
+export const BlankInverted: Story = {
+    args: {
+        theme: ButtonTheme.BlankInverted,
+        children: 'Кнопка',
+    },
+    decorators: [ThemeDecorator(Theme.Dark)],
+};
+
 export const Outline: Story = {
     args: {
         theme: ButtonTheme.Outline,
@@ -41,6 +51,7 @@ export const OutlineDark: Story = {
         theme: ButtonTheme.Outline,
         children: 'Кнопка',
     },
+    decorators: [ThemeDecorator(Theme.Dark)],
 };
 
 export const OutlineL: Story = {
