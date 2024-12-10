@@ -1,11 +1,16 @@
 import {
     type FC,
     ReactNode,
-    useMemo, useState
+    useEffect,
+    useMemo,
+    useState
 } from 'react';
 
 import {
-    Theme, THEME_LOCALSTORAGE_KEY, ThemeContext, ThemeContextProps
+    Theme,
+    THEME_LOCALSTORAGE_KEY,
+    ThemeContext,
+    ThemeContextProps
 } from '../lib/ThemeContext';
 
 type ThemeProviderProps = {
@@ -28,6 +33,10 @@ const ThemeProvider: FC<ThemeProviderProps> = (props) => {
         theme,
         setTheme,
     }), [theme]);
+
+    useEffect(() => {
+        document.body.className = theme;
+    }, [theme]);
 
     return (
         <ThemeContext.Provider value={themeProviderProps}>
