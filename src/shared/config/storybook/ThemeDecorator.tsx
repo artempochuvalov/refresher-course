@@ -1,10 +1,14 @@
 import { Decorator } from '@storybook/react';
-import { Theme, ThemeProvider } from 'shared/providers/theme';
+import { Theme, THEME_LOCALSTORAGE_KEY, ThemeProvider } from 'shared/providers/theme';
 
-export const ThemeDecorator = (theme: Theme): Decorator => (Story) => (
-    <ThemeProvider initialTheme={theme}>
-        <div className={`app ${theme}`}>
-            <Story />
-        </div>
-    </ThemeProvider>
-);
+export const ThemeDecorator = (theme: Theme): Decorator => (Story) => {
+    localStorage.setItem(THEME_LOCALSTORAGE_KEY, theme);
+
+    return (
+        <ThemeProvider initialTheme={theme}>
+            <div className="app">
+                <Story />
+            </div>
+        </ThemeProvider>
+    );
+};

@@ -17,6 +17,7 @@ type ModalProps = {
     children?: ReactNode;
     className?: string;
     isOpen?: boolean;
+    portalElement?: HTMLElement;
     onClose?: () => void;
 };
 
@@ -27,6 +28,7 @@ export const Modal: FC<ModalProps> = (props) => {
         children,
         className,
         isOpen,
+        portalElement,
         onClose,
     } = props;
 
@@ -70,7 +72,7 @@ export const Modal: FC<ModalProps> = (props) => {
     }, [isOpen, handleEscape]);
 
     return (
-        <Portal>
+        <Portal element={portalElement}>
             <div className={classNames(cls.Modal, mods, [className, theme])}>
                 <div
                     className={cls.overlay}

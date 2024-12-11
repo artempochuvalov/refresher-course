@@ -18,25 +18,26 @@ type ThemeProviderProps = {
     initialTheme?: Theme;
 };
 
+const defaultTheme = localStorage.getItem(THEME_LOCALSTORAGE_KEY) as Theme
+    ?? Theme.Light;
+
 const ThemeProvider: FC<ThemeProviderProps> = (props) => {
     const {
         children,
         initialTheme,
     } = props;
 
-    const defaultTheme = localStorage.getItem(THEME_LOCALSTORAGE_KEY) as Theme
-        ?? Theme.Light;
-
     const [theme, setTheme] = useState<Theme>(initialTheme || defaultTheme);
-
     const themeProviderProps = useMemo<ThemeContextProps>(() => ({
         theme,
         setTheme,
     }), [theme]);
 
     useEffect(() => {
+        const theme = localStorage.getItem(THEME_LOCALSTORAGE_KEY) as Theme || Theme.Light;
+        localStorage.setItem(THEME_LOCALSTORAGE_KEY, theme);
         document.body.className = theme;
-    }, [theme]);
+    });
 
     return (
         <ThemeContext.Provider value={themeProviderProps}>
