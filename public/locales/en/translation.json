@@ -4,5 +4,7 @@
     "Произошла ошибка": "Unexpected error occured",
     "Обновить страницу": "Reload the page",
     "Развернуть": "Toggle",
-    "Войти": "Log in"
+    "Войти": "Log in",
+    "Логин": "Username",
+    "Пароль": "Password"
 }

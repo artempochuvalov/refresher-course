@@ -4,6 +4,7 @@
 		"prefix": "rc",
 		"body": [
 			"import type { FC } from 'react';",
+			"import { useTranslation } from 'react-i18next';",
 			"import { classNames } from 'shared/lib/classNames';\n",
 			"import cls from './${TM_FILENAME_BASE}.module.scss';\n",
 			"type ${TM_FILENAME_BASE}Props = {",
@@ -11,6 +12,7 @@
 			"};\n",
 			"export const ${TM_FILENAME_BASE}: FC<${TM_FILENAME_BASE}Props> = (props) => {",
 			"\tconst { className } = props;\n",
+			"\tconst { t } = useTranslation();\n",
 			"\treturn (",
 			"\t\t<div className={classNames(cls.${TM_FILENAME_BASE}, {}, [className])}>",
 			"\t\t\t $1",
