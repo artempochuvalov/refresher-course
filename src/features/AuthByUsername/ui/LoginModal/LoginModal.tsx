@@ -3,7 +3,6 @@ import { classNames } from 'shared/lib/classNames';
 import { Modal } from 'shared/ui/Modal/Modal';
 
 import { LoginForm } from '../LoginForm/LoginForm';
-import cls from './LoginModal.module.scss';
 
 type LoginModalProps = {
     className?: string;
@@ -23,7 +22,7 @@ export const LoginModal: FC<LoginModalProps> = (props) => {
             lazy
             isOpen={isOpen}
             onClose={onClose}
-            className={classNames(cls.loginModal, {}, [className])}
+            className={classNames('', {}, [className])}
         >
             <LoginForm />
         </Modal>
