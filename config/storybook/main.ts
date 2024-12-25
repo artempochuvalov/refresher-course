@@ -1,5 +1,6 @@
 import type { StorybookConfig } from '@storybook/react-webpack5';
 import path from 'path';
+import { DefinePlugin } from 'webpack';
 
 import { buildCssLoader } from '../build/loaders/buildCssLoader';
 import { buildSvgLoader } from '../build/loaders/buildSvgLoader';
@@ -50,8 +51,18 @@ const config: StorybookConfig = {
         ];
         config.module!.rules!.push(...rules);
 
+        const plugins = [
+            new DefinePlugin({
+                __IS_DEV__: true,
+            }),
+        ];
+        config.plugins?.push(...plugins);
+
         return config;
     },
+    staticDirs: [
+        '../../public',
+    ],
 };
 
 export default config;

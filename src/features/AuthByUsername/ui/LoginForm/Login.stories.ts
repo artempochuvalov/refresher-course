@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { StoreDecorator } from 'shared/config/storybook/StoreDecorator';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator';
 import { Theme } from 'shared/providers/theme';
 
@@ -9,6 +10,14 @@ const meta = {
     component: LoginForm,
     argTypes: {},
     args: {},
+    decorators: [
+        StoreDecorator({
+            loginForm: {
+                username: '123',
+                password: 'some-password',
+            },
+        }),
+    ],
 } satisfies Meta<typeof LoginForm>;
 
 export default meta;
@@ -21,4 +30,28 @@ export const Light: Story = {
 export const Dark: Story = {
     args: {},
     decorators: [ThemeDecorator(Theme.Dark)],
+};
+
+export const Error: Story = {
+    args: {},
+    decorators: [
+        StoreDecorator({
+            loginForm: {
+                username: '123',
+                password: 'some-password',
+                error: 'ERROR',
+            },
+        }),
+    ],
+};
+
+export const Loading: Story = {
+    args: {},
+    decorators: [
+        StoreDecorator({
+            loginForm: {
+                isLoading: true,
+            },
+        }),
+    ],
 };

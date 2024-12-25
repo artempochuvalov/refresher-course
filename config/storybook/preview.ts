@@ -5,6 +5,7 @@ import React from 'react';
 import { RouterDecorator } from '../../src/shared/config/storybook/RouterDecorator';
 import { StyleDecorator } from '../../src/shared/config/storybook/StyleDecorator';
 import { ThemeDecorator } from '../../src/shared/config/storybook/ThemeDecorator';
+import { TranslationDecorator } from '../../src/shared/config/storybook/TranslationDecorator';
 import { Theme } from '../../src/shared/providers/theme';
 
 const preview: Preview = {
@@ -20,6 +21,7 @@ const preview: Preview = {
         RouterDecorator,
         StyleDecorator,
         ThemeDecorator(Theme.Light),
+        TranslationDecorator,
     ],
 };
 

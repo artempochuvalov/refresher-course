@@ -52,6 +52,7 @@ module.exports = {
                 ignoreAttribute: [
                     'data-testid',
                     'to',
+                    'form',
                 ],
             },
         ],

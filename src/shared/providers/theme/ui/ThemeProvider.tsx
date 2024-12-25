@@ -5,10 +5,10 @@ import {
     useMemo,
     useState
 } from 'react';
+import { THEME_LOCALSTORAGE_KEY } from 'shared/constants/localstorage';
 
 import {
     Theme,
-    THEME_LOCALSTORAGE_KEY,
     ThemeContext,
     ThemeContextProps
 } from '../lib/ThemeContext';
