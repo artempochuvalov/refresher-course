@@ -1,32 +1,44 @@
-import { loginByUsername } from 'features/AuthByUsername/model/services/loginByUserName';
-import { type FC, memo, useCallback } from 'react';
+import {
+    type FC,
+    memo,
+    useCallback
+} from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames';
+import { useDynamicModuleLoader } from 'shared/lib/components';
 import { Button, ButtonTheme } from 'shared/ui/Button';
 import { Input } from 'shared/ui/Input/Input';
 import { TextAtom, TextAtomTheme } from 'shared/ui/TextAtom/TextAtom';
 
-import { getLoginState } from '../../model/selectors/getLoginState';
-import { loginActions } from '../../model/slice/loginSlice';
+import { getLogginError } from '../../model/selectors/getLoginError';
+import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading';
+import { getLoginPassword } from '../../model/selectors/getLoginPassword';
+import { getLoginUsername } from '../../model/selectors/getLoginUsername';
+import { loginByUsername } from '../../model/services/loginByUserName';
+import { loginActions, loginReducer } from '../../model/slice/loginSlice';
 import cls from './LoginForm.module.scss';
 
-type LoginFormProps = {
+export type LoginFormProps = {
     className?: string;
 };
 
-export const LoginForm: FC<LoginFormProps> = memo((props: LoginFormProps) => {
+const LoginForm: FC<LoginFormProps> = memo((props: LoginFormProps) => {
     const { className } = props;
 
     const { t } = useTranslation();
-
     const dispatch = useDispatch();
-    const {
-        username,
-        password,
-        error,
-        isLoading,
-    } = useSelector(getLoginState);
+
+    useDynamicModuleLoader({
+        reducers: {
+            loginForm: loginReducer,
+        },
+    });
+
+    const username = useSelector(getLoginUsername);
+    const password = useSelector(getLoginPassword);
+    const error = useSelector(getLogginError);
+    const isLoading = useSelector(getLoginIsLoading);
 
     const onChangeUsername = useCallback((value: string) => {
         dispatch(loginActions.setUsername(value));
@@ -71,3 +83,5 @@ export const LoginForm: FC<LoginFormProps> = memo((props: LoginFormProps) => {
         </form>
     );
 });
+
+export default LoginForm;
