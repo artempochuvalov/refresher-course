@@ -17,6 +17,7 @@ type ModalProps = {
     children?: ReactNode;
     className?: string;
     isOpen?: boolean;
+    lazy?: boolean;
     portalElement?: HTMLElement;
     onClose?: () => void;
 };
@@ -28,6 +29,7 @@ export const Modal: FC<ModalProps> = (props) => {
         children,
         className,
         isOpen,
+        lazy,
         portalElement,
         onClose,
     } = props;
@@ -35,6 +37,7 @@ export const Modal: FC<ModalProps> = (props) => {
     const { theme } = useTheme();
 
     const [isClosing, setIsClosing] = useState(false);
+    const [isMounted, setIsMounted] = useState(false);
     const timerRef = useRef<ReturnType<typeof setTimeout>>();
 
     const mods: Record<string, boolean> = {
@@ -70,6 +73,20 @@ export const Modal: FC<ModalProps> = (props) => {
             window.removeEventListener('keydown', handleEscape);
         };
     }, [isOpen, handleEscape]);
+
+    useEffect(() => {
+        if (isOpen) {
+            setIsMounted(true);
+        }
+
+        return () => {
+            setIsMounted(false);
+        };
+    }, [isOpen]);
+
+    if (lazy && !isMounted) {
+        return null;
+    }
 
     return (
         <Portal element={portalElement}>

@@ -22,6 +22,7 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
     size?: ButtonSize;
     theme?: ButtonTheme;
     squared?: boolean;
+    disabled?: boolean;
 };
 
 export const Button: FC<ButtonProps> = (props: ButtonProps) => {
@@ -31,11 +32,13 @@ export const Button: FC<ButtonProps> = (props: ButtonProps) => {
         theme,
         squared,
         children,
+        disabled,
         ...restProps
     } = props;
 
     const mods: Record<string, boolean> = {
         [cls.squared]: squared,
+        [cls.disabled]: disabled,
     };
     const additionalClasses = [
         className,
@@ -47,6 +50,7 @@ export const Button: FC<ButtonProps> = (props: ButtonProps) => {
         <button
             type="button"
             className={classNames(cls.Button, mods, additionalClasses)}
+            disabled={disabled}
             {...restProps}
         >
             {children}

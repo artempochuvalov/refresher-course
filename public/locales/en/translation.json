@@ -4,5 +4,10 @@
     "Произошла ошибка": "Unexpected error occured",
     "Обновить страницу": "Reload the page",
     "Развернуть": "Toggle",
-    "Войти": "Log in"
+    "Войти": "Log in",
+    "Выйти": "Log out",
+    "Логин": "Username",
+    "Пароль": "Password",
+    "Форма авторизации": "Authorization form",
+    "Вы ввели неверный логин или пароль": "Incorrect login or password"
 }
