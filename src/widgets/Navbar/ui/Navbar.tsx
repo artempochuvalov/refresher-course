@@ -1,7 +1,6 @@
 import { getUserAuthData, userActions } from 'entities/User';
 import { LoginModal } from 'features/AuthByUsername';
 import {
-    type FC,
     memo,
     useCallback,
     useState
@@ -17,7 +16,7 @@ type NavbarProps = {
     className?: string;
 };
 
-export const Navbar: FC<NavbarProps> = memo((props: NavbarProps) => {
+export const Navbar = memo((props: NavbarProps) => {
     const { className } = props;
 
     const { t } = useTranslation();

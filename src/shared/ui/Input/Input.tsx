@@ -1,6 +1,5 @@
 import {
     ChangeEvent,
-    type FC,
     type InputHTMLAttributes,
     memo,
     useEffect,
@@ -19,7 +18,7 @@ type InputProps = HTMLInputProps & {
     onChange?: (value: string) => void;
 };
 
-export const Input: FC<InputProps> = memo((props: InputProps) => {
+export const Input = memo((props: InputProps) => {
     const {
         className,
         value,

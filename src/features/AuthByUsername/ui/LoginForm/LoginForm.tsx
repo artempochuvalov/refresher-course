@@ -1,5 +1,4 @@
 import {
-    type FC,
     memo,
     useCallback
 } from 'react';
@@ -25,7 +24,7 @@ export type LoginFormProps = {
     onSuccess: () => void;
 };
 
-const LoginForm: FC<LoginFormProps> = memo((props: LoginFormProps) => {
+const LoginForm = memo((props: LoginFormProps) => {
     const { className, onSuccess } = props;
 
     const { t } = useTranslation();

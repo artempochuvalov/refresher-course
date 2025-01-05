@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import { memo } from 'react';
 import { classNames } from 'shared/lib/classNames';
 
 import cls from './TextAtom.module.scss';
@@ -15,7 +15,7 @@ type TextAtomProps = {
     theme?: TextAtomTheme;
 };
 
-export const TextAtom: FC<TextAtomProps> = (props) => {
+export const TextAtom = memo((props: TextAtomProps) => {
     const {
         className,
         title,
@@ -34,4 +34,4 @@ export const TextAtom: FC<TextAtomProps> = (props) => {
             {text && <p className={cls.text}>{text}</p>}
         </div>
     );
-};
+});
