@@ -4,7 +4,6 @@ import {
     type FC,
     memo,
     useCallback,
-    useEffect,
     useState
 } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -38,12 +37,6 @@ export const Navbar: FC<NavbarProps> = memo((props: NavbarProps) => {
     const onLogout = useCallback(() => {
         dispatch(userActions.logout());
     }, [dispatch]);
-
-    useEffect(() => {
-        if (authData) {
-            setShowAuthModal(false);
-        }
-    }, [authData]);
 
     if (authData) {
         return (
