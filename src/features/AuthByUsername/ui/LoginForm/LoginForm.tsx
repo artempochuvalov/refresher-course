@@ -15,7 +15,7 @@ import { getLogginError } from '../../model/selectors/getLoginError';
 import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading';
 import { getLoginPassword } from '../../model/selectors/getLoginPassword';
 import { getLoginUsername } from '../../model/selectors/getLoginUsername';
-import { loginByUsername } from '../../model/services/loginByUserName';
+import { loginByUsername } from '../../model/services/loginByUsername';
 import { loginActions, loginReducer } from '../../model/slice/loginSlice';
 import cls from './LoginForm.module.scss';
 
@@ -53,7 +53,12 @@ const LoginForm: FC<LoginFormProps> = memo((props: LoginFormProps) => {
     return (
         <form className={classNames(cls.LoginForm, {}, [className])}>
             <TextAtom title={t('Форма авторизации')} />
-            {error && <TextAtom text={error} theme={TextAtomTheme.Error} />}
+            {error && (
+                <TextAtom
+                    text={t('Вы ввели неверный логин или пароль')}
+                    theme={TextAtomTheme.Error}
+                />
+            )}
 
             <Input
                 className={cls.input}
