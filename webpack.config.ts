@@ -4,7 +4,11 @@ import type { BuildEnv, BuildPaths } from './config/build/types/config';
 import { buildWebpackConfig } from './config/build/webpackConfig';
 
 export default (env: BuildEnv) => {
-    const { port: PORT = 3000, mode = 'development' } = env;
+    const {
+        port: PORT = 3000,
+        mode = 'development',
+        apiUrl = JSON.stringify('http://localhost:8000'),
+    } = env;
     const isDev = mode === 'development';
 
     const paths: BuildPaths = {
@@ -19,6 +23,7 @@ export default (env: BuildEnv) => {
         isDev,
         paths,
         port: PORT,
+        apiUrl: apiUrl ?? 'http://localhost:8000',
     });
 
     return config;
