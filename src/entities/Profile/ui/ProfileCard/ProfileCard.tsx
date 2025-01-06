@@ -1,24 +1,50 @@
-import { getProfileData } from 'entities/Profile';
+import { Profile } from 'entities/Profile';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames';
 import { Button, ButtonTheme } from 'shared/ui/Button';
 import { Input } from 'shared/ui/Input/Input';
-import { TextAtom } from 'shared/ui/TextAtom/TextAtom';
+import { Loader } from 'shared/ui/Loader';
+import { TextAtom, TextAtomTheme } from 'shared/ui/TextAtom/TextAtom';
 
 import cls from './ProfileCard.module.scss';
 
 type ProfileCardProps = {
     className?: string;
+    profileData?: Profile;
+    isLoading?: boolean;
+    error?: string;
 };
 
 export const ProfileCard = memo((props: ProfileCardProps) => {
-    const { className } = props;
+    const {
+        className,
+        profileData,
+        isLoading,
+        error,
+    } = props;
 
     const { t } = useTranslation('profile');
 
-    const profileData = useSelector(getProfileData);
+    if (isLoading) {
+        return (
+            <div className={classNames(cls.ProfileCard, {}, [className, cls.loading])}>
+                <Loader />
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className={classNames(cls.ProfileCard, {}, [className, cls.error])}>
+                <TextAtom
+                    theme={TextAtomTheme.Error}
+                    title={t('Произозошла ошибка загрузки профиля')}
+                    text={t('Попробуйте загрузить страницу ещё раз')}
+                />
+            </div>
+        );
+    }
 
     return (
         <div className={classNames(cls.ProfileCard, {}, [className])}>

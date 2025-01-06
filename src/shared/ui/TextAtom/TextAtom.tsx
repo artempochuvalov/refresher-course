@@ -8,11 +8,18 @@ export enum TextAtomTheme {
     Error = 'Error',
 }
 
+export enum TextAtomAlign {
+    Left = 'Left',
+    Center = 'Center',
+    Right = 'Right'
+}
+
 type TextAtomProps = {
     className?: string;
     title?: string;
     text?: string;
     theme?: TextAtomTheme;
+    align?: TextAtomAlign;
 };
 
 export const TextAtom = memo((props: TextAtomProps) => {
@@ -21,11 +28,13 @@ export const TextAtom = memo((props: TextAtomProps) => {
         title,
         text,
         theme = TextAtomTheme.Default,
+        align = TextAtomAlign.Left,
     } = props;
 
     const additionalClasses = [
         className,
         cls[theme],
+        cls[align],
     ];
 
     return (

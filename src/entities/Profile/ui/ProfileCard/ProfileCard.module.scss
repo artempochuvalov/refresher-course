@@ -1,6 +1,13 @@
 .ProfileCard {
     padding: 1.25rem;
     border: 2px solid var(--inverted-bg-color);
+
+    &:is(.loading, .error) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 16rem;
+    }
 }
 
 .header {
