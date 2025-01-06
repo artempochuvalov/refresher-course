@@ -32,7 +32,7 @@ export const Input = memo((props: InputProps) => {
     const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
         onChange?.(event.target.value);
     };
-    const ref = useRef<HTMLInputElement>();
+    const ref = useRef<HTMLInputElement | null>(null);
 
     useEffect(() => {
         if (autoFocus) {

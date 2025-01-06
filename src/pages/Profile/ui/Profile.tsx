@@ -1,7 +1,7 @@
-import { profileReducer } from 'entities/Profile';
-import { memo } from 'react';
-import { useTranslation } from 'react-i18next';
+import { fetchProfileData, ProfileCard, profileReducer } from 'entities/Profile';
+import { memo, useEffect } from 'react';
 import { classNames } from 'shared/lib/classNames';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { useDynamicModuleLoader } from 'shared/lib/hooks/useDynamicModuleLoader';
 
 type ProfileProps = {
@@ -13,7 +13,11 @@ const Profile = memo((props: ProfileProps) => {
         className,
     } = props;
 
-    const { t } = useTranslation();
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        dispatch(fetchProfileData());
+    }, [dispatch]);
 
     useDynamicModuleLoader({
         reducers: {
@@ -23,7 +27,7 @@ const Profile = memo((props: ProfileProps) => {
 
     return (
         <div className={classNames('', {}, [className])}>
-            {t('Профиль')}
+            <ProfileCard />
         </div>
     );
 });

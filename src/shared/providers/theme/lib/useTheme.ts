@@ -14,15 +14,15 @@ export function useTheme(): UseThemeResult {
     function toggleTheme() {
         const newTheme = theme === Theme.Light ? Theme.Dark : Theme.Light;
 
-        setTheme(newTheme);
+        setTheme?.(newTheme);
         localStorage.setItem(THEME_LOCALSTORAGE_KEY, newTheme);
 
         document.body.classList.add(newTheme);
-        document.body.classList.remove(theme);
+        document.body.classList.remove(theme || '');
     }
 
     return {
-        theme,
+        theme: theme || Theme.Light,
         toggleTheme,
     };
 }

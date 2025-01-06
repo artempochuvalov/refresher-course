@@ -23,8 +23,8 @@ export const useDynamicModuleLoader = ({
     const dispatch = useDispatch();
 
     useEffect(() => {
-        Object.entries(reducers).forEach(([key, reducer]: [StateSchemaKey, Reducer]) => {
-            store.reducerManager.add(key, reducer);
+        Object.entries(reducers).forEach(([key, reducer]) => {
+            store.reducerManager.add(key as StateSchemaKey, reducer);
             dispatch({ type: `@INIT ${key} module` });
         });
 
@@ -33,8 +33,8 @@ export const useDynamicModuleLoader = ({
                 return;
             }
 
-            Object.keys(reducers).forEach((key: StateSchemaKey) => {
-                store.reducerManager.remove(key);
+            Object.keys(reducers).forEach((key) => {
+                store.reducerManager.remove(key as StateSchemaKey);
                 dispatch({ type: `@DESTROY ${key} module` });
             });
         };
