@@ -14,11 +14,17 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Light: Story = {
+export const Default: Story = {
     args: {
         options: [
             { value: '1', text: 'Первый пункт' },
             { value: '2', text: 'Второй пункт' },
         ],
+    },
+};
+
+export const Readonly: Story = {
+    args: {
+        readonly: true,
     },
 };
