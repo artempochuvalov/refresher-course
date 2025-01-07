@@ -1,8 +1,8 @@
 import { Profile } from 'entities/Profile';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/classNames';
-import { Button, ButtonTheme } from 'shared/ui/Button';
+import { classNames, type ClassNamesMods } from 'shared/lib/classNames';
+import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Input } from 'shared/ui/Input/Input';
 import { Loader } from 'shared/ui/Loader';
 import { TextAtom, TextAtomTheme } from 'shared/ui/TextAtom/TextAtom';
@@ -13,7 +13,13 @@ type ProfileCardProps = {
     className?: string;
     profileData?: Profile;
     isLoading?: boolean;
+    readonly?: boolean;
     error?: string;
+    onFirstnameChange?: (firstname?: string) => void;
+    onLastnameChange?: (lastname?: string) => void;
+    onAgeChange?: (age?: string) => void;
+    onCityChange?: (city?: string) => void;
+    onAvatarChange?: (lastname?: string) => void;
 };
 
 export const ProfileCard = memo((props: ProfileCardProps) => {
@@ -22,6 +28,12 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
         profileData,
         isLoading,
         error,
+        readonly,
+        onFirstnameChange,
+        onLastnameChange,
+        onAgeChange,
+        onCityChange,
+        onAvatarChange,
     } = props;
 
     const { t } = useTranslation('profile');
@@ -46,24 +58,57 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
         );
     }
 
+    const mods: ClassNamesMods = {
+        [cls.editing]: !readonly,
+    };
+
     return (
-        <div className={classNames(cls.ProfileCard, {}, [className])}>
-            <div className={cls.header}>
-                <TextAtom title={t('Профиль пользователя')} />
-                <Button className={cls.editButton} theme={ButtonTheme.Outline}>
-                    {t('Редактировать')}
-                </Button>
-            </div>
+        <div className={classNames(cls.ProfileCard, mods, [className])}>
             <div className={cls.data}>
+                {profileData?.avatar && (
+                    <div className={cls.avatarWrapper}>
+                        <Avatar
+                            src={profileData.avatar}
+                            alt={t('Изображение профиля')}
+                        />
+                    </div>
+                )}
+
                 <Input
                     className={cls.input}
                     value={profileData?.first}
                     placeholder={t('Ваше имя')}
+                    readonly={readonly}
+                    onChange={onFirstnameChange}
                 />
                 <Input
                     className={cls.input}
                     value={profileData?.lastname}
                     placeholder={t('Ваша фамилия')}
+                    readonly={readonly}
+                    onChange={onLastnameChange}
+                />
+                <Input
+                    className={cls.input}
+                    value={String(profileData?.age)}
+                    numeric
+                    placeholder={t('Возраст')}
+                    readonly={readonly}
+                    onChange={onAgeChange}
+                />
+                <Input
+                    className={cls.input}
+                    value={profileData?.city}
+                    placeholder={t('Город')}
+                    readonly={readonly}
+                    onChange={onCityChange}
+                />
+                <Input
+                    className={cls.input}
+                    value={profileData?.city}
+                    placeholder={t('Ссылка на изображение профиля')}
+                    readonly={readonly}
+                    onChange={onAvatarChange}
                 />
             </div>
         </div>

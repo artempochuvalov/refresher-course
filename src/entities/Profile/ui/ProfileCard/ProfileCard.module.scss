@@ -8,14 +8,10 @@
         justify-content: center;
         height: 16rem;
     }
-}
 
-.header {
-    display: flex;
-}
-
-.editButton {
-    margin-left: auto;
+    &.editing {
+        border: 2px solid var(--inverted-primary-color);
+    }
 }
 
 .data {
@@ -24,4 +20,9 @@
 
 .input {
     margin-top: 0.5rem;
+}
+
+.avatarWrapper {
+    display: flex;
+    justify-content: center;
 }

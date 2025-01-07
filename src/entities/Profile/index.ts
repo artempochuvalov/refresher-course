@@ -1,7 +1,12 @@
+export {
+    getEditableProfileData
+} from './model/selectors/getEditableProfileData/getEditableProfileData';
 export { getProfileData } from './model/selectors/getProfileData/getProfileData';
 export { getProfileError } from './model/selectors/getProfileError/getProfileError';
 export { getProfileIsLoading } from './model/selectors/getProfileIsLoading/getProfileIsLoading';
-export { fetchProfileData } from './model/services/fetchProfileData';
+export { getProfileReadonly } from './model/selectors/getProfileReadonly/getProfileReadonly';
+export { fetchProfileData } from './model/services/fetchProfileData/fetchProfileData';
+export { updateProfile } from './model/services/updateProfile/updateProfile';
 export { profileActions, profileReducer } from './model/slice/profileSlice';
 export type { Profile, ProfileSchema } from './model/types';
 export { ProfileCard } from './ui/ProfileCard/ProfileCard';

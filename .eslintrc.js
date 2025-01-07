@@ -72,6 +72,7 @@ module.exports = {
         'react-hooks/exhaustive-deps': 'error',
         'no-param-reassign': 'off',
         'no-undef': 'off',
+        radix: 'off',
     },
     overrides: [
         {

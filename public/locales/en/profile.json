@@ -4,5 +4,6 @@
     "Ваше имя": "Your firstname",
     "Ваша фамилия": "Your lastname",
     "Произозошла ошибка загрузки профиля": "Some error happened during loading profile",
-    "Попробуйте загрузить страницу ещё раз": "Try to load this page again"
+    "Попробуйте загрузить страницу ещё раз": "Try to load this page again",
+    "Изображение профиля": "Profile image"
 }
