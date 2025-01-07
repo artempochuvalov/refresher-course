@@ -1,3 +1,5 @@
+import { type Country, CountrySelect } from 'entities/Country';
+import { type Currency, CurrencySelect } from 'entities/Currency';
 import { Profile } from 'entities/Profile';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -20,6 +22,8 @@ type ProfileCardProps = {
     onAgeChange?: (age?: string) => void;
     onCityChange?: (city?: string) => void;
     onAvatarChange?: (lastname?: string) => void;
+    onCurrencyChange?: (currency: Currency) => void;
+    onCountryChange?: (country: Country) => void;
 };
 
 export const ProfileCard = memo((props: ProfileCardProps) => {
@@ -34,6 +38,8 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
         onAgeChange,
         onCityChange,
         onAvatarChange,
+        onCurrencyChange,
+        onCountryChange,
     } = props;
 
     const { t } = useTranslation('profile');
@@ -105,10 +111,22 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
                 />
                 <Input
                     className={cls.input}
-                    value={profileData?.city}
+                    value={profileData?.avatar}
                     placeholder={t('Ссылка на изображение профиля')}
                     readonly={readonly}
                     onChange={onAvatarChange}
+                />
+                <CurrencySelect
+                    className={cls.input}
+                    value={profileData?.currency}
+                    readonly={readonly}
+                    onChange={onCurrencyChange}
+                />
+                <CountrySelect
+                    className={cls.input}
+                    value={profileData?.country}
+                    readonly={readonly}
+                    onChange={onCountryChange}
                 />
             </div>
         </div>

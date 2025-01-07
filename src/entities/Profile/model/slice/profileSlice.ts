@@ -53,6 +53,7 @@ export const profileSlice = createSlice({
             })
             .addCase(updateProfile.fulfilled, (state, action) => {
                 state.isLoading = false;
+                state.readonly = true;
                 state.profile = action.payload;
                 state.editableProfile = action.payload;
             })

@@ -1,3 +1,5 @@
+import type { Country } from 'entities/Country';
+import type { Currency } from 'entities/Currency';
 import {
     fetchProfileData,
     getEditableProfileData,
@@ -60,6 +62,12 @@ const Profile = memo((props: ProfileProps) => {
     const onAvatarChange = useCallback((avatar?: string) => {
         dispatch(profileActions.updateProfileData({ avatar: avatar ?? '' }));
     }, [dispatch]);
+    const onCurrencyChange = useCallback((currency: Currency) => {
+        dispatch(profileActions.updateProfileData({ currency: currency ?? '' }));
+    }, [dispatch]);
+    const onCountryChange = useCallback((country: Country) => {
+        dispatch(profileActions.updateProfileData({ country: country ?? '' }));
+    }, [dispatch]);
 
     return (
         <div className={classNames('', {}, [className])}>
@@ -75,6 +83,8 @@ const Profile = memo((props: ProfileProps) => {
                     onAgeChange={onAgeChange}
                     onCityChange={onCityChange}
                     onAvatarChange={onAvatarChange}
+                    onCurrencyChange={onCurrencyChange}
+                    onCountryChange={onCountryChange}
                 />
             </div>
         </div>

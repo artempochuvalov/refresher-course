@@ -12,5 +12,13 @@
     "Вы ввели неверный логин или пароль": "Incorrect login or password",
     "Главная страница": "Home",
     "О сайте": "About",
-    "Профиль": "Profile"
+    "Профиль": "Profile",
+    "Выберите валюту": "Choose currency",
+    "Выберите страну": "Choose country",
+    "Россия": "Russia",
+    "Беларусь": "Belarus",
+    "Украина": "Ukraine",
+    "Казахстан": "Kazakhstan",
+    "Армения": "Armenia",
+    "Грузия": "Georgia"
 }
