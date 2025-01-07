@@ -1,11 +1,12 @@
-import { RoutePaths } from 'app/providers/routeConfig/routeConfig';
 import type { FC, SVGProps } from 'react';
 import { About, Main, Profile } from 'shared/assets/icons';
+import { RoutePaths } from 'shared/constants/routes';
 
 export type SidebarItemType = {
     path: string;
     text: string;
     Icon: FC<SVGProps<SVGElement>>;
+    authOnly?: boolean;
 };
 
 export const SidebarItemList: SidebarItemType[] = [
@@ -23,5 +24,6 @@ export const SidebarItemList: SidebarItemType[] = [
         path: RoutePaths.Profile,
         text: 'Профиль',
         Icon: Profile,
+        authOnly: true,
     },
 ];
