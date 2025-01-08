@@ -17,6 +17,9 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+// eslint-disable-next-line max-len
+const avatar = 'https://images.unsplash.com/photo-1449034446853-66c86144b0ad?w=620&auto=format&fit=crop&q=60&ixlib=rb-4.0.3';
+
 export const Light: Story = {
     decorators: [
         ThemeDecorator(Theme.Light),
@@ -29,7 +32,7 @@ export const Light: Story = {
                     city: 'Москва',
                     country: Country.Russia,
                     currency: Currency.RUB,
-                    avatar: 'https://4g-inter.net/image/catalog/goods/ai/3d/lion1.jpg',
+                    avatar,
                 },
             },
         }),
@@ -48,7 +51,7 @@ export const Dark: Story = {
                     city: 'Москва',
                     country: Country.Russia,
                     currency: Currency.RUB,
-                    avatar: 'https://4g-inter.net/image/catalog/goods/ai/3d/lion1.jpg',
+                    avatar,
                 },
             },
         }),

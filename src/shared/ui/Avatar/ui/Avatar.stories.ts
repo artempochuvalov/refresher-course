@@ -7,7 +7,8 @@ const meta = {
     component: Avatar,
     argTypes: {},
     args: {
-        src: 'https://4g-inter.net/image/catalog/goods/ai/3d/lion1.jpg',
+        // eslint-disable-next-line max-len
+        src: 'https://images.unsplash.com/photo-1449034446853-66c86144b0ad?w=620&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
     },
 } satisfies Meta<typeof Avatar>;
 

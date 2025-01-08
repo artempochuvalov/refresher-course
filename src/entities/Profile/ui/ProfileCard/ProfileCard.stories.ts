@@ -23,7 +23,8 @@ export const Default: Story = {
             city: 'Москва',
             country: Country.Russia,
             currency: Currency.RUB,
-            avatar: 'https://4g-inter.net/image/catalog/goods/ai/3d/lion1.jpg',
+            // eslint-disable-next-line max-len
+            avatar: 'https://images.unsplash.com/photo-1449034446853-66c86144b0ad?w=620&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
         },
     },
 };
