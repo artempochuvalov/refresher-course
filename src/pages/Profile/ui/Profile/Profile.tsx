@@ -6,15 +6,19 @@ import {
     getProfileError,
     getProfileIsLoading,
     getProfileReadonly,
+    getValidateProfileErrors,
     profileActions,
     ProfileCard,
-    profileReducer
+    profileReducer,
+    ValidateProfileError
 } from 'entities/Profile';
 import { memo, useCallback, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { useDynamicModuleLoader } from 'shared/lib/hooks/useDynamicModuleLoader';
+import { TextAtom, TextAtomTheme } from 'shared/ui/TextAtom/TextAtom';
 
 import { ProfileHeader } from '../ProfileHeader/ProfileHeader';
 import cls from './Profile.module.scss';
@@ -28,12 +32,23 @@ const Profile = memo((props: ProfileProps) => {
         className,
     } = props;
 
+    const { t } = useTranslation('profile');
+
     const dispatch = useAppDispatch();
 
     const editableProfileData = useSelector(getEditableProfileData);
     const isLoading = useSelector(getProfileIsLoading);
     const error = useSelector(getProfileError);
     const readonly = useSelector(getProfileReadonly);
+    const validateProfileErrors = useSelector(getValidateProfileErrors);
+
+    const validationErrorsText: Record<ValidateProfileError, string> = {
+        [ValidateProfileError.INCORRECT_AGE]: 'Некорректный возраст',
+        [ValidateProfileError.INCORRECT_CITY]: 'Некорректный город',
+        [ValidateProfileError.INCORRECT_PERSONAL_DATA]: 'Имя и фамилия обязательны',
+        [ValidateProfileError.NO_DATA]: 'Нет данных',
+        [ValidateProfileError.SERVER_ERROR]: 'Произошла ошибка на сервере',
+    };
 
     useDynamicModuleLoader({
         reducers: {
@@ -72,7 +87,19 @@ const Profile = memo((props: ProfileProps) => {
     return (
         <div className={classNames('', {}, [className])}>
             <ProfileHeader />
-            <div className={cls.ProfileCardWrapper}>
+
+            {validateProfileErrors?.length && (
+                <div className={cls.validationErrors}>
+                    {validateProfileErrors.map((error) => (
+                        <TextAtom
+                            theme={TextAtomTheme.Error}
+                            text={t(validationErrorsText[error])}
+                        />
+                    ))}
+                </div>
+            )}
+
+            <div className={cls.profileCardWrapper}>
                 <ProfileCard
                     profileData={editableProfileData}
                     readonly={readonly}

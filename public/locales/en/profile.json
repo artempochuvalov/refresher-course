@@ -10,5 +10,10 @@
     "Изображение профиля": "Profile image",
     "Возраст": "Age",
     "Город": "City",
-    "Ссылка на изображение профиля": "Profile image link"
+    "Ссылка на изображение профиля": "Profile image link",
+    "Некорректный возраст": "Incorrect age",
+    "Некорректный город": "Incorrect city",
+    "Имя и фамилия обязательны": "First and last names are required",
+    "Нет данных": "No data was provided",
+    "Произошла ошибка на сервере": "Some server error occured"
 }
