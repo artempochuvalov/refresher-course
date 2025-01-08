@@ -2,7 +2,7 @@ import { Country } from 'entities/Country';
 import { Currency } from 'entities/Currency';
 import { TestAsyncThunk } from 'shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
 
-import { ValidateProfileError } from '../../types';
+import { ValidationProfileError } from '../../types';
 import { updateProfile } from './updateProfile';
 
 const profile = {
@@ -44,7 +44,7 @@ describe('updateProfile.test', () => {
         const result = await thunk.callThunk();
 
         expect(thunk.api.put).toHaveBeenCalled();
-        expect(result.payload).toEqual([ValidateProfileError.SERVER_ERROR]);
+        expect(result.payload).toEqual([ValidationProfileError.SERVER_ERROR]);
         expect(result.meta.requestStatus).toBe('rejected');
     });
 
@@ -60,7 +60,7 @@ describe('updateProfile.test', () => {
         const result = await thunk.callThunk();
 
         expect(thunk.api.put).toHaveBeenCalled();
-        expect(result.payload).toEqual([ValidateProfileError.SERVER_ERROR]);
+        expect(result.payload).toEqual([ValidationProfileError.SERVER_ERROR]);
         expect(result.meta.requestStatus).toBe('rejected');
     });
 
@@ -77,7 +77,7 @@ describe('updateProfile.test', () => {
         const result = await thunk.callThunk();
 
         expect(thunk.api.put).not.toHaveBeenCalled();
-        expect(result.payload).toEqual([ValidateProfileError.INCORRECT_PERSONAL_DATA]);
+        expect(result.payload).toEqual([ValidationProfileError.INCORRECT_PERSONAL_DATA]);
         expect(result.meta.requestStatus).toBe('rejected');
     });
 });

@@ -6,11 +6,11 @@ import {
     getProfileError,
     getProfileIsLoading,
     getProfileReadonly,
-    getValidateProfileErrors,
+    getValidationProfileErrors,
     profileActions,
     ProfileCard,
     profileReducer,
-    ValidateProfileError
+    ValidationProfileError
 } from 'entities/Profile';
 import { memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -40,14 +40,14 @@ const Profile = memo((props: ProfileProps) => {
     const isLoading = useSelector(getProfileIsLoading);
     const error = useSelector(getProfileError);
     const readonly = useSelector(getProfileReadonly);
-    const validateProfileErrors = useSelector(getValidateProfileErrors);
+    const validationProfileErrors = useSelector(getValidationProfileErrors);
 
-    const validationErrorsText: Record<ValidateProfileError, string> = {
-        [ValidateProfileError.INCORRECT_AGE]: 'Некорректный возраст',
-        [ValidateProfileError.INCORRECT_CITY]: 'Некорректный город',
-        [ValidateProfileError.INCORRECT_PERSONAL_DATA]: 'Имя и фамилия обязательны',
-        [ValidateProfileError.NO_DATA]: 'Нет данных',
-        [ValidateProfileError.SERVER_ERROR]: 'Произошла ошибка на сервере',
+    const validationErrorsText: Record<ValidationProfileError, string> = {
+        [ValidationProfileError.INCORRECT_AGE]: 'Некорректный возраст',
+        [ValidationProfileError.INCORRECT_CITY]: 'Некорректный город',
+        [ValidationProfileError.INCORRECT_PERSONAL_DATA]: 'Имя и фамилия обязательны',
+        [ValidationProfileError.NO_DATA]: 'Нет данных',
+        [ValidationProfileError.SERVER_ERROR]: 'Произошла ошибка на сервере',
     };
 
     useDynamicModuleLoader({
@@ -90,9 +90,9 @@ const Profile = memo((props: ProfileProps) => {
         <div className={classNames('', {}, [className])}>
             <ProfileHeader />
 
-            {validateProfileErrors?.length && (
+            {validationProfileErrors?.length && (
                 <div className={cls.validationErrors}>
-                    {validateProfileErrors.map((error) => (
+                    {validationProfileErrors.map((error) => (
                         <TextAtom
                             key={error}
                             theme={TextAtomTheme.Error}

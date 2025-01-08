@@ -1,7 +1,7 @@
 import type { Country } from 'entities/Country';
 import type { Currency } from 'entities/Currency';
 
-export enum ValidateProfileError {
+export enum ValidationProfileError {
     NO_DATA = 'NO_DATA',
     INCORRECT_PERSONAL_DATA = 'INCORRECT_PERSONAL_DATA',
     INCORRECT_AGE = 'INCORRECT_AGE',
@@ -26,5 +26,5 @@ export type ProfileSchema = {
     isLoading: boolean;
     error?: string;
     readonly: boolean;
-    validateProfileErrors?: ValidateProfileError[];
+    validationProfileErrors?: ValidationProfileError[];
 };

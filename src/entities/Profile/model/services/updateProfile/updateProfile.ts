@@ -4,13 +4,13 @@ import { ThunkConfig } from 'app/providers/StoreProvider';
 import {
     getEditableProfileData
 } from '../../selectors/getEditableProfileData/getEditableProfileData';
-import { Profile, ValidateProfileError } from '../../types';
+import { Profile, ValidationProfileError } from '../../types';
 import { validateProfile } from '../validateProfile/validateProfile';
 
 export const updateProfile = createAsyncThunk<
     Profile,
     void,
-    ThunkConfig<ValidateProfileError[]>
+    ThunkConfig<ValidationProfileError[]>
 >(
     'entity/updateProfile',
     async (_, { getState, rejectWithValue, extra: { api } }) => {
@@ -31,7 +31,7 @@ export const updateProfile = createAsyncThunk<
             return updatedProfile;
         } catch (error) {
             console.error(error);
-            return rejectWithValue([ValidateProfileError.SERVER_ERROR]);
+            return rejectWithValue([ValidationProfileError.SERVER_ERROR]);
         }
     }
 );

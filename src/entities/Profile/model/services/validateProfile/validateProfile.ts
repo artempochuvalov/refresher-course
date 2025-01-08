@@ -1,10 +1,10 @@
-import { Profile, ValidateProfileError } from '../../types';
+import { Profile, ValidationProfileError } from '../../types';
 
 export const validateProfile = (profile?: Profile) => {
-    const errors: ValidateProfileError[] = [];
+    const errors: ValidationProfileError[] = [];
 
     if (!profile) {
-        errors.push(ValidateProfileError.NO_DATA);
+        errors.push(ValidationProfileError.NO_DATA);
         return errors;
     }
 
@@ -16,15 +16,15 @@ export const validateProfile = (profile?: Profile) => {
     } = profile;
 
     if (!first || !lastname) {
-        errors.push(ValidateProfileError.INCORRECT_PERSONAL_DATA);
+        errors.push(ValidationProfileError.INCORRECT_PERSONAL_DATA);
     }
 
     if (!age || age > 120 || age <= 0) {
-        errors.push(ValidateProfileError.INCORRECT_AGE);
+        errors.push(ValidationProfileError.INCORRECT_AGE);
     }
 
     if (!city) {
-        errors.push(ValidateProfileError.INCORRECT_CITY);
+        errors.push(ValidationProfileError.INCORRECT_CITY);
     }
 
     return errors;

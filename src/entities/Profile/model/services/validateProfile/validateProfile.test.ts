@@ -1,4 +1,4 @@
-import { ValidateProfileError } from '../../types';
+import { ValidationProfileError } from '../../types';
 import { validateProfile } from './validateProfile';
 
 describe('validateProfile.test', () => {
@@ -13,7 +13,7 @@ describe('validateProfile.test', () => {
 
     test('no data passed', () => {
         expect(validateProfile()).toEqual([
-            ValidateProfileError.NO_DATA,
+            ValidationProfileError.NO_DATA,
         ]);
     });
 
@@ -24,7 +24,7 @@ describe('validateProfile.test', () => {
             age: 40,
             city: 'Москва',
         })).toEqual(
-            [ValidateProfileError.INCORRECT_PERSONAL_DATA]
+            [ValidationProfileError.INCORRECT_PERSONAL_DATA]
         );
     });
 
@@ -35,7 +35,7 @@ describe('validateProfile.test', () => {
             age: 40,
             city: 'Москва',
         })).toEqual(
-            [ValidateProfileError.INCORRECT_PERSONAL_DATA]
+            [ValidationProfileError.INCORRECT_PERSONAL_DATA]
         );
     });
 
@@ -46,7 +46,7 @@ describe('validateProfile.test', () => {
             age: undefined,
             city: 'Москва',
         })).toEqual(
-            [ValidateProfileError.INCORRECT_AGE]
+            [ValidationProfileError.INCORRECT_AGE]
         );
     });
 
@@ -57,7 +57,7 @@ describe('validateProfile.test', () => {
             age: 121,
             city: 'Москва',
         })).toEqual(
-            [ValidateProfileError.INCORRECT_AGE]
+            [ValidationProfileError.INCORRECT_AGE]
         );
     });
 
@@ -68,7 +68,7 @@ describe('validateProfile.test', () => {
             age: -1,
             city: 'Москва',
         })).toEqual(
-            [ValidateProfileError.INCORRECT_AGE]
+            [ValidationProfileError.INCORRECT_AGE]
         );
     });
 
@@ -79,7 +79,7 @@ describe('validateProfile.test', () => {
             age: 0,
             city: 'Москва',
         })).toEqual(
-            [ValidateProfileError.INCORRECT_AGE]
+            [ValidationProfileError.INCORRECT_AGE]
         );
     });
 
@@ -90,15 +90,15 @@ describe('validateProfile.test', () => {
             age: -1,
             city: 'Москва',
         })).toEqual(
-            [ValidateProfileError.INCORRECT_AGE]
+            [ValidationProfileError.INCORRECT_AGE]
         );
     });
 
     test('all field are invalid', () => {
         expect(validateProfile({})).toEqual([
-            ValidateProfileError.INCORRECT_PERSONAL_DATA,
-            ValidateProfileError.INCORRECT_AGE,
-            ValidateProfileError.INCORRECT_CITY,
+            ValidationProfileError.INCORRECT_PERSONAL_DATA,
+            ValidationProfileError.INCORRECT_AGE,
+            ValidationProfileError.INCORRECT_CITY,
         ]);
     });
 });
