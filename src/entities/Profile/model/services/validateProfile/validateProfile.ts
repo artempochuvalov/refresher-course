@@ -19,7 +19,7 @@ export const validateProfile = (profile?: Profile) => {
         errors.push(ValidateProfileError.INCORRECT_PERSONAL_DATA);
     }
 
-    if (!age || age > 120 || age < 0) {
+    if (!age || age > 120 || age <= 0) {
         errors.push(ValidateProfileError.INCORRECT_AGE);
     }
 
