@@ -24,7 +24,7 @@ export const Default: Story = {
             country: Country.Russia,
             currency: Currency.RUB,
             // eslint-disable-next-line max-len
-            avatar: 'https://images.unsplash.com/photo-1449034446853-66c86144b0ad?w=620&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+            avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmCy16nhIbV3pI1qLYHMJKwbH2458oiC9EmA&s',
         },
     },
 };

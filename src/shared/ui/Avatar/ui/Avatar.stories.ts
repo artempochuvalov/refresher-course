@@ -8,7 +8,7 @@ const meta = {
     argTypes: {},
     args: {
         // eslint-disable-next-line max-len
-        src: 'https://images.unsplash.com/photo-1449034446853-66c86144b0ad?w=620&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+        src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmCy16nhIbV3pI1qLYHMJKwbH2458oiC9EmA&s',
     },
 } satisfies Meta<typeof Avatar>;
 
