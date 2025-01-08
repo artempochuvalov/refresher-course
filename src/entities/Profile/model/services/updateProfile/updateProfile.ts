@@ -22,7 +22,13 @@ export const updateProfile = createAsyncThunk<
             }
 
             const response = await api.put<Profile>('/profile', profileData);
-            return response.data;
+
+            const updatedProfile = response.data;
+            if (!updatedProfile) {
+                throw new Error();
+            }
+
+            return updatedProfile;
         } catch (error) {
             console.error(error);
             return rejectWithValue([ValidateProfileError.SERVER_ERROR]);

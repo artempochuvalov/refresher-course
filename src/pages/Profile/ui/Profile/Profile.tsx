@@ -94,6 +94,7 @@ const Profile = memo((props: ProfileProps) => {
                 <div className={cls.validationErrors}>
                     {validateProfileErrors.map((error) => (
                         <TextAtom
+                            key={error}
                             theme={TextAtomTheme.Error}
                             text={t(validationErrorsText[error])}
                         />
