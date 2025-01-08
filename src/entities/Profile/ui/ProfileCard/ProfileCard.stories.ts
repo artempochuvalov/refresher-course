@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Country } from 'entities/Country';
 import { Currency } from 'entities/Currency';
-import avatar from 'shared/ui/Avatar/storybook.png';
 
 import { ProfileCard } from './ProfileCard';
 
@@ -24,7 +23,7 @@ export const Default: Story = {
             city: 'Москва',
             country: Country.Russia,
             currency: Currency.RUB,
-            avatar,
+            avatar: 'https://4g-inter.net/image/catalog/goods/ai/3d/lion1.jpg',
         },
     },
 };

@@ -1,14 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { Avatar } from './Avatar';
-import img from './storybook.png';
 
 const meta = {
     title: 'ui/Avatar',
     component: Avatar,
     argTypes: {},
     args: {
-        src: img,
+        src: 'https://4g-inter.net/image/catalog/goods/ai/3d/lion1.jpg',
     },
 } satisfies Meta<typeof Avatar>;
 

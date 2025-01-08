@@ -4,7 +4,6 @@ import { Currency } from 'entities/Currency';
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator';
 import { Theme } from 'shared/providers/theme';
-import avatar from 'shared/ui/Avatar/storybook.png';
 
 import Profile from './Profile';
 
@@ -30,7 +29,7 @@ export const Light: Story = {
                     city: 'Москва',
                     country: Country.Russia,
                     currency: Currency.RUB,
-                    avatar,
+                    avatar: 'https://4g-inter.net/image/catalog/goods/ai/3d/lion1.jpg',
                 },
             },
         }),
@@ -49,7 +48,7 @@ export const Dark: Story = {
                     city: 'Москва',
                     country: Country.Russia,
                     currency: Currency.RUB,
-                    avatar,
+                    avatar: 'https://4g-inter.net/image/catalog/goods/ai/3d/lion1.jpg',
                 },
             },
         }),
