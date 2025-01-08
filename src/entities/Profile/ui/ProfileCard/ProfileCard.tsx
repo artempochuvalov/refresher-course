@@ -7,7 +7,7 @@ import { classNames, type ClassNamesMods } from 'shared/lib/classNames';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Input } from 'shared/ui/Input/Input';
 import { Loader } from 'shared/ui/Loader';
-import { TextAtom, TextAtomTheme } from 'shared/ui/TextAtom/TextAtom';
+import { TextAtom, TextAtomAlign, TextAtomTheme } from 'shared/ui/TextAtom/TextAtom';
 
 import cls from './ProfileCard.module.scss';
 
@@ -57,6 +57,7 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
             <div className={classNames(cls.ProfileCard, {}, [className, cls.error])}>
                 <TextAtom
                     theme={TextAtomTheme.Error}
+                    align={TextAtomAlign.Center}
                     title={t('Произозошла ошибка загрузки профиля')}
                     text={t('Попробуйте загрузить страницу ещё раз')}
                 />

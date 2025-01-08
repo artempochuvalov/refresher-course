@@ -21,7 +21,7 @@ export const updateProfile = createAsyncThunk<
                 return rejectWithValue(validationErrors);
             }
 
-            const response = await api.post<Profile>('/profile', profileData);
+            const response = await api.put<Profile>('/profile', profileData);
             return response.data;
         } catch (error) {
             console.error(error);

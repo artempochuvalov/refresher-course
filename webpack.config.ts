@@ -24,6 +24,7 @@ export default (env: BuildEnv) => {
         paths,
         port: PORT,
         apiUrl: apiUrl ?? 'http://localhost:8000',
+        project: JSON.stringify('frontend') as 'frontend',
     });
 
     return config;

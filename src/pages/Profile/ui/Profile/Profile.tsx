@@ -57,7 +57,9 @@ const Profile = memo((props: ProfileProps) => {
     });
 
     useEffect(() => {
-        dispatch(fetchProfileData());
+        if (__PROJECT__ === 'frontend') {
+            dispatch(fetchProfileData());
+        }
     }, [dispatch]);
 
     const onFirstnameChange = useCallback((first?: string) => {
