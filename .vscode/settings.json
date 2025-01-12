@@ -13,5 +13,58 @@
 
     "editor.tabSize": 4,
     "editor.insertSpaces": true,
-    "editor.detectIndentation": true
+    "editor.detectIndentation": true,
+    "folderTemplates.structures": [
+        {
+            "name": "RC",
+            "structure": [
+                {
+                    "fileName": "<FTName | pascalcase>.tsx",
+                    "template": "Functional component"
+                },
+                {
+                    "fileName": "<FTName | pascalcase>.module.scss",
+                },
+                {
+                    "fileName": "<FTName | pascalcase>.stories.ts",
+                    "template": "Component storybook"
+                }
+            ]
+        }
+    ],
+    "folderTemplates.fileTemplates": {
+        "Functional component": [
+            "import { memo } from 'react';",
+			"import { useTranslation } from 'react-i18next';",
+			"import { classNames } from 'shared/lib/classNames';\n",
+			"import cls from './<FTName | pascalcase>.module.scss';\n",
+			"type <FTName | pascalcase>Props = {",
+			"    className?: string;",
+			"};\n",
+			"export const <FTName | pascalcase> = memo((props: <FTName | pascalcase>Props) => {",
+			"    const { className } = props;\n",
+			"    const { t } = useTranslation();\n",
+			"    return (",
+			"        <div className={classNames(cls.<FTName | pascalcase>, {}, [className])}>",
+			"            ",
+			"        </div>",
+			"    );",    
+			"});\n"
+        ],
+        "Component storybook": [
+            "import type { Meta, StoryObj } from '@storybook/react';\n",
+            "import { <FTName | pascalcase> } from './<FTName | pascalcase>';\n",
+            "const meta = {",
+            "    title: '/<FTName | pascalcase>',",
+            "    component: <FTName | pascalcase>,",
+            "    argTypes: {},",
+            "    args: {},",
+            "} satisfies Meta<typeof <FTName | pascalcase>>;\n",
+            "export default meta;",
+            "type Story = StoryObj<typeof meta>;\n",
+            "export const Default: Story = {",
+            "    args: {},",
+            "};\n"
+        ],
+    }
 }
