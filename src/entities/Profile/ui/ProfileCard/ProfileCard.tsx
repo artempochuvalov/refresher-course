@@ -65,6 +65,10 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
         );
     }
 
+    const avatarSource = (
+        __PROJECT__ === 'storybook' ? 'https://www.some.picture' : profileData?.avatar
+    );
+
     const mods: ClassNamesMods = {
         [cls.editing]: !readonly,
     };
@@ -112,7 +116,7 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
                 />
                 <Input
                     className={cls.input}
-                    value={profileData?.avatar}
+                    value={avatarSource}
                     placeholder={t('Ссылка на изображение профиля')}
                     readonly={readonly}
                     onChange={onAvatarChange}
