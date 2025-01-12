@@ -12,7 +12,12 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { BuildOptions } from './types/config';
 
 export function buildPlugins(
-    { paths, isDev }: BuildOptions
+    {
+        paths,
+        isDev,
+        apiUrl,
+        project,
+    }: BuildOptions
 ): WebpackPluginInstance[] {
     const plugins = [
         new HtmlWebpackPlugin({
@@ -25,6 +30,8 @@ export function buildPlugins(
         }),
         new DefinePlugin({
             __IS_DEV__: isDev,
+            __API__: apiUrl,
+            __PROJECT__: project,
         }),
         new HotModuleReplacementPlugin(),
     ];

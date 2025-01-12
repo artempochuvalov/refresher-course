@@ -7,13 +7,35 @@
 }
 
 .input {
-    width: 100%;
     background-color: transparent;
     color: var(--primary-color);
     border: none;
     outline: none;
+    flex: 1;
 
     &:focus {
         outline: none;
+    }
+
+    &[type="number"] {
+        /* stylelint-disable-next-line property-no-vendor-prefix */
+        -moz-appearance: textfield;
+    }
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        /* stylelint-disable-next-line property-no-vendor-prefix */
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    &:hover,
+    &:focus {
+        /* stylelint-disable-next-line property-no-vendor-prefix */
+        -moz-appearance: number-input;
+    }
+
+    .readonly & {
+        opacity: 0.7;
     }
 }

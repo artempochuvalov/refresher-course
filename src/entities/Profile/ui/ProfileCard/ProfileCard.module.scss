@@ -1,0 +1,28 @@
+.ProfileCard {
+    padding: 1.25rem;
+    border: 2px solid var(--inverted-bg-color);
+
+    &:is(.loading, .error) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 16rem;
+    }
+
+    &.editing {
+        border: 2px solid var(--inverted-primary-color);
+    }
+}
+
+.data {
+    margin-top: 1.5rem;
+}
+
+.input {
+    margin-top: 0.5rem;
+}
+
+.avatarWrapper {
+    display: flex;
+    justify-content: center;
+}

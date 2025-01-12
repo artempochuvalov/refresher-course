@@ -18,3 +18,17 @@ export const Primary: Story = {
         value: 'А тут что-то ввели',
     },
 };
+
+export const Readonly: Story = {
+    args: {
+        placeholder: 'Инпут только для чтения',
+        readonly: true,
+    },
+};
+
+export const Numeric: Story = {
+    args: {
+        placeholder: 'Инпут только для чисел',
+        numeric: true,
+    },
+};

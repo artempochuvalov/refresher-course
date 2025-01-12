@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator';
 import { Theme } from 'shared/providers/theme';
@@ -9,7 +10,9 @@ const meta = {
     title: 'features/LoginForm',
     component: LoginForm,
     argTypes: {},
-    args: {},
+    args: {
+        onSuccess: fn,
+    },
     decorators: [
         StoreDecorator({
             loginForm: {

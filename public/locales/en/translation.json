@@ -9,5 +9,16 @@
     "Логин": "Username",
     "Пароль": "Password",
     "Форма авторизации": "Authorization form",
-    "Вы ввели неверный логин или пароль": "Incorrect login or password"
+    "Вы ввели неверный логин или пароль": "Incorrect login or password",
+    "Главная страница": "Home",
+    "О сайте": "About",
+    "Профиль": "Profile",
+    "Выберите валюту": "Choose currency",
+    "Выберите страну": "Choose country",
+    "Россия": "Russia",
+    "Беларусь": "Belarus",
+    "Украина": "Ukraine",
+    "Казахстан": "Kazakhstan",
+    "Армения": "Armenia",
+    "Грузия": "Georgia"
 }

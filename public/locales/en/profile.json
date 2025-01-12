@@ -1,0 +1,19 @@
+{
+    "Профиль пользователя": "User's profile",
+    "Редактировать": "Edit",
+    "Отменить": "Cancel",
+    "Сохранить": "Save",
+    "Ваше имя": "Your firstname",
+    "Ваша фамилия": "Your lastname",
+    "Произозошла ошибка загрузки профиля": "Some error happened during loading profile",
+    "Попробуйте загрузить страницу ещё раз": "Try to load this page again",
+    "Изображение профиля": "Profile image",
+    "Возраст": "Age",
+    "Город": "City",
+    "Ссылка на изображение профиля": "Profile image link",
+    "Некорректный возраст": "Incorrect age",
+    "Некорректный город": "Incorrect city",
+    "Имя и фамилия обязательны": "First and last names are required",
+    "Нет данных": "No data was provided",
+    "Произошла ошибка на сервере": "Some server error occured"
+}

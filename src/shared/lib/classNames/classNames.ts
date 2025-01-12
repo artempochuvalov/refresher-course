@@ -1,14 +1,14 @@
-type Mods = {
-    [Property: string]: boolean | string;
+export type ClassNamesMods = {
+    [Property: string]: boolean | string | undefined;
 };
 
 export function classNames(
     classNames: string,
-    mods: Mods = {},
-    additional: string[] = []
+    mods: ClassNamesMods = {},
+    additional: (string | undefined)[] = []
 ) {
     const conditionalClassNames = Object.entries(mods)
-        .reduce((classNames, [className, flag]) => {
+        .reduce((classNames: (string | undefined)[], [className, flag]) => {
             if (flag) {
                 return [...classNames, className];
             }

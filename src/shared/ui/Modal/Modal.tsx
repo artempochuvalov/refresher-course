@@ -7,7 +7,7 @@ import {
     useRef,
     useState
 } from 'react';
-import { classNames } from 'shared/lib/classNames';
+import { classNames, ClassNamesMods } from 'shared/lib/classNames';
 import { useTheme } from 'shared/providers/theme';
 import { Portal } from 'shared/ui/Portal';
 
@@ -40,7 +40,7 @@ export const Modal: FC<ModalProps> = (props) => {
     const [isMounted, setIsMounted] = useState(false);
     const timerRef = useRef<ReturnType<typeof setTimeout>>();
 
-    const mods: Record<string, boolean> = {
+    const mods: ClassNamesMods = {
         [cls.opened]: isOpen,
         [cls.isClosing]: isClosing,
     };

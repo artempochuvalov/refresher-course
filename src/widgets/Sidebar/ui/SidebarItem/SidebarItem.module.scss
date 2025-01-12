@@ -1,0 +1,21 @@
+.link {
+    display: inline-flex;
+    gap: 0.25rem;
+    align-items: center;
+}
+
+.linkIcon {
+    fill: currentcolor;
+}
+
+.linkText {
+    opacity: 1;
+}
+
+.collapsed {
+    .linkText {
+        opacity: 0;
+        transition: opacity 0.2s;
+        width: 0;
+    }
+}

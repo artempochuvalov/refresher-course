@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames';
 
@@ -8,7 +8,7 @@ type NotFoundProps = {
     className?: string;
 };
 
-export const NotFound: FC<NotFoundProps> = (props: NotFoundProps) => {
+export const NotFound = memo((props: NotFoundProps) => {
     const { className } = props;
     const { t } = useTranslation('not_found');
 
@@ -17,4 +17,4 @@ export const NotFound: FC<NotFoundProps> = (props: NotFoundProps) => {
             {t('Страница не найдена')}
         </div>
     );
-};
+});

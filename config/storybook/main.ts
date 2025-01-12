@@ -53,7 +53,9 @@ const config: StorybookConfig = {
 
         const plugins = [
             new DefinePlugin({
-                __IS_DEV__: true,
+                __IS_DEV__: JSON.stringify(true),
+                __API__: JSON.stringify(''),
+                __PROJECT__: JSON.stringify('storybook'),
             }),
         ];
         config.plugins?.push(...plugins);

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator';
 import { Theme } from 'shared/providers/theme';
 
-import { TextAtom, TextAtomTheme } from './TextAtom';
+import { TextAtom, TextAtomAlign, TextAtomTheme } from './TextAtom';
 
 const meta = {
     title: 'ui/TextAtom',
@@ -60,5 +60,21 @@ export const Error: Story = {
         title: 'Это крутой текст с крутым текстом',
         text: 'А это крутой текст с крутым заголовком',
         theme: TextAtomTheme.Error,
+    },
+};
+
+export const AlignCenter: Story = {
+    args: {
+        title: 'Это крутой текст с крутым текстом',
+        text: 'А это крутой текст с крутым заголовком',
+        align: TextAtomAlign.Center,
+    },
+};
+
+export const AlignRight: Story = {
+    args: {
+        title: 'Это крутой текст с крутым текстом',
+        text: 'А это крутой текст с крутым заголовком',
+        align: TextAtomAlign.Right,
     },
 };

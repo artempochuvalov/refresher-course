@@ -70,6 +70,13 @@ export const OutlineXL: Story = {
     },
 };
 
+export const OutlineRed: Story = {
+    args: {
+        theme: ButtonTheme.OutlineRed,
+        children: 'Кнопка',
+    },
+};
+
 export const Background: Story = {
     args: {
         theme: ButtonTheme.Background,

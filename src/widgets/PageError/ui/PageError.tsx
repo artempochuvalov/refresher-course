@@ -1,4 +1,4 @@
-import { type FC, useCallback } from 'react';
+import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames';
 import { Button } from 'shared/ui/Button';
@@ -9,7 +9,7 @@ type PageErrorProps = {
     className?: string;
 };
 
-export const PageError: FC<PageErrorProps> = (props: PageErrorProps) => {
+export const PageError = memo((props: PageErrorProps) => {
     const { className } = props;
     const { t } = useTranslation();
 
@@ -25,4 +25,4 @@ export const PageError: FC<PageErrorProps> = (props: PageErrorProps) => {
             </Button>
         </div>
     );
-};
+});

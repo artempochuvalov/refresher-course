@@ -1,12 +1,12 @@
 import {
-    type FC,
     memo,
     useCallback
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames';
-import { useDynamicModuleLoader } from 'shared/lib/components';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
+import { useDynamicModuleLoader } from 'shared/lib/hooks/useDynamicModuleLoader';
 import { Button, ButtonTheme } from 'shared/ui/Button';
 import { Input } from 'shared/ui/Input/Input';
 import { TextAtom, TextAtomTheme } from 'shared/ui/TextAtom/TextAtom';
@@ -21,13 +21,14 @@ import cls from './LoginForm.module.scss';
 
 export type LoginFormProps = {
     className?: string;
+    onSuccess?: () => void;
 };
 
-const LoginForm: FC<LoginFormProps> = memo((props: LoginFormProps) => {
-    const { className } = props;
+const LoginForm = memo((props: LoginFormProps) => {
+    const { className, onSuccess } = props;
 
     const { t } = useTranslation();
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     useDynamicModuleLoader({
         reducers: {
@@ -47,8 +48,11 @@ const LoginForm: FC<LoginFormProps> = memo((props: LoginFormProps) => {
         dispatch(loginActions.setPassword(value));
     }, [dispatch]);
     const onLoginClick = useCallback(async () => {
-        dispatch(loginByUsername({ username, password }));
-    }, [username, password, dispatch]);
+        const result = await dispatch(loginByUsername({ username, password }));
+        if (result.meta.requestStatus === 'fulfilled') {
+            onSuccess?.();
+        }
+    }, [username, password, dispatch, onSuccess]);
 
     return (
         <form className={classNames(cls.LoginForm, {}, [className])}>
@@ -63,14 +67,12 @@ const LoginForm: FC<LoginFormProps> = memo((props: LoginFormProps) => {
             <Input
                 className={cls.input}
                 autoFocus
-                type="text"
                 placeholder={t('Логин')}
                 value={username}
                 onChange={onChangeUsername}
             />
             <Input
                 className={cls.input}
-                type="text"
                 placeholder={t('Пароль')}
                 value={password}
                 onChange={onChangePassword}

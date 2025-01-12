@@ -1,39 +1,49 @@
 import {
     ChangeEvent,
-    type FC,
     type InputHTMLAttributes,
+    type KeyboardEvent,
     memo,
+    useCallback,
     useEffect,
     useRef
 } from 'react';
-import { classNames } from 'shared/lib/classNames';
+import { classNames, type ClassNamesMods } from 'shared/lib/classNames';
 
 import cls from './Input.module.scss';
 
-type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'>;
+type HTMLInputProps = Omit<
+    InputHTMLAttributes<HTMLInputElement>,
+    'onChange' | 'value' | 'disabled' | 'readOnly' | 'type'
+>;
 
 type InputProps = HTMLInputProps & {
     className?: string;
     value?: string;
     autoFocus?: boolean;
     onChange?: (value: string) => void;
+    readonly?: boolean;
+    numeric?: boolean;
 };
 
-export const Input: FC<InputProps> = memo((props: InputProps) => {
+export const Input = memo((props: InputProps) => {
     const {
         className,
         value,
         onChange,
-        type = 'text',
         placeholder,
         autoFocus,
+        readonly,
+        numeric,
         ...restProps
     } = props;
 
-    const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        onChange?.(event.target.value);
+    const ref = useRef<HTMLInputElement | null>(null);
+
+    const type = numeric ? 'number' : 'text';
+
+    const mods: ClassNamesMods = {
+        [cls.readonly]: readonly,
     };
-    const ref = useRef<HTMLInputElement>();
 
     useEffect(() => {
         if (autoFocus) {
@@ -41,8 +51,17 @@ export const Input: FC<InputProps> = memo((props: InputProps) => {
         }
     }, [autoFocus]);
 
+    const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        onChange?.(event.target.value);
+    };
+    const onKeyDown = useCallback((event: KeyboardEvent) => {
+        if (numeric && /\D/.test(event.key) && event.key !== 'Backspace') {
+            event.preventDefault();
+        }
+    }, [numeric]);
+
     return (
-        <div className={classNames(cls.InputWrapper, {}, [className])}>
+        <div className={classNames(cls.InputWrapper, mods, [className])}>
             {placeholder && (
                 <div className={cls.placeholder}>
                     {`${placeholder}>`}
@@ -51,10 +70,12 @@ export const Input: FC<InputProps> = memo((props: InputProps) => {
 
             <input
                 ref={ref}
+                disabled={readonly}
                 className={cls.input}
                 type={type}
                 value={value}
                 onChange={onChangeHandler}
+                onKeyDown={onKeyDown}
                 {...restProps}
             />
         </div>
