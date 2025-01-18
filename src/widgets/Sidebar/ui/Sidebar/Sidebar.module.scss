@@ -18,6 +18,7 @@
 .collapsedBtn {
     position: absolute;
     right: 0;
+    z-index: 100;
     bottom: 1rem;
     transform: translateX(calc(100% + 0.5rem));
 }

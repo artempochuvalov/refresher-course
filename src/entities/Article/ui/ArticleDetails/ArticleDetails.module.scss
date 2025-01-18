@@ -1,0 +1,20 @@
+.skeletons {
+    display: flex;
+    flex-direction: column;
+}
+
+.skeletonAvatar {
+    align-self: center;
+}
+
+.skeletonTitle {
+    margin-top: 2rem;
+}
+
+.skeletonDescription {
+    margin-top: 1rem;
+}
+
+.skeleton {
+    margin-top: 2rem;
+}

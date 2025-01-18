@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import ArticleDetails from './ArticleDetails';
+import { ArticleDetails } from './ArticleDetails';
 
 const meta = {
-    title: '/ArticleDetails',
+    title: 'entities/articleDetails/ArticleDetails',
     component: ArticleDetails,
     argTypes: {},
     args: {},
