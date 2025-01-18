@@ -1,5 +1,10 @@
 import type { FC, SVGProps } from 'react';
-import { About, Main, Profile } from 'shared/assets/icons';
+import {
+    About,
+    Articles,
+    Main,
+    Profile
+} from 'shared/assets/icons';
 import { RoutePaths } from 'shared/constants/routes';
 
 export type SidebarItemType = {
@@ -24,6 +29,12 @@ export const SidebarItemList: SidebarItemType[] = [
         path: RoutePaths.Profile,
         text: 'Профиль',
         Icon: Profile,
+        authOnly: true,
+    },
+    {
+        path: RoutePaths.Articles,
+        text: 'Статьи',
+        Icon: Articles,
         authOnly: true,
     },
 ];
