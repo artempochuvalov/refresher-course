@@ -3,7 +3,7 @@ import {
     getArticleDetailsError,
     getArticleDetailsIsLoading
 } from 'entities/Article/model/selectors/articleDetailsSelectors';
-import { articleDetailsReducer } from 'entities/Article/model/slice/articleDetails.slice';
+import { articleDetailsReducer } from 'entities/Article/model/slice/articleDetailsSlice';
 import { ArticleBlock, ArticleBlockType } from 'entities/Article/model/types/article';
 import { memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';

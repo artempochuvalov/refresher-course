@@ -64,7 +64,7 @@ describe('getArticleDetailsIsLoading.test', () => {
                 isLoading: true,
             },
         };
-        expect(getArticleDetailsError(state as StateSchema)).toEqual(true);
+        expect(getArticleDetailsIsLoading(state as StateSchema)).toEqual(true);
     });
 
     test('should work with empty state', () => {
