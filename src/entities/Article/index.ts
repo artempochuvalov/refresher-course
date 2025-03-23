@@ -1,4 +1,3 @@
-export { articleDetailsReducer } from './model/slice/articleDetails.slice';
 export type { Article } from './model/types/article';
 export type {
     ArticleDetailsSchema
