@@ -1,18 +1,32 @@
 import {
+    getArticleDetailsData,
     getArticleDetailsError,
     getArticleDetailsIsLoading
 } from 'entities/Article/model/selectors/articleDetailsSelectors';
 import { articleDetailsReducer } from 'entities/Article/model/slice/articleDetails.slice';
-import { memo, useEffect } from 'react';
+import { ArticleBlock, ArticleBlockType } from 'entities/Article/model/types/article';
+import { memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { Calendar, ViewEye } from 'shared/assets/icons';
 import { classNames } from 'shared/lib/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { useDynamicModuleLoader } from 'shared/lib/hooks/useDynamicModuleLoader';
+import { Avatar } from 'shared/ui/Avatar';
 import { Skeleton } from 'shared/ui/Skeleton';
-import { TextAtom, TextAtomAlign, TextAtomTheme } from 'shared/ui/TextAtom/TextAtom';
+import {
+    TextAtom,
+    TextAtomAlign,
+    TextAtomSize,
+    TextAtomTheme
+} from 'shared/ui/TextAtom/TextAtom';
 
 import { fetchArticleById } from '../../model/services/fetchArticleById/fetchArticleById';
+import { ArticleCodeBlockComponent } from '../ArticleCodeBlockComponent/ArticleCodeBlockComponent';
+import {
+    ArticleImageBlockComponent
+} from '../ArticleImageBlockComponent/ArticleImageBlockComponent';
+import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 import cls from './ArticleDetails.module.scss';
 
 type ArticleDetailsProps = {
@@ -28,6 +42,7 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
 
     const error = useSelector(getArticleDetailsError);
     const isLoading = useSelector(getArticleDetailsIsLoading);
+    const articleData = useSelector(getArticleDetailsData);
 
     useDynamicModuleLoader({
         reducers: {
@@ -40,6 +55,36 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
 
         dispatch(fetchArticleById(articleId));
     }, [dispatch, articleId]);
+
+    const renderArticleBlock = useCallback((block: ArticleBlock) => {
+        switch (block.type) {
+            case ArticleBlockType.TEXT: {
+                return (
+                    <ArticleTextBlockComponent
+                        key={block.id}
+                        block={block}
+                    />
+                );
+            }
+            case ArticleBlockType.CODE: {
+                return (
+                    <ArticleCodeBlockComponent
+                        key={block.id}
+                    />
+                );
+            }
+            case ArticleBlockType.IMAGE: {
+                return (
+                    <ArticleImageBlockComponent
+                        key={block.id}
+                    />
+                );
+            }
+            default: {
+                return null;
+            }
+        }
+    }, []);
 
     if (!articleId) {
         return (
@@ -65,7 +110,7 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
         );
     }
 
-    if (error) {
+    if (error || !articleData) {
         return (
             <div className={cls.error}>
                 <TextAtom
@@ -79,7 +124,29 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
 
     return (
         <div className={classNames(cls.ArticleDetails, {}, [className])}>
-            <div>{t('ARTICLE DETAILS')}</div>
+            <div className={cls.avatarWrapper}>
+                <Avatar size={200} src={articleData.img} />
+            </div>
+
+            <TextAtom
+                className={cls.articleTitle}
+                title={articleData.title}
+                size={TextAtomSize.L}
+            />
+            <TextAtom text={articleData.subtitle} size={TextAtomSize.L} />
+
+            <div className={cls.articleMetaBlock}>
+                <div className={cls.articleMetaItem}>
+                    <ViewEye className={cls.articleMetaIcon} />
+                    <TextAtom text={String(articleData.views)} />
+                </div>
+                <div className={cls.articleMetaItem}>
+                    <Calendar className={cls.articleMetaIcon} />
+                    <TextAtom text={String(articleData.createdAt)} />
+                </div>
+            </div>
+
+            {articleData.blocks.map(renderArticleBlock)}
         </div>
     );
 });
