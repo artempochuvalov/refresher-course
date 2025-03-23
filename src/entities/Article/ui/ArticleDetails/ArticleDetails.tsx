@@ -70,6 +70,7 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
                 return (
                     <ArticleCodeBlockComponent
                         key={block.id}
+                        block={block}
                     />
                 );
             }
