@@ -1,21 +1,22 @@
 import { memo } from 'react';
-import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames';
+import { TextAtom } from 'shared/ui/TextAtom/TextAtom';
 
+import { ArticleImageBlock } from '../../model/types/article';
 import cls from './ArticleImageBlockComponent.module.scss';
 
 type ArticleImageBlockComponentProps = {
     className?: string;
+    block: ArticleImageBlock;
 };
 
 export const ArticleImageBlockComponent = memo((props: ArticleImageBlockComponentProps) => {
-    const { className } = props;
-
-    const { t } = useTranslation('article');
+    const { className, block } = props;
 
     return (
         <div className={classNames(cls.ArticleImageBlockComponent, {}, [className])}>
-            {t('ArticleImageBlockComponent')}
+            <img className={cls.image} src={block.src} alt={block.title} />
+            <TextAtom className={cls.imageTitle} text={block.title} />
         </div>
     );
 });

@@ -78,6 +78,7 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
                 return (
                     <ArticleImageBlockComponent
                         key={block.id}
+                        block={block}
                     />
                 );
             }
