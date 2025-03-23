@@ -1,3 +1,8 @@
-.ArticleCodeBlockComponent {
-    display: block;
+.ArticleTextBlockComponent {
+    width: 100%;
+}
+
+.ArticleParagraph,
+.ArticleTitle {
+    margin-top: 1.5rem;
 }

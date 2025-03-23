@@ -1,25 +1,26 @@
-.title {
-    &.m {
-        font: var(--font-l);
-    }
-
-    &.l {
-        font: var(--font-xl);
-    }
-
+.title,
+.text {
     color: var(--primary-color);
 }
 
-.text {
-    &.m {
-        font: var(--font-m);
-    }
-
-    &.l {
+.m {
+    .title {
         font: var(--font-l);
     }
 
-    color: var(--secondary-color);
+    .text {
+        font: var(--font-m);
+    }
+}
+
+.l {
+    .title {
+        font: var(--font-xl);
+    }
+
+    .text {
+        font: var(--font-l);
+    }
 }
 
 .Error {
