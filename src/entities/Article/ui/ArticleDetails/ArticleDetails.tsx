@@ -31,7 +31,7 @@ import cls from './ArticleDetails.module.scss';
 
 type ArticleDetailsProps = {
     className?: string;
-    articleId?: string;
+    articleId: string;
 };
 
 export const ArticleDetails = memo((props: ArticleDetailsProps) => {
@@ -51,9 +51,9 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
     });
 
     useEffect(() => {
-        if (!articleId || __PROJECT__ === 'storybook') return;
-
-        dispatch(fetchArticleById(articleId));
+        if (__PROJECT__ !== 'storybook') {
+            dispatch(fetchArticleById(articleId));
+        }
     }, [dispatch, articleId]);
 
     const renderArticleBlock = useCallback((block: ArticleBlock) => {
@@ -87,18 +87,6 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
             }
         }
     }, []);
-
-    if (!articleId) {
-        return (
-            <div className={cls.noData}>
-                <TextAtom
-                    align={TextAtomAlign.Center}
-                    theme={TextAtomTheme.Error}
-                    title={t('Невалидный идентификатор статьи')}
-                />
-            </div>
-        );
-    }
 
     if (isLoading) {
         return (
