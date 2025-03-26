@@ -20,7 +20,7 @@ export const Default: Story = {
             user: {
                 id: '1',
                 username: 'Автор',
-                avatar: 'https://scx2.b-cdn.net/gfx/news/hires/2018/hack.jpg',
+                avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmCy16nhIbV3pI1qLYHMJKwbH2458oiC9EmA&s',
             },
         },
     },
@@ -35,7 +35,7 @@ export const Loading: Story = {
             user: {
                 id: '1',
                 username: 'Автор',
-                avatar: 'https://scx2.b-cdn.net/gfx/news/hires/2018/hack.jpg',
+                avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmCy16nhIbV3pI1qLYHMJKwbH2458oiC9EmA&s',
             },
         },
     },
