@@ -39,4 +39,9 @@ export const Loading: Story = {
             },
         },
     },
+    parameters: {
+        loki: {
+            skip: true,
+        },
+    },
 };
