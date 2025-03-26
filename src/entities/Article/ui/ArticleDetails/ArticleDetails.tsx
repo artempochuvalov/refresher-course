@@ -5,13 +5,14 @@ import {
 } from 'entities/Article/model/selectors/articleDetailsSelectors';
 import { articleDetailsReducer } from 'entities/Article/model/slice/articleDetailsSlice';
 import { ArticleBlock, ArticleBlockType } from 'entities/Article/model/types/article';
-import { memo, useCallback, useEffect } from 'react';
+import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Calendar, ViewEye } from 'shared/assets/icons';
 import { classNames } from 'shared/lib/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { useDynamicModuleLoader } from 'shared/lib/hooks/useDynamicModuleLoader';
+import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect';
 import { Avatar } from 'shared/ui/Avatar';
 import { Skeleton } from 'shared/ui/Skeleton';
 import {
@@ -50,11 +51,9 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
         },
     });
 
-    useEffect(() => {
-        if (__PROJECT__ !== 'storybook') {
-            dispatch(fetchArticleById(articleId));
-        }
-    }, [dispatch, articleId]);
+    useInitialEffect(() => {
+        dispatch(fetchArticleById(articleId));
+    });
 
     const renderArticleBlock = useCallback((block: ArticleBlock) => {
         switch (block.type) {

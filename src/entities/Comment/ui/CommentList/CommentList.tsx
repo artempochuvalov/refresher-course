@@ -9,7 +9,7 @@ import cls from './CommentList.module.scss';
 
 type CommentListProps = {
     className?: string;
-    comments: Comment[];
+    comments?: Comment[];
     isLoading?: boolean;
 };
 
@@ -20,7 +20,7 @@ export const CommentList = memo((props: CommentListProps) => {
 
     return (
         <div className={classNames(cls.CommentList, {}, [className])}>
-            {comments.length
+            {comments?.length
                 ? comments.map((comment) => (
                     <CommentCard
                         key={comment.id}
