@@ -12,12 +12,13 @@ import {
     profileReducer,
     ValidationProfileError
 } from 'entities/Profile';
-import { memo, useCallback, useEffect } from 'react';
+import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { useDynamicModuleLoader } from 'shared/lib/hooks/useDynamicModuleLoader';
+import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect';
 import { TextAtom, TextAtomTheme } from 'shared/ui/TextAtom/TextAtom';
 
 import { ProfileHeader } from '../ProfileHeader/ProfileHeader';
@@ -56,11 +57,9 @@ const Profile = memo((props: ProfileProps) => {
         },
     });
 
-    useEffect(() => {
-        if (__PROJECT__ === 'frontend') {
-            dispatch(fetchProfileData());
-        }
-    }, [dispatch]);
+    useInitialEffect(() => {
+        dispatch(fetchProfileData());
+    });
 
     const onFirstnameChange = useCallback((first?: string) => {
         dispatch(profileActions.updateProfileData({ first: first ?? '' }));

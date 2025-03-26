@@ -1,12 +1,14 @@
-import { RouteProvider } from 'app/providers/routeConfig';
-import { userActions } from 'entities/User';
+import { RouteProvider } from 'app/providers/RouterConfig';
+import { getUserSliceInitted, userActions } from 'entities/User';
 import { Suspense, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Navbar } from 'widgets/Navbar';
 import { Sidebar } from 'widgets/Sidebar';
 
 const App = () => {
     const dispatch = useDispatch();
+
+    const initted = useSelector(getUserSliceInitted);
 
     useEffect(() => {
         dispatch(userActions.initAuthData());
@@ -18,7 +20,7 @@ const App = () => {
                 <Navbar />
                 <div className="content-page">
                     <Sidebar />
-                    <RouteProvider />
+                    {initted && <RouteProvider />}
                 </div>
             </div>
         </Suspense>

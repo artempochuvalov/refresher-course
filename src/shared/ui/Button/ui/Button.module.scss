@@ -2,6 +2,21 @@
     cursor: pointer;
     color: var(--secondary-color);
     padding: 0.75rem 1rem;
+    transition: opacity 0.3s ease;
+
+    --button-opacity: 1;
+
+    opacity: var(--button-opacity);
+    stroke-opacity: var(--button-opacity);
+    fill-opacity: var(--button-opacity);
+
+    &:hover {
+        --button-opacity: 0.8;
+    }
+
+    &:active {
+        --button-opacity: 0.6;
+    }
 
     &:is(.blank, .blankInverted) {
         padding: 0;

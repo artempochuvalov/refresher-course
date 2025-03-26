@@ -1,11 +1,13 @@
 import { AboutPage } from 'pages/About';
+import { ArticleDetailsPage } from 'pages/ArticleDetails';
+import { ArticlesPage } from 'pages/Articles';
 import { MainPage } from 'pages/Main';
 import { NotFoundPage } from 'pages/NotFound';
 import { ProfilePage } from 'pages/Profile';
 import { RouteProps } from 'react-router-dom';
 import { RouteNames, RoutePaths } from 'shared/constants/routes';
 
-type AppRoutesProps = RouteProps & {
+export type AppRoutesProps = RouteProps & {
     authOnly?: boolean;
 };
 
@@ -26,5 +28,14 @@ export const routeConfig: Record<RouteNames, AppRoutesProps> = {
         path: RoutePaths.Profile,
         element: <ProfilePage />,
         authOnly: true,
+    },
+    [RouteNames.Articles]: {
+        path: RoutePaths.Articles,
+        element: <ArticlesPage />,
+        authOnly: true,
+    },
+    [RouteNames.ArticleDetails]: {
+        path: `${RoutePaths.ArticleDetails}/:id`,
+        element: <ArticleDetailsPage />,
     },
 };

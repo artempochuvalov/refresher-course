@@ -66,5 +66,6 @@
             "    args: {},",
             "};\n"
         ],
-    }
+    },
+    "i18n-ally.keystyle": "flat"
 }

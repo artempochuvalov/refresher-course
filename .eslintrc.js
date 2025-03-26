@@ -87,5 +87,11 @@ module.exports = {
                 'react/jsx-props-no-spreading': 'off',
             },
         },
+        {
+            files: ['**/src/**/*.stories.{ts,tsx}'],
+            rules: {
+                'max-len': 'off',
+            },
+        },
     ],
 };
