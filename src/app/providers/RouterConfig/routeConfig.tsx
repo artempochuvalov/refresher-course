@@ -35,7 +35,8 @@ export const routeConfig: Record<RouteNames, AppRoutesProps> = {
         authOnly: true,
     },
     [RouteNames.ArticleDetails]: {
-        path: `${RoutePaths.ArticleDetails}/:id`,
+        path: `${RoutePaths.ArticleDetails}:id`,
         element: <ArticleDetailsPage />,
+        authOnly: true,
     },
 };

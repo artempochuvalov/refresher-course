@@ -12,6 +12,6 @@ export const RoutePaths: Record<RouteNames, string> = {
     [RouteNames.About]: '/about',
     [RouteNames.Profile]: '/profile',
     [RouteNames.Articles]: '/articles',
-    [RouteNames.ArticleDetails]: '/article-details',
+    [RouteNames.ArticleDetails]: '/articles/', // + :id
     [RouteNames.NotFound]: '*',
 };
