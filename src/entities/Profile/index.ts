@@ -13,3 +13,4 @@ export { updateProfile } from './model/services/updateProfile/updateProfile';
 export { profileActions, profileReducer } from './model/slice/profileSlice';
 export { type Profile, type ProfileSchema, ValidationProfileError } from './model/types';
 export { ProfileCard } from './ui/ProfileCard/ProfileCard';
+export { ProfileLink } from './ui/ProfileLink/ProfileLink';
