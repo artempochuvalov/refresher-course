@@ -95,7 +95,7 @@
       "id": "2",
       "text": "some comment 2",
       "articleId": "1",
-      "userId": "1"
+      "userId": "2"
     },
     {
       "id": "3",
@@ -117,7 +117,7 @@
       "username": "user",
       "password": "123",
       "role": "USER",
-      "avatar": "https://pic.rutubelist.ru/user/3b/27/3b2758ad5492a76b578f7ee072e4e894.jpg"
+      "avatar": "https://www.securitymagazine.com/ext/resources/2023/01/23/hacker-gc04371cad_1920.jpg?1674482112"
     }
   ],
   "profiles": [
@@ -139,7 +139,7 @@
       "currency": "RUB",
       "country": "Russia",
       "city": "Москва",
-      "username": "ulbi tv",
+      "username": "user",
       "avatar": "https://www.securitymagazine.com/ext/resources/2023/01/23/hacker-gc04371cad_1920.jpg?1674482112",
       "age": 25
     }

@@ -1,3 +1,4 @@
+import { ProfileLink } from 'entities/Profile';
 import { memo } from 'react';
 import { classNames } from 'shared/lib/classNames';
 import { Avatar } from 'shared/ui/Avatar';
@@ -35,14 +36,14 @@ export const CommentCard = memo((props: CommentCardProps) => {
         );
     }
 
-    const { avatar: userAvatar, username } = comment.user;
+    const { avatar: userAvatar, username, id: userId } = comment.user;
 
     return (
         <div className={classNames(cls.CommentCard, {}, [className])}>
-            <div className={cls.header}>
+            <ProfileLink className={cls.commentAuthor} id={userId}>
                 {userAvatar && <Avatar className={cls.avatar} size={32} src={userAvatar} />}
                 <TextAtom title={username} />
-            </div>
+            </ProfileLink>
 
             <div className={cls.text}>
                 <TextAtom text={comment.text} />

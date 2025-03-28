@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { RouteNames } from 'shared/constants/routes';
+import { RoutePaths } from 'shared/constants/routes';
 import { classNames } from 'shared/lib/classNames';
 import { AppLink } from 'shared/ui/AppLink';
 
@@ -12,7 +12,7 @@ type ProfileLinkProps = {
 export const ProfileLink = (props: ProfileLinkProps) => {
     const { id, children, className } = props;
 
-    const route = `${RouteNames.Profile}${id}`;
+    const route = `${RoutePaths.Profile}${id}`;
 
     return (
         <AppLink
