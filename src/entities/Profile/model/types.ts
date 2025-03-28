@@ -10,6 +10,7 @@ export enum ValidationProfileError {
 }
 
 export type Profile = {
+    id?: string;
     first?: string;
     lastname?: string;
     age?: number;
