@@ -32,9 +32,15 @@ export const addArticleComment = createAsyncThunk<
                 text,
                 userId: user.id,
             });
+
+            const comment = response.data;
+            if (!response.data) {
+                throw new Error();
+            }
+
             dispatch(fetchCommentsByArticleId(articleId));
 
-            return response.data;
+            return comment;
         } catch (error) {
             console.error(error);
             return rejectWithValue('error');
