@@ -25,7 +25,7 @@ export const routeConfig: Record<RouteNames, AppRoutesProps> = {
         element: <NotFoundPage />,
     },
     [RouteNames.Profile]: {
-        path: `${RoutePaths.Profile}:id?`,
+        path: `${RoutePaths.Profile}:id`,
         element: <ProfilePage />,
         authOnly: true,
     },

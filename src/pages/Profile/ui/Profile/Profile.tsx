@@ -69,8 +69,11 @@ const Profile = memo((props: ProfileProps) => {
     });
 
     useInitialEffect(() => {
-        const profileId = id ?? user?.id ?? '';
-        dispatch(fetchProfileData(profileId));
+        if (!id) {
+            return;
+        }
+
+        dispatch(fetchProfileData(id));
     });
 
     const onFirstnameChange = useCallback((first?: string) => {
