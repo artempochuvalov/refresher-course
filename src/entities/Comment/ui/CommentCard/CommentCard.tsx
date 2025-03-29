@@ -1,3 +1,4 @@
+import { ProfileLink } from 'entities/Profile';
 import { memo } from 'react';
 import { classNames } from 'shared/lib/classNames';
 import { Avatar } from 'shared/ui/Avatar';
@@ -9,7 +10,7 @@ import cls from './CommentCard.module.scss';
 
 type CommentCardProps = {
     className?: string;
-    comment: Comment;
+    comment?: Comment;
     isLoading?: boolean;
 };
 
@@ -22,8 +23,8 @@ export const CommentCard = memo((props: CommentCardProps) => {
 
     if (isLoading) {
         return (
-            <div className={classNames(cls.CommentCard, {}, [className])}>
-                <div className={cls.header}>
+            <div className={classNames(cls.CommentCard, {}, [className, cls.loading])}>
+                <div className={cls.commentAuthor}>
                     <Skeleton width="32px" height="32px" border="50%" />
                     <Skeleton height="24px" width="100px" />
                 </div>
@@ -35,14 +36,18 @@ export const CommentCard = memo((props: CommentCardProps) => {
         );
     }
 
-    const { avatar: userAvatar, username } = comment.user;
+    if (!comment) {
+        return null;
+    }
+
+    const { avatar: userAvatar, username, id: userId } = comment.user;
 
     return (
         <div className={classNames(cls.CommentCard, {}, [className])}>
-            <div className={cls.header}>
+            <ProfileLink className={cls.commentAuthor} id={userId}>
                 {userAvatar && <Avatar className={cls.avatar} size={32} src={userAvatar} />}
                 <TextAtom title={username} />
-            </div>
+            </ProfileLink>
 
             <div className={cls.text}>
                 <TextAtom text={comment.text} />

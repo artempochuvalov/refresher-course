@@ -108,11 +108,6 @@ export const Loading: Story = {
             },
         }),
     ],
-    parameters: {
-        loki: {
-            skip: true,
-        },
-    },
 };
 
 export const LoadingError: Story = {

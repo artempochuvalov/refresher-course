@@ -9,11 +9,6 @@ const meta = {
     component: Skeleton,
     argTypes: {},
     args: {},
-    parameters: {
-        loki: {
-            skip: true,
-        },
-    },
 } satisfies Meta<typeof Skeleton>;
 
 export default meta;
