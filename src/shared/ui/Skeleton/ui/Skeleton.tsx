@@ -1,5 +1,5 @@
 import { type CSSProperties, memo } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
+import { classNames, ClassNamesMods } from 'shared/lib/classNames/classNames';
 
 import cls from './Skeleton.module.scss';
 
@@ -24,9 +24,13 @@ export const Skeleton = memo((props: SkeletonProps) => {
         borderRadius: border,
     };
 
+    const mods: ClassNamesMods = {
+        [cls.withoutAnimation]: __PROJECT__ === 'storybook',
+    };
+
     return (
         <div
-            className={classNames(cls.Skeleton, {}, [className])}
+            className={classNames(cls.Skeleton, mods, [className])}
             style={styles}
         />
     );
