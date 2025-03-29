@@ -8,4 +8,9 @@ export const getArticleComments = commentsAdapter.getSelectors<StateSchema>(
 export const getArticleCommentsIsLoading = (state: StateSchema) => (
     state.articleComments?.isLoading ?? false
 );
-export const getArticleCommentsError = (state: StateSchema) => state.articleComments?.error;
+export const getArticleCommentsFetchingError = (state: StateSchema) => (
+    state.articleComments?.fetchCommentsError
+);
+export const getArticleCommentAddError = (state: StateSchema) => (
+    state.articleComments?.addCommentError
+);

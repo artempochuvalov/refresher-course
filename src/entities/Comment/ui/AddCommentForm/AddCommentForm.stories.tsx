@@ -15,13 +15,13 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     args: {
-        onSend: fn(),
+        onSendComment: fn(),
     },
 };
 
 export const Error: Story = {
     args: {
-        onSend: fn(),
+        onSendComment: fn(),
         error: 'error',
     },
 };

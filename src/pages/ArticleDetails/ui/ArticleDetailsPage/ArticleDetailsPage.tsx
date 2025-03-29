@@ -1,7 +1,6 @@
 import { ArticleDetails } from 'entities/Article';
-import { CommentList } from 'entities/Comment';
-import { articleCommentsReducer } from 'pages/ArticleDetails/model/slices/articleCommentsSlice';
-import { memo } from 'react';
+import { AddCommentForm, CommentList } from 'entities/Comment';
+import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -17,10 +16,15 @@ import {
 } from 'shared/ui/TextAtom/TextAtom';
 
 import {
+    getArticleCommentAddError,
     getArticleComments,
     getArticleCommentsIsLoading
 } from '../../model/selectors/articleCommentsSelectors';
-import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId';
+import { addArticleComment } from '../../model/services/addArticleComment/addArticleComment';
+import {
+    fetchCommentsByArticleId
+} from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
+import { articleCommentsReducer } from '../../model/slices/articleCommentsSlice';
 import cls from './ArticleDetailsPage.module.scss';
 
 type ArticleDetailsPageProps = {
@@ -36,6 +40,12 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
 
     const comments = useSelector(getArticleComments.selectAll);
     const areCommentsLoading = useSelector(getArticleCommentsIsLoading);
+
+    const addCommentError = useSelector(getArticleCommentAddError);
+
+    const onSendComment = useCallback(async (text: string) => {
+        await dispatch(addArticleComment(text));
+    }, [dispatch]);
 
     useDynamicModuleLoader({
         reducers: {
@@ -69,6 +79,12 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
 
             <div className={cls.commentsBlock}>
                 <TextAtom size={TextAtomSize.L} title={t('Комментарии')} />
+
+                <AddCommentForm
+                    className={cls.addCommentForm}
+                    onSendComment={onSendComment}
+                    error={addCommentError}
+                />
 
                 <CommentList
                     className={cls.comments}

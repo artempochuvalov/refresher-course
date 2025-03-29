@@ -8,14 +8,14 @@ import { TextAtom, TextAtomTheme } from 'shared/ui/TextAtom/TextAtom';
 import cls from './AddCommentForm.module.scss';
 
 export type AddCommentFormProps = {
-    onSend: (value: string) => Promise<void>;
+    onSendComment: (value: string) => Promise<void>;
     error?: string;
     className?: string;
 };
 
 const AddCommentForm = memo((props: AddCommentFormProps) => {
     const {
-        onSend,
+        onSendComment,
         error,
         className,
     } = props;
@@ -29,11 +29,11 @@ const AddCommentForm = memo((props: AddCommentFormProps) => {
     }, []);
 
     const onClickSend = useCallback(async () => {
-        await onSend(value);
+        await onSendComment(value);
         if (!error) {
             setValue('');
         }
-    }, [onSend, value, error]);
+    }, [onSendComment, value, error]);
 
     return (
         <div className={classNames(cls.AddCommentForm, {}, [className])}>
