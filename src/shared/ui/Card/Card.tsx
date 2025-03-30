@@ -9,10 +9,10 @@ type CardProps = HTMLAttributes<HTMLDivElement> & {
 };
 
 export const Card = (props: CardProps) => {
-    const { children, className } = props;
+    const { children, className, ...restProps } = props;
 
     return (
-        <div className={classNames(cls.Card, {}, [className])}>
+        <div className={classNames(cls.Card, {}, [className])} {...restProps}>
             {children}
         </div>
     );

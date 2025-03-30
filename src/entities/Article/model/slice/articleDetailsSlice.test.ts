@@ -23,6 +23,10 @@ describe('articleDetailsSlice.test', () => {
     test('fetch profile by id fullfilled', () => {
         const article: Article = {
             id: '1',
+            user: {
+                id: '1',
+                username: 'admin',
+            },
             type: [ArticleType.IT],
             title: 'Заголовок',
             subtitle: 'Подзаголовок',

@@ -1,5 +1,6 @@
+/* eslint-disable max-len */
+import { ArticlesList } from 'entities/Article';
 import { memo } from 'react';
-import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames';
 
 import cls from './Articles.module.scss';
@@ -11,11 +12,9 @@ type ArticlesProps = {
 const Articles = (props: ArticlesProps) => {
     const { className } = props;
 
-    const { t } = useTranslation('article');
-
     return (
         <div className={classNames(cls.Articles, {}, [className])}>
-            {t('Страница постов')}
+            <ArticlesList articles={[]} />
         </div>
     );
 };

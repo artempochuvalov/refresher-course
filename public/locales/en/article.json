@@ -1,5 +1,6 @@
 {
     "Невалидный идентификатор статьи": "Invalid article id",
     "Не удалось загрузить статью": "Some error occured during loading the article",
-    "Комментарии": "Comments"
+    "Комментарии": "Comments",
+    "Статьи не найдены": "No articles found"
 }

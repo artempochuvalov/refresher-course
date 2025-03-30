@@ -1,3 +1,5 @@
+import { User } from 'entities/User';
+
 export enum ArticleType {
     IT = 'IT',
     SCIENCE = 'SCIENCE',
@@ -39,6 +41,7 @@ export type ArticleBlock =
 
 export type Article = {
     id: string;
+    user: User;
     title: string;
     subtitle: string;
     img: string;

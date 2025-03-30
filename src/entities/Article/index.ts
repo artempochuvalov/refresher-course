@@ -6,3 +6,6 @@ export type {
 export {
     ArticleDetails
 } from './ui/ArticleDetails/ArticleDetails';
+export {
+    ArticlesList
+} from './ui/ArticlesList/ArticlesList';
