@@ -11,9 +11,9 @@ export const fetchArticles = createAsyncThunk<
     async (_, { rejectWithValue, extra: { api } }) => {
         try {
             const response = await api.get<Article[]>('/articles', {
-                // params: {
-                //     _expand: 'user',
-                // },
+                params: {
+                    _expand: 'user',
+                },
             });
             const articles = response.data;
             if (!articles) {
