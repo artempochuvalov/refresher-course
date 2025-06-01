@@ -11,6 +11,7 @@ import type { ProfileSchema } from 'entities/Profile';
 import type { UserSchema } from 'entities/User';
 import type { LoginSchema } from 'features/AuthByUsername';
 import { ArticleCommentsSchema } from 'pages/ArticleDetails';
+import { ArticlesListSchema } from 'pages/Articles';
 import type { NavigateFunction } from 'react-router-dom';
 
 export type StateSchema = {
@@ -21,6 +22,7 @@ export type StateSchema = {
     profile?: ProfileSchema;
     articleDetails?: ArticleDetailsSchema;
     articleComments?: ArticleCommentsSchema;
+    articlesList?: ArticlesListSchema;
 };
 
 export type StateSchemaKey = keyof StateSchema;

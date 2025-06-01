@@ -3,12 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames';
 import { TextAtom, TextAtomAlign, TextAtomTheme } from 'shared/ui/TextAtom/TextAtom';
 
-import { Article } from '../../model/types/article';
+import { Article, ArticleListView } from '../../model/types/article';
 import { ArticleCard } from '../ArticleCard/ArticleCard';
 import { ArticleCardSkeleton } from '../ArticleCardSkeleton/ArticleCardSkeleton';
 import cls from './ArticlesList.module.scss';
-
-export type ArticleListView = 'grid' | 'list';
 
 type ArticlesListProps = {
     articles: Article[];

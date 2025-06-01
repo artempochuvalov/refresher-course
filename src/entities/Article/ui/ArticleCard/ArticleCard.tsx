@@ -10,8 +10,12 @@ import { Button, ButtonTheme } from 'shared/ui/Button';
 import { Card } from 'shared/ui/Card/Card';
 import { TextAtom, TextAtomSize } from 'shared/ui/TextAtom/TextAtom';
 
-import { Article, ArticleBlockType, ArticleTextBlock } from '../../model/types/article';
-import { ArticleListView } from '../ArticlesList/ArticlesList';
+import {
+    Article,
+    ArticleBlockType,
+    ArticleListView,
+    ArticleTextBlock
+} from '../../model/types/article';
 import cls from './ArticleCard.module.scss';
 
 type ArticleCardProps = {
