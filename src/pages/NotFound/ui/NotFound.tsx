@@ -1,6 +1,7 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames';
+import { Page } from 'shared/ui/Page/Page';
 
 import cls from './NotFound.module.scss';
 
@@ -13,8 +14,8 @@ export const NotFound = memo((props: NotFoundProps) => {
     const { t } = useTranslation('not_found');
 
     return (
-        <div className={classNames(cls.NotFoundPage, {}, [className])}>
+        <Page className={classNames(cls.NotFoundPage, {}, [className])}>
             {t('Страница не найдена')}
-        </div>
+        </Page>
     );
 });

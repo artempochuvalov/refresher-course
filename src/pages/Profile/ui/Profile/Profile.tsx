@@ -21,6 +21,7 @@ import { classNames } from 'shared/lib/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { useDynamicModuleLoader } from 'shared/lib/hooks/useDynamicModuleLoader';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect';
+import { Page } from 'shared/ui/Page/Page';
 import { TextAtom, TextAtomTheme } from 'shared/ui/TextAtom/TextAtom';
 
 import { ProfileHeader } from '../ProfileHeader/ProfileHeader';
@@ -101,7 +102,7 @@ const Profile = memo((props: ProfileProps) => {
     }, [dispatch]);
 
     return (
-        <div className={classNames('', {}, [className])}>
+        <Page className={classNames('', {}, [className])}>
             <ProfileHeader isEditable={isCurrentUserProfile} />
 
             {validationProfileErrors?.length && (
@@ -131,7 +132,7 @@ const Profile = memo((props: ProfileProps) => {
                     onCountryChange={onCountryChange}
                 />
             </div>
-        </div>
+        </Page>
     );
 });
 

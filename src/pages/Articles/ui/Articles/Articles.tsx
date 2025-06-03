@@ -6,6 +6,7 @@ import { classNames } from 'shared/lib/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { useDynamicModuleLoader } from 'shared/lib/hooks/useDynamicModuleLoader';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect';
+import { Page } from 'shared/ui/Page/Page';
 
 import {
     getArticles,
@@ -45,10 +46,10 @@ const Articles = (props: ArticlesProps) => {
     }, [dispatch]);
 
     return (
-        <div className={classNames(cls.Articles, {}, [className])}>
+        <Page className={classNames(cls.Articles, {}, [className])}>
             <ArticleViewSwitcher view={view} onChangeView={onChangeView} />
             <ArticlesList articles={articles} isLoading={isLoading} view={view} />
-        </div>
+        </Page>
     );
 };
 

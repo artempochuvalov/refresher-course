@@ -8,6 +8,7 @@ import { classNames } from 'shared/lib/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { useDynamicModuleLoader } from 'shared/lib/hooks/useDynamicModuleLoader';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect';
+import { Page } from 'shared/ui/Page/Page';
 import {
     TextAtom,
     TextAtomAlign,
@@ -63,18 +64,18 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
 
     if (!id) {
         return (
-            <div className={cls.noData}>
+            <Page className={cls.noData}>
                 <TextAtom
                     align={TextAtomAlign.Center}
                     theme={TextAtomTheme.Error}
                     title={t('Невалидный идентификатор статьи')}
                 />
-            </div>
+            </Page>
         );
     }
 
     return (
-        <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>
+        <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>
             <ArticleDetails articleId={id} />
 
             <div className={cls.commentsBlock}>
@@ -92,7 +93,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
                     isLoading={areCommentsLoading}
                 />
             </div>
-        </div>
+        </Page>
     );
 };
 
