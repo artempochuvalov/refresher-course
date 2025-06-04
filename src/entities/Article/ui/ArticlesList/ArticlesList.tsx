@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames';
 import { TextAtom, TextAtomAlign, TextAtomTheme } from 'shared/ui/TextAtom/TextAtom';
@@ -25,7 +25,7 @@ export const ArticlesList = memo((props: ArticlesListProps) => {
 
     const { t } = useTranslation('article');
 
-    if (isLoading) {
+    const skeletonList = useMemo(() => {
         const skeletonNumber = view === 'grid' ? 16 : 3;
         return (
             <div className={classNames(cls.ArticlesList, {}, [className, cls[view]])}>
@@ -35,27 +35,27 @@ export const ArticlesList = memo((props: ArticlesListProps) => {
                 ))}
             </div>
         );
-    }
+    }, [className, view]);
 
     return (
         <div className={classNames(cls.ArticlesList, {}, [className, cls[view]])}>
-            {articles.length
-                ? articles.map((article) => (
-                    <ArticleCard
-                        className={cls.ArticleCard}
-                        article={article}
-                        key={article.id}
-                        view={view}
-                    />
-                ))
-                : (
-                    <TextAtom
-                        className={cls.notFound}
-                        theme={TextAtomTheme.Error}
-                        title={t('Статьи не найдены')}
-                        align={TextAtomAlign.Center}
-                    />
-                )}
+            {articles.length > 0 && articles.map((article) => (
+                <ArticleCard
+                    className={cls.ArticleCard}
+                    article={article}
+                    key={article.id}
+                    view={view}
+                />
+            ))}
+            {isLoading && skeletonList}
+            {articles.length === 0 && !isLoading && (
+                <TextAtom
+                    className={cls.notFound}
+                    theme={TextAtomTheme.Error}
+                    title={t('Статьи не найдены')}
+                    align={TextAtomAlign.Center}
+                />
+            )}
         </div>
     );
 });

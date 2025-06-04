@@ -9,6 +9,8 @@ const initialState: ArticlesListSchema = {
     isLoading: false,
     error: undefined,
     view: 'grid',
+    page: 1,
+    hasMore: true,
     entities: {},
     ids: [],
 };
@@ -25,6 +27,9 @@ const articleCommentsSlice = createSlice({
             state.view = action.payload;
             localStorage.setItem(ARTICLES_VIEW_LOCALSTORAGE_KEY, action.payload);
         },
+        setPage(state, action: PayloadAction<number>) {
+            state.page = action.payload;
+        },
         initView(state) {
             const view = (
                 localStorage.getItem(ARTICLES_VIEW_LOCALSTORAGE_KEY) as ArticleListView
@@ -40,12 +45,17 @@ const articleCommentsSlice = createSlice({
                 state.isLoading = true;
             })
             .addCase(fetchArticles.fulfilled, (state, action) => {
-                articlesAdapter.setMany(state, action);
+                const articles = action.payload;
+                articlesAdapter.addMany(state, articles);
+
                 state.isLoading = false;
+                state.hasMore = articles.length > 0;
             })
             .addCase(fetchArticles.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
+
+                state.hasMore = false;
             });
     },
 });

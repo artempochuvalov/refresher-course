@@ -14,3 +14,12 @@ export const getArticlesListError = (state: StateSchema) => (
 export const getArticlesListView = (state: StateSchema) => (
     state.articlesList?.view ?? 'grid'
 );
+export const getArticlesListPageNum = (state: StateSchema) => (
+    state.articlesList?.page ?? 1
+);
+export const getArticlesListLimit = (state: StateSchema) => (
+    getArticlesListView(state) === 'grid' ? 9 : 3
+);
+export const getArticlesListHasMore = (state: StateSchema) => (
+    state.articlesList?.hasMore ?? true
+);

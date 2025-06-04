@@ -13,7 +13,7 @@ import {
     getArticlesListIsLoading,
     getArticlesListView
 } from '../../model/selectors/articlesListSelectors';
-import { fetchArticles } from '../../model/services/fetchArticles';
+import { fetchNextArticles } from '../../model/services/fetchNextArticles';
 import { articlesListActions, articlesListReducer } from '../../model/slices/articlePageSlice';
 import cls from './Articles.module.scss';
 
@@ -37,16 +37,23 @@ const Articles = (props: ArticlesProps) => {
     });
 
     useInitialEffect(() => {
-        dispatch(fetchArticles());
         dispatch(articlesListActions.initView());
+        dispatch(fetchNextArticles());
     });
 
     const onChangeView = useCallback((view: ArticleListView) => {
         dispatch(articlesListActions.setView(view));
     }, [dispatch]);
 
+    const onScrollEnd = useCallback(() => {
+        dispatch(fetchNextArticles());
+    }, [dispatch]);
+
     return (
-        <Page className={classNames(cls.Articles, {}, [className])}>
+        <Page
+            onScrollEnd={onScrollEnd}
+            className={classNames(cls.Articles, {}, [className])}
+        >
             <ArticleViewSwitcher view={view} onChangeView={onChangeView} />
             <ArticlesList articles={articles} isLoading={isLoading} view={view} />
         </Page>
