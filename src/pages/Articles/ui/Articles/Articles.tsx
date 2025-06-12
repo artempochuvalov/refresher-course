@@ -13,7 +13,7 @@ import {
     getArticlesListIsLoading,
     getArticlesListView
 } from '../../model/selectors/articlesListSelectors';
-import { fetchNextArticles } from '../../model/services/fetchNextArticles';
+import { fetchNextArticles } from '../../model/services/fetchNextArticles/fetchNextArticles';
 import { articlesListActions, articlesListReducer } from '../../model/slices/articlePageSlice';
 import cls from './Articles.module.scss';
 

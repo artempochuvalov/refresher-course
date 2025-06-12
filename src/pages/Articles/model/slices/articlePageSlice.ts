@@ -2,7 +2,7 @@ import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolki
 import { Article, ArticleListView } from 'entities/Article';
 
 import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from '../../constants';
-import { fetchArticles } from '../services/fetchArticles';
+import { fetchArticles } from '../services/fetchArticles/fetchArticles';
 import { ArticlesListSchema } from '../types/articlePageSchema';
 
 const initialState: ArticlesListSchema = {
