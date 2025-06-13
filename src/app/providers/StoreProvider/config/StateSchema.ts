@@ -12,9 +12,11 @@ import type { UserSchema } from 'entities/User';
 import type { LoginSchema } from 'features/AuthByUsername';
 import { ArticleCommentsSchema } from 'pages/ArticleDetails';
 import { ArticlesListSchema } from 'pages/Articles';
+import { ScrollPositionSchema } from 'widgets/Page';
 
 export type StateSchema = {
     user: UserSchema;
+    scrollPosition: ScrollPositionSchema;
 
     // Async reducers
     loginForm?: LoginSchema;
