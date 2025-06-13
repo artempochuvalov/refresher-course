@@ -1,7 +1,6 @@
 .PageWrapper {
-    flex: 1 1 auto;
     padding: 1.25rem 1.25rem 1.25rem 3rem;
     height: calc(100vh - var(--navbar-height));
-    width: calc(100% - var(--sidebar-width));
+    width: 100%;
     overflow-y: auto;
 }
