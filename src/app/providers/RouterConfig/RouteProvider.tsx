@@ -9,9 +9,7 @@ const RouteProvider = () => {
     const renderRoutesWithProtection = useCallback((route: AppRoutesProps) => {
         const element = (
             <Suspense fallback={<PageLoader />}>
-                <div className="page-wrapper">
-                    {route.element}
-                </div>
+                {route.element}
             </Suspense>
         );
 

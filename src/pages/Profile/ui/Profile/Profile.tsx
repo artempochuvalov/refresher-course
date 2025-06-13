@@ -12,13 +12,16 @@ import {
     profileReducer,
     ValidationProfileError
 } from 'entities/Profile';
-import { memo, useCallback } from 'react';
+import { getUserAuthData } from 'entities/User';
+import { memo, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { useDynamicModuleLoader } from 'shared/lib/hooks/useDynamicModuleLoader';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect';
+import { Page } from 'shared/ui/Page/Page';
 import { TextAtom, TextAtomTheme } from 'shared/ui/TextAtom/TextAtom';
 
 import { ProfileHeader } from '../ProfileHeader/ProfileHeader';
@@ -37,11 +40,20 @@ const Profile = memo((props: ProfileProps) => {
 
     const dispatch = useAppDispatch();
 
+    const { id } = useParams();
+
+    const user = useSelector(getUserAuthData);
+
     const editableProfileData = useSelector(getEditableProfileData);
     const isLoading = useSelector(getProfileIsLoading);
     const error = useSelector(getProfileError);
     const readonly = useSelector(getProfileReadonly);
     const validationProfileErrors = useSelector(getValidationProfileErrors);
+
+    const isCurrentUserProfile = useMemo(
+        () => user?.id === editableProfileData?.id,
+        [user, editableProfileData]
+    );
 
     const validationErrorsText: Record<ValidationProfileError, string> = {
         [ValidationProfileError.INCORRECT_AGE]: 'Некорректный возраст',
@@ -58,7 +70,11 @@ const Profile = memo((props: ProfileProps) => {
     });
 
     useInitialEffect(() => {
-        dispatch(fetchProfileData());
+        if (!id) {
+            return;
+        }
+
+        dispatch(fetchProfileData(id));
     });
 
     const onFirstnameChange = useCallback((first?: string) => {
@@ -86,8 +102,8 @@ const Profile = memo((props: ProfileProps) => {
     }, [dispatch]);
 
     return (
-        <div className={classNames('', {}, [className])}>
-            <ProfileHeader />
+        <Page className={classNames('', {}, [className])}>
+            <ProfileHeader isEditable={isCurrentUserProfile} />
 
             {validationProfileErrors?.length && (
                 <div className={cls.validationErrors}>
@@ -116,7 +132,7 @@ const Profile = memo((props: ProfileProps) => {
                     onCountryChange={onCountryChange}
                 />
             </div>
-        </div>
+        </Page>
     );
 });
 

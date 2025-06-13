@@ -1,12 +1,16 @@
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 import { Comment } from 'entities/Comment';
 
-import { fetchCommentsByArticleId } from '../services/fetchCommentsByArticleId';
+import { addArticleComment } from '../services/addArticleComment/addArticleComment';
+import {
+    fetchCommentsByArticleId
+} from '../services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import { ArticleCommentsSchema } from '../types/articleCommentsSchema';
 
 const initialState: ArticleCommentsSchema = {
     isLoading: false,
-    error: undefined,
+    fetchCommentsError: undefined,
+    addCommentError: undefined,
     entities: {},
     ids: [],
 };
@@ -22,7 +26,7 @@ const articleCommentsSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(fetchCommentsByArticleId.pending, (state) => {
-                state.error = undefined;
+                state.fetchCommentsError = undefined;
                 state.isLoading = true;
             })
             .addCase(fetchCommentsByArticleId.fulfilled, (state, action) => {
@@ -31,7 +35,15 @@ const articleCommentsSlice = createSlice({
             })
             .addCase(fetchCommentsByArticleId.rejected, (state, action) => {
                 state.isLoading = false;
-                state.error = action.payload;
+                state.fetchCommentsError = action.payload;
+            });
+
+        builder
+            .addCase(addArticleComment.pending, (state) => {
+                state.addCommentError = undefined;
+            })
+            .addCase(addArticleComment.rejected, (state, action) => {
+                state.addCommentError = action.payload;
             });
     },
 });

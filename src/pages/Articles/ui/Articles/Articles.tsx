@@ -1,7 +1,20 @@
-import { memo } from 'react';
-import { useTranslation } from 'react-i18next';
+import { ArticleListView, ArticlesList } from 'entities/Article';
+import { ArticleViewSwitcher } from 'features/ArticlesViewSwitcher';
+import { memo, useCallback } from 'react';
+import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
+import { useDynamicModuleLoader } from 'shared/lib/hooks/useDynamicModuleLoader';
+import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect';
+import { Page } from 'shared/ui/Page/Page';
 
+import {
+    getArticles,
+    getArticlesListIsLoading,
+    getArticlesListView
+} from '../../model/selectors/articlesListSelectors';
+import { fetchNextArticles } from '../../model/services/fetchNextArticles/fetchNextArticles';
+import { articlesListActions, articlesListReducer } from '../../model/slices/articlePageSlice';
 import cls from './Articles.module.scss';
 
 type ArticlesProps = {
@@ -11,12 +24,39 @@ type ArticlesProps = {
 const Articles = (props: ArticlesProps) => {
     const { className } = props;
 
-    const { t } = useTranslation('article');
+    const dispatch = useAppDispatch();
+
+    const articles = useSelector(getArticles.selectAll);
+    const isLoading = useSelector(getArticlesListIsLoading);
+    const view = useSelector(getArticlesListView);
+
+    useDynamicModuleLoader({
+        reducers: {
+            articlesList: articlesListReducer,
+        },
+    });
+
+    useInitialEffect(() => {
+        dispatch(articlesListActions.initView());
+        dispatch(fetchNextArticles());
+    });
+
+    const onChangeView = useCallback((view: ArticleListView) => {
+        dispatch(articlesListActions.setView(view));
+    }, [dispatch]);
+
+    const onScrollEnd = useCallback(() => {
+        dispatch(fetchNextArticles());
+    }, [dispatch]);
 
     return (
-        <div className={classNames(cls.Articles, {}, [className])}>
-            {t('Страница постов')}
-        </div>
+        <Page
+            onScrollEnd={onScrollEnd}
+            className={classNames(cls.Articles, {}, [className])}
+        >
+            <ArticleViewSwitcher view={view} onChangeView={onChangeView} />
+            <ArticlesList articles={articles} isLoading={isLoading} view={view} />
+        </Page>
     );
 };
 

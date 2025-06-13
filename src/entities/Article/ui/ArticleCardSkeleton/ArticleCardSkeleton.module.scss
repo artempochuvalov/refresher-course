@@ -1,0 +1,51 @@
+.ArticleCard.grid {
+    max-width: 200px;
+
+    .meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+    }
+
+    .title {
+        margin-top: 0.25rem;
+    }
+}
+
+.ArticleCard.list {
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .userInfo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .title {
+        margin-top: 0.75rem;
+    }
+
+    .categories {
+        margin-top: 0.5rem;
+    }
+
+    .image {
+        margin-top: 0.5rem;
+    }
+
+    .summary {
+        margin-top: 1rem;
+    }
+
+    .footer {
+        margin-top: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+    }
+}

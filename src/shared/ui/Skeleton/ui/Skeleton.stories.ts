@@ -10,9 +10,7 @@ const meta = {
     argTypes: {},
     args: {},
     parameters: {
-        loki: {
-            skip: true,
-        },
+        loki: { skip: true },
     },
 } satisfies Meta<typeof Skeleton>;
 

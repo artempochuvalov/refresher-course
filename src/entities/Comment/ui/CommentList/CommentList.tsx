@@ -9,7 +9,7 @@ import cls from './CommentList.module.scss';
 
 type CommentListProps = {
     className?: string;
-    comments?: Comment[];
+    comments: Comment[];
     isLoading?: boolean;
 };
 
@@ -18,14 +18,24 @@ export const CommentList = memo((props: CommentListProps) => {
 
     const { t } = useTranslation('comments');
 
+    if (isLoading) {
+        return (
+            <div className={classNames(cls.CommentList, {}, [className])}>
+                {Array.from({ length: 5 }).map((_, idx) => (
+                    // eslint-disable-next-line react/no-array-index-key
+                    <CommentCard key={idx} isLoading />
+                ))}
+            </div>
+        );
+    }
+
     return (
         <div className={classNames(cls.CommentList, {}, [className])}>
-            {comments?.length
+            {comments.length
                 ? comments.map((comment) => (
                     <CommentCard
                         key={comment.id}
                         comment={comment}
-                        isLoading={isLoading}
                     />
                 ))
                 : <TextAtom text={t('Нет комментариев')} />}

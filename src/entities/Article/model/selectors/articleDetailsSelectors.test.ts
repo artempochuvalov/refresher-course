@@ -11,6 +11,10 @@ describe('getArticleDetailsData.test', () => {
     test('should return value', () => {
         const article: Article = {
             id: '1',
+            user: {
+                id: '1',
+                username: 'username',
+            },
             type: [ArticleType.IT],
             title: 'Заголовок',
             subtitle: 'Подзаголовок',

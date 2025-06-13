@@ -16,6 +16,10 @@ type Story = StoryObj<typeof meta>;
 
 const article: Article = {
     id: '1',
+    user: {
+        id: '1',
+        username: 'admin',
+    },
     title: 'Javascript news',
     subtitle: 'Что нового в JS за 2022 год?',
     img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmCy16nhIbV3pI1qLYHMJKwbH2458oiC9EmA&s',
@@ -101,6 +105,9 @@ export const Loading: Story = {
     args: {
         articleId: '1',
     },
+    parameters: {
+        loki: { skip: true },
+    },
     decorators: [
         StoreDecorator({
             articleDetails: {
@@ -108,11 +115,6 @@ export const Loading: Story = {
             },
         }),
     ],
-    parameters: {
-        loki: {
-            skip: true,
-        },
-    },
 };
 
 export const LoadingError: Story = {

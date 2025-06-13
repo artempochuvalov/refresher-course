@@ -3,5 +3,6 @@ import { Comment } from 'entities/Comment';
 
 export type ArticleCommentsSchema = EntityState<Comment> & {
     isLoading: boolean;
-    error?: string;
+    fetchCommentsError?: string;
+    addCommentError?: string;
 };
