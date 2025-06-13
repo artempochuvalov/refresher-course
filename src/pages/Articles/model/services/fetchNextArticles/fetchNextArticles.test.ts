@@ -1,4 +1,3 @@
-import { clearAllMocks } from '@storybook/test';
 import { TestAsyncThunk } from 'shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
 
 import { fetchArticles } from '../fetchArticles/fetchArticles';
@@ -13,10 +12,6 @@ jest.mock('../fetchArticles/fetchArticles', () => ({
 }));
 
 describe('fetchNextArticles.test', () => {
-    beforeEach(() => {
-        clearAllMocks();
-    });
-
     test('success fetch', async () => {
         const thunk = new TestAsyncThunk(fetchNextArticles, {
             articlesList: {

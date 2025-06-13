@@ -14,6 +14,7 @@ import {
     getArticlesListView
 } from '../../model/selectors/articlesListSelectors';
 import { fetchNextArticles } from '../../model/services/fetchNextArticles/fetchNextArticles';
+import { initArticlesPage } from '../../model/services/initArticlePage/initArticlesPage';
 import { articlesListActions, articlesListReducer } from '../../model/slices/articlePageSlice';
 import cls from './Articles.module.scss';
 
@@ -34,11 +35,11 @@ const Articles = (props: ArticlesProps) => {
         reducers: {
             articlesList: articlesListReducer,
         },
+        keepOnUnmount: true,
     });
 
     useInitialEffect(() => {
-        dispatch(articlesListActions.initView());
-        dispatch(fetchNextArticles());
+        dispatch(initArticlesPage());
     });
 
     const onChangeView = useCallback((view: ArticleListView) => {

@@ -9,6 +9,7 @@ const initialState: ArticlesListSchema = {
     isLoading: false,
     error: undefined,
     view: 'grid',
+    _mounted: false,
     page: 1,
     hasMore: true,
     entities: {},
@@ -30,12 +31,14 @@ const articleCommentsSlice = createSlice({
         setPage(state, action: PayloadAction<number>) {
             state.page = action.payload;
         },
-        initView(state) {
+        initState(state) {
             const view = (
                 localStorage.getItem(ARTICLES_VIEW_LOCALSTORAGE_KEY) as ArticleListView
                 ?? 'grid'
             );
             state.view = view;
+
+            state._mounted = true;
         },
     },
     extraReducers: (builder) => {

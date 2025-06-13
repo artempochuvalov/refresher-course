@@ -23,3 +23,6 @@ export const getArticlesListLimit = (state: StateSchema) => (
 export const getArticlesListHasMore = (state: StateSchema) => (
     state.articlesList?.hasMore ?? true
 );
+export const getArticlesListIsMounted = (state: StateSchema) => (
+    state.articlesList?._mounted ?? false
+);

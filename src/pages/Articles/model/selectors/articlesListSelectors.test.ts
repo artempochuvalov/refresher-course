@@ -4,6 +4,7 @@ import {
     getArticlesListError,
     getArticlesListHasMore,
     getArticlesListIsLoading,
+    getArticlesListIsMounted,
     getArticlesListLimit,
     getArticlesListPageNum,
     getArticlesListView
@@ -122,5 +123,21 @@ describe('getArticlesListHasMore.test', () => {
     test('should work with empty state', () => {
         const state: DeepPartial<StateSchema> = {};
         expect(getArticlesListHasMore(state as StateSchema)).toBe(true);
+    });
+});
+
+describe('getArticlesListIsMounted.test', () => {
+    test('should return value', () => {
+        const state: DeepPartial<StateSchema> = {
+            articlesList: {
+                _mounted: true,
+            },
+        };
+        expect(getArticlesListIsMounted(state as StateSchema)).toBe(true);
+    });
+
+    test('should work with empty state', () => {
+        const state: DeepPartial<StateSchema> = {};
+        expect(getArticlesListIsMounted(state as StateSchema)).toBe(false);
     });
 });
