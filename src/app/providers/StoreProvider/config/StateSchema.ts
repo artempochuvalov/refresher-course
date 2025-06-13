@@ -12,7 +12,6 @@ import type { UserSchema } from 'entities/User';
 import type { LoginSchema } from 'features/AuthByUsername';
 import { ArticleCommentsSchema } from 'pages/ArticleDetails';
 import { ArticlesListSchema } from 'pages/Articles';
-import type { NavigateFunction } from 'react-router-dom';
 
 export type StateSchema = {
     user: UserSchema;
@@ -40,7 +39,6 @@ export type ReduxStoreWithReducerManager = EnhancedStore<StateSchema> & {
 
 type ThunkExtraArg = {
     api: AxiosInstance;
-    navigate?: NavigateFunction;
 };
 
 export type ThunkConfig<T> = {
