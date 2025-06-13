@@ -7,6 +7,9 @@ const meta = {
     component: ArticleCardSkeleton,
     argTypes: {},
     args: {},
+    parameters: {
+        loki: { skip: true },
+    },
 } satisfies Meta<typeof ArticleCardSkeleton>;
 
 export default meta;

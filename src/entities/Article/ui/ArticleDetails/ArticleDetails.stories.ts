@@ -105,6 +105,9 @@ export const Loading: Story = {
     args: {
         articleId: '1',
     },
+    parameters: {
+        loki: { skip: true },
+    },
     decorators: [
         StoreDecorator({
             articleDetails: {

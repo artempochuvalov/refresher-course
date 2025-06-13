@@ -27,6 +27,9 @@ export const Default: Story = {
 };
 
 export const Loading: Story = {
+    parameters: {
+        loki: { skip: true },
+    },
     args: {
         isLoading: true,
         comment: {
