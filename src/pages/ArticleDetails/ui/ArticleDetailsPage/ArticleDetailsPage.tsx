@@ -8,13 +8,13 @@ import { classNames } from 'shared/lib/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { useDynamicModuleLoader } from 'shared/lib/hooks/useDynamicModuleLoader';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect';
-import { Page } from 'shared/ui/Page/Page';
 import {
     TextAtom,
     TextAtomAlign,
     TextAtomSize,
     TextAtomTheme
 } from 'shared/ui/TextAtom/TextAtom';
+import { Page } from 'widgets/Page';
 
 import {
     getArticleCommentAddError,
