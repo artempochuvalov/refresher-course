@@ -1,5 +1,5 @@
 import { ArticleListView, ArticlesList } from 'entities/Article';
-import { ArticleViewSwitcher } from 'features/ArticlesViewSwitcher';
+import { ArticleViewSwitcher } from 'features/Article/ViewSwitcher';
 import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames';
