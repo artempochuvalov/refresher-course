@@ -18,6 +18,10 @@ export const useInfiniteScroll = ({
         const wrapperNode = wrapperRef.current;
         const triggerNode = triggerRef.current;
 
+        if (!triggerNode) {
+            return () => {};
+        }
+
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {

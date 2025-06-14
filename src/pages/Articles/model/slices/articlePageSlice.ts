@@ -51,8 +51,8 @@ const articleCommentsSlice = createSlice({
                 const articles = action.payload;
                 articlesAdapter.addMany(state, articles);
 
-                state.isLoading = false;
                 state.hasMore = articles.length > 0;
+                state.isLoading = false;
             })
             .addCase(fetchArticles.rejected, (state, action) => {
                 state.isLoading = false;
