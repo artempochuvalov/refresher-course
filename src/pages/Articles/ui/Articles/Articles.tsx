@@ -1,4 +1,5 @@
 import { ArticleListView, ArticlesList } from 'entities/Article';
+import { ArticleFilters } from 'features/Article/ArticleFilters';
 import { ArticleViewSwitcher } from 'features/Article/ViewSwitcher';
 import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
@@ -55,8 +56,21 @@ const Articles = (props: ArticlesProps) => {
             onScrollEnd={onScrollEnd}
             className={classNames(cls.Articles, {}, [className])}
         >
-            <ArticleViewSwitcher view={view} onChangeView={onChangeView} />
-            <ArticlesList articles={articles} isLoading={isLoading} view={view} />
+            <div className={cls.header}>
+                <ArticleFilters />
+                <ArticleViewSwitcher
+                    className={cls.viewSwitcher}
+                    view={view}
+                    onChangeView={onChangeView}
+                />
+            </div>
+
+            <ArticlesList
+                className={cls.list}
+                articles={articles}
+                isLoading={isLoading}
+                view={view}
+            />
         </Page>
     );
 };

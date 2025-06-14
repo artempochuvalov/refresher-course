@@ -1,6 +1,5 @@
 import {
     type ChangeEvent,
-    memo,
     useCallback,
     useMemo
 } from 'react';
@@ -8,21 +7,21 @@ import { classNames } from 'shared/lib/classNames';
 
 import cls from './Select.module.scss';
 
-export type SelectOption = {
-    value: string;
+export type SelectOption<T extends string> = {
+    value: T;
     text: string;
 };
 
-type SelectProps = {
+type SelectProps<T extends string> = {
     className?: string;
     label?: string;
     value?: string;
-    options?: SelectOption[];
+    options?: SelectOption<T>[];
     readonly?: boolean;
     onChange?: (value: string) => void;
 };
 
-export const Select = memo((props: SelectProps) => {
+export const Select = <T extends string>(props: SelectProps<T>) => {
     const {
         className,
         label,
@@ -65,4 +64,4 @@ export const Select = memo((props: SelectProps) => {
             </select>
         </div>
     );
-});
+};
