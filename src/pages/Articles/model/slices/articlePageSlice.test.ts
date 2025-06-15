@@ -15,7 +15,7 @@ describe('articlePageSlice.test', () => {
         expect(
             articlesListReducer(
                 state as ArticlesListSchema,
-                fetchArticles.pending('', { page: 1, limit: 9 })
+                fetchArticles.pending('', {})
             )
         ).toEqual({
             error: undefined,
@@ -51,7 +51,7 @@ describe('articlePageSlice.test', () => {
         expect(
             articlesListReducer(
                 state as ArticlesListSchema,
-                fetchArticles.fulfilled(articles, '', { page: 1, limit: 9 })
+                fetchArticles.fulfilled(articles, '', {})
             )
         ).toEqual({
             isLoading: false,
@@ -76,7 +76,7 @@ describe('articlePageSlice.test', () => {
         expect(
             articlesListReducer(
                 state as ArticlesListSchema,
-                fetchArticles.fulfilled(articles, '', { page: 1, limit: 9 })
+                fetchArticles.fulfilled(articles, '', {})
             )
         ).toEqual({
             isLoading: false,
@@ -98,7 +98,7 @@ describe('articlePageSlice.test', () => {
         expect(
             articlesListReducer(
                 state as ArticlesListSchema,
-                fetchArticles.rejected(new Error(), '', { page: 1, limit: 3 }, 'error')
+                fetchArticles.rejected(new Error(), '', {}, 'error')
             )
         ).toEqual({
             isLoading: false,

@@ -3,7 +3,7 @@ import { ThunkConfig } from 'app/providers/StoreProvider';
 
 import { getArticlesListIsMounted } from '../../selectors/articlesListSelectors';
 import { articlesListActions } from '../../slices/articlePageSlice';
-import { fetchNextArticles } from '../fetchNextArticles/fetchNextArticles';
+import { fetchArticles } from '../fetchArticles/fetchArticles';
 
 export const initArticlesPage = createAsyncThunk<
     void,
@@ -16,7 +16,7 @@ export const initArticlesPage = createAsyncThunk<
 
         if (!isMounted) {
             dispatch(articlesListActions.initState());
-            dispatch(fetchNextArticles());
+            dispatch(fetchArticles({}));
         }
     }
 );

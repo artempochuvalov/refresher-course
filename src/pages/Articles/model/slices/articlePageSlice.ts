@@ -1,5 +1,6 @@
 import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Article, ArticleListView } from 'entities/Article';
+import { ArticleFilterField, ArticleFilterOrder } from 'features/Article/ArticleFilters';
 
 import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from '../../constants';
 import { fetchArticles } from '../services/fetchArticles/fetchArticles';
@@ -9,9 +10,12 @@ const initialState: ArticlesListSchema = {
     isLoading: false,
     error: undefined,
     view: 'grid',
-    _mounted: false,
     page: 1,
     hasMore: true,
+    _mounted: false,
+    sortField: undefined,
+    sortOrder: undefined,
+    search: undefined,
     entities: {},
     ids: [],
 };
@@ -31,6 +35,15 @@ const articleCommentsSlice = createSlice({
         setPage(state, action: PayloadAction<number>) {
             state.page = action.payload;
         },
+        setSortField(state, action: PayloadAction<ArticleFilterField>) {
+            state.sortField = action.payload;
+        },
+        setSortOrder(state, action: PayloadAction<ArticleFilterOrder>) {
+            state.sortOrder = action.payload;
+        },
+        setSearch(state, action: PayloadAction<string>) {
+            state.search = action.payload;
+        },
         initState(state) {
             const view = (
                 localStorage.getItem(ARTICLES_VIEW_LOCALSTORAGE_KEY) as ArticleListView
@@ -43,13 +56,22 @@ const articleCommentsSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(fetchArticles.pending, (state) => {
+            .addCase(fetchArticles.pending, (state, action) => {
                 state.error = undefined;
                 state.isLoading = true;
+
+                if (action.meta.arg.replace) {
+                    articlesAdapter.removeAll(state);
+                }
             })
             .addCase(fetchArticles.fulfilled, (state, action) => {
                 const articles = action.payload;
-                articlesAdapter.addMany(state, articles);
+
+                if (action.meta.arg.replace) {
+                    articlesAdapter.setAll(state, articles);
+                } else {
+                    articlesAdapter.addMany(state, articles);
+                }
 
                 state.isLoading = false;
                 state.hasMore = articles.length > 0;

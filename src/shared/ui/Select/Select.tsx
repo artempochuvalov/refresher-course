@@ -18,7 +18,7 @@ type SelectProps<T extends string> = {
     value?: string;
     options?: SelectOption<T>[];
     readonly?: boolean;
-    onChange?: (value: string) => void;
+    onChange?: (value: T) => void;
 };
 
 export const Select = <T extends string>(props: SelectProps<T>) => {
@@ -32,7 +32,7 @@ export const Select = <T extends string>(props: SelectProps<T>) => {
     } = props;
 
     const handleOnChange = useCallback((event: ChangeEvent<HTMLSelectElement>) => {
-        onChange?.(event.target.value);
+        onChange?.(event.target.value as T);
     }, [onChange]);
 
     const optionsList = useMemo(() => (

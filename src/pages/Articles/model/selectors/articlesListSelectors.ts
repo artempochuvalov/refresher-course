@@ -26,3 +26,12 @@ export const getArticlesListHasMore = (state: StateSchema) => (
 export const getArticlesListIsMounted = (state: StateSchema) => (
     state.articlesList?._mounted ?? false
 );
+export const getArticlesListSortField = (state: StateSchema) => (
+    state.articlesList?.sortField ?? 'createdAt'
+);
+export const getArticlesListSortOrder = (state: StateSchema) => (
+    state.articlesList?.sortOrder ?? 'asc'
+);
+export const getArticlesListSearch = (state: StateSchema) => (
+    state.articlesList?.search ?? ''
+);

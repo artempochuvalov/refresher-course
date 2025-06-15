@@ -7,6 +7,9 @@ import {
     getArticlesListIsMounted,
     getArticlesListLimit,
     getArticlesListPageNum,
+    getArticlesListSearch,
+    getArticlesListSortField,
+    getArticlesListSortOrder,
     getArticlesListView
 } from './articlesListSelectors';
 
@@ -139,5 +142,53 @@ describe('getArticlesListIsMounted.test', () => {
     test('should work with empty state', () => {
         const state: DeepPartial<StateSchema> = {};
         expect(getArticlesListIsMounted(state as StateSchema)).toBe(false);
+    });
+});
+
+describe('getArticlesListSortField.test', () => {
+    test('should return value', () => {
+        const state: DeepPartial<StateSchema> = {
+            articlesList: {
+                sortField: 'title',
+            },
+        };
+        expect(getArticlesListSortField(state as StateSchema)).toBe('title');
+    });
+
+    test('should work with empty state', () => {
+        const state: DeepPartial<StateSchema> = {};
+        expect(getArticlesListSortField(state as StateSchema)).toBe('createdAt');
+    });
+});
+
+describe('getArticlesListSortOrder.test', () => {
+    test('should return value', () => {
+        const state: DeepPartial<StateSchema> = {
+            articlesList: {
+                sortOrder: 'desc',
+            },
+        };
+        expect(getArticlesListSortOrder(state as StateSchema)).toBe('desc');
+    });
+
+    test('should work with empty state', () => {
+        const state: DeepPartial<StateSchema> = {};
+        expect(getArticlesListSortOrder(state as StateSchema)).toBe('asc');
+    });
+});
+
+describe('getArticlesListSearch.test', () => {
+    test('should return value', () => {
+        const state: DeepPartial<StateSchema> = {
+            articlesList: {
+                search: 'abc',
+            },
+        };
+        expect(getArticlesListSearch(state as StateSchema)).toBe('abc');
+    });
+
+    test('should work with empty state', () => {
+        const state: DeepPartial<StateSchema> = {};
+        expect(getArticlesListSearch(state as StateSchema)).toBe(undefined);
     });
 });

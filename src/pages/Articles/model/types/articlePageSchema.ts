@@ -1,5 +1,6 @@
 import type { EntityState } from '@reduxjs/toolkit';
-import { Article, ArticleListView } from 'entities/Article';
+import type { Article, ArticleListView } from 'entities/Article';
+import type { ArticleFilterField, ArticleFilterOrder } from 'features/Article/ArticleFilters';
 
 export type ArticlesListSchema = EntityState<Article> & {
     isLoading: boolean;
@@ -7,6 +8,8 @@ export type ArticlesListSchema = EntityState<Article> & {
     view: ArticleListView;
     page: number;
     hasMore: boolean;
-
+    sortField?: ArticleFilterField;
+    sortOrder?: ArticleFilterOrder;
+    search?: string;
     _mounted: boolean;
 };

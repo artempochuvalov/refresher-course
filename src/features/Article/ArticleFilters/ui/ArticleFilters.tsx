@@ -10,10 +10,24 @@ import cls from './ArticleFilters.module.scss';
 
 type ArticleFiltersProps = {
     className?: string;
+    field?: ArticleFilterField;
+    order?: ArticleFilterOrder;
+    search?: string;
+    onFieldChange: (field: ArticleFilterField) => void;
+    onOrderChange: (order: ArticleFilterOrder) => void;
+    onSearch: (search: string) => void;
 };
 
 export const ArticleFilters = memo((props: ArticleFiltersProps) => {
-    const { className } = props;
+    const {
+        field,
+        order,
+        search,
+        className,
+        onFieldChange,
+        onOrderChange,
+        onSearch,
+    } = props;
 
     const { t } = useTranslation();
 
@@ -48,17 +62,21 @@ export const ArticleFilters = memo((props: ArticleFiltersProps) => {
             <Card className={cls.sortFilters}>
                 <Select
                     options={sortFieldOptions}
+                    value={field}
+                    onChange={onFieldChange}
                     label={t('Сортировать по ')}
                 />
 
                 <Select
                     options={sortOrderOptions}
+                    value={order}
+                    onChange={onOrderChange}
                     label={t('порядок')}
                 />
             </Card>
 
             <Card className={cls.searchCard}>
-                <Input placeholder={t('Поиск')} />
+                <Input value={search} onChange={onSearch} placeholder={t('Поиск')} />
             </Card>
         </div>
     );

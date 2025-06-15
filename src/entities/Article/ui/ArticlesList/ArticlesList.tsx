@@ -28,14 +28,14 @@ export const ArticlesList = memo((props: ArticlesListProps) => {
     const skeletonList = useMemo(() => {
         const skeletonNumber = view === 'grid' ? 16 : 3;
         return (
-            <div className={classNames(cls.ArticlesList, {}, [className, cls[view]])}>
+            <>
                 {Array.from({ length: skeletonNumber }).map((_, idx) => (
                     // eslint-disable-next-line react/no-array-index-key
-                    <ArticleCardSkeleton view={view} key={idx} />
+                    <ArticleCardSkeleton className={cls.ArticleCard} view={view} key={idx} />
                 ))}
-            </div>
+            </>
         );
-    }, [className, view]);
+    }, [view]);
 
     return (
         <div className={classNames(cls.ArticlesList, {}, [className, cls[view]])}>
