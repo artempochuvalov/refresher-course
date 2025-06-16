@@ -10,6 +10,7 @@ import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
+import { useDebounce } from 'shared/lib/hooks/useDebounce';
 import { useDynamicModuleLoader } from 'shared/lib/hooks/useDynamicModuleLoader';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect';
 import { Page } from 'widgets/Page';
@@ -64,6 +65,8 @@ const Articles = (props: ArticlesProps) => {
         dispatch(fetchArticles({ replace: true }));
     }, [dispatch]);
 
+    const debouncedChangeFilter = useDebounce(onChangeFilter, 300);
+
     const onSortFieldChange = useCallback((sortField: ArticleFilterField) => {
         dispatch(articlesListActions.setSortField(sortField));
         onChangeFilter();
@@ -76,8 +79,8 @@ const Articles = (props: ArticlesProps) => {
 
     const onSearch = useCallback((search: string) => {
         dispatch(articlesListActions.setSearch(search));
-        onChangeFilter();
-    }, [dispatch, onChangeFilter]);
+        debouncedChangeFilter();
+    }, [debouncedChangeFilter, dispatch]);
 
     const onScrollEnd = useCallback(() => {
         dispatch(fetchNextArticles());

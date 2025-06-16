@@ -67,14 +67,14 @@ const articleCommentsSlice = createSlice({
             .addCase(fetchArticles.fulfilled, (state, action) => {
                 const articles = action.payload;
 
+                state.isLoading = false;
+                state.hasMore = articles.length > 0;
+
                 if (action.meta.arg.replace) {
                     articlesAdapter.setAll(state, articles);
                 } else {
                     articlesAdapter.addMany(state, articles);
                 }
-
-                state.isLoading = false;
-                state.hasMore = articles.length > 0;
             })
             .addCase(fetchArticles.rejected, (state, action) => {
                 state.isLoading = false;
