@@ -11,6 +11,7 @@ const initialState: ArticlesListSchema = {
     error: undefined,
     view: 'grid',
     page: 1,
+    limit: 9,
     hasMore: true,
     _mounted: false,
     sortField: undefined,
@@ -31,6 +32,8 @@ const articleCommentsSlice = createSlice({
         setView(state, action: PayloadAction<ArticleListView>) {
             state.view = action.payload;
             localStorage.setItem(ARTICLES_VIEW_LOCALSTORAGE_KEY, action.payload);
+
+            state.limit = state.view === 'grid' ? 9 : 3;
         },
         setPage(state, action: PayloadAction<number>) {
             state.page = action.payload;
@@ -68,7 +71,7 @@ const articleCommentsSlice = createSlice({
                 const articles = action.payload;
 
                 state.isLoading = false;
-                state.hasMore = articles.length > 0;
+                state.hasMore = articles.length >= state.limit;
 
                 if (action.meta.arg.replace) {
                     articlesAdapter.setAll(state, articles);

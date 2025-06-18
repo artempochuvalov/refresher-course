@@ -18,7 +18,7 @@ export const getArticlesListPageNum = (state: StateSchema) => (
     state.articlesList?.page ?? 1
 );
 export const getArticlesListLimit = (state: StateSchema) => (
-    getArticlesListView(state) === 'grid' ? 9 : 3
+    state.articlesList?.limit
 );
 export const getArticlesListHasMore = (state: StateSchema) => (
     state.articlesList?.hasMore ?? true

@@ -7,6 +7,7 @@ export type ArticlesListSchema = EntityState<Article> & {
     error?: string;
     view: ArticleListView;
     page: number;
+    limit: number;
     hasMore: boolean;
     sortField?: ArticleFilterField;
     sortOrder?: ArticleFilterOrder;

@@ -61,22 +61,6 @@ describe('getArticlesListView.test', () => {
     });
 });
 
-describe('getArticlesListView.test', () => {
-    test('should return value', () => {
-        const state: DeepPartial<StateSchema> = {
-            articlesList: {
-                view: 'list',
-            },
-        };
-        expect(getArticlesListView(state as StateSchema)).toBe('list');
-    });
-
-    test('should work with empty state', () => {
-        const state: DeepPartial<StateSchema> = {};
-        expect(getArticlesListView(state as StateSchema)).toBe('grid');
-    });
-});
-
 describe('getArticlesListPageNum.test', () => {
     test('should return value', () => {
         const state: DeepPartial<StateSchema> = {
@@ -94,22 +78,18 @@ describe('getArticlesListPageNum.test', () => {
 });
 
 describe('getArticlesListLimit.test', () => {
-    test('should return 3 with list view', () => {
+    test('should return value', () => {
         const state: DeepPartial<StateSchema> = {
             articlesList: {
-                view: 'list',
+                limit: 3,
             },
         };
         expect(getArticlesListLimit(state as StateSchema)).toBe(3);
     });
 
-    test('should return 9 with grid view', () => {
-        const state: DeepPartial<StateSchema> = {
-            articlesList: {
-                view: 'grid',
-            },
-        };
-        expect(getArticlesListLimit(state as StateSchema)).toBe(9);
+    test('should work with empty state', () => {
+        const state: DeepPartial<StateSchema> = {};
+        expect(getArticlesListLimit(state as StateSchema)).toBe(undefined);
     });
 });
 
