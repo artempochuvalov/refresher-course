@@ -13,7 +13,7 @@ describe('initArticlesPage.test', () => {
             },
         });
 
-        const result = await thunk.callThunk();
+        const result = await thunk.callThunk({});
 
         expect(fetchNextArticles).toHaveBeenCalled();
         expect(thunk.dispatch).toHaveBeenCalledTimes(4);
@@ -27,7 +27,7 @@ describe('initArticlesPage.test', () => {
             },
         });
 
-        await thunk.callThunk();
+        await thunk.callThunk({});
 
         expect(fetchNextArticles).not.toHaveBeenCalled();
         expect(thunk.dispatch).toHaveBeenCalledTimes(2);

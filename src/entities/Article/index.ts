@@ -1,8 +1,8 @@
 export { getArticleDetailsData } from './model/selectors/articleDetailsSelectors';
-export type { Article } from './model/types/article';
 export type {
     ArticleListView
 } from './model/types/article';
+export { type Article, ArticleType } from './model/types/article';
 export type {
     ArticleDetailsSchema
 } from './model/types/articleDetailsSchema';

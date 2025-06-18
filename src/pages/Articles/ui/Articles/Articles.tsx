@@ -5,9 +5,11 @@ import {
     ArticleFilters
 } from 'features/Article/ArticleFilters';
 import { ArticleViewSwitcher } from 'features/Article/ViewSwitcher';
+import { SEARCH_PARAM, SORT_FIELD_PARAM, SORT_ORDER_PARAM } from 'pages/Articles/constants';
 import { fetchArticles } from 'pages/Articles/model/services/fetchArticles/fetchArticles';
 import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { useDebounce } from 'shared/lib/hooks/useDebounce';
@@ -37,6 +39,8 @@ const Articles = (props: ArticlesProps) => {
 
     const dispatch = useAppDispatch();
 
+    const [searchParams, setSearchParams] = useSearchParams();
+
     useDynamicModuleLoader({
         reducers: {
             articlesList: articlesListReducer,
@@ -45,7 +49,7 @@ const Articles = (props: ArticlesProps) => {
     });
 
     useInitialEffect(() => {
-        dispatch(initArticlesPage());
+        dispatch(initArticlesPage({ searchParams }));
     });
 
     const articles = useSelector(getArticles.selectAll);
@@ -69,18 +73,30 @@ const Articles = (props: ArticlesProps) => {
 
     const onSortFieldChange = useCallback((sortField: ArticleFilterField) => {
         dispatch(articlesListActions.setSortField(sortField));
+        setSearchParams((searchParams) => {
+            searchParams.set(SORT_FIELD_PARAM, sortField);
+            return searchParams;
+        });
         onChangeFilter();
-    }, [dispatch, onChangeFilter]);
+    }, [dispatch, onChangeFilter, setSearchParams]);
 
     const onSortOrderChange = useCallback((sortOrder: ArticleFilterOrder) => {
         dispatch(articlesListActions.setSortOrder(sortOrder));
+        setSearchParams((searchParams) => {
+            searchParams.set(SORT_ORDER_PARAM, sortOrder);
+            return searchParams;
+        });
         onChangeFilter();
-    }, [dispatch, onChangeFilter]);
+    }, [dispatch, onChangeFilter, setSearchParams]);
 
     const onSearch = useCallback((search: string) => {
         dispatch(articlesListActions.setSearch(search));
+        setSearchParams((searchParams) => {
+            searchParams.set(SEARCH_PARAM, search);
+            return searchParams;
+        });
         debouncedChangeFilter();
-    }, [debouncedChangeFilter, dispatch]);
+    }, [debouncedChangeFilter, dispatch, setSearchParams]);
 
     const onScrollEnd = useCallback(() => {
         dispatch(fetchNextArticles());
