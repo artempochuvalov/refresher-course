@@ -1,13 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
-// import { ArticleType } from 'entities/Article';
+import { ArticleType } from 'entities/Article';
 import { ArticleFilterField, ArticleFilterOrder } from 'features/Article/ArticleFilters';
 
 import {
     SEARCH_PARAM,
     SORT_FIELD_PARAM,
-    SORT_ORDER_PARAM
-    // SORT_TYPE_PARAM
+    SORT_ORDER_PARAM,
+    SORT_TYPE_PARAM
 } from '../../../constants';
 import { getArticlesListIsMounted } from '../../selectors/articlesListSelectors';
 import { articlesListActions } from '../../slices/articlePageSlice';
@@ -33,7 +33,7 @@ export const initArticlesPage = createAsyncThunk<
             SORT_ORDER_PARAM
         ) as ArticleFilterOrder | null | undefined;
         const search = searchParams?.get(SEARCH_PARAM);
-        // const sortType = searchParams?.get(SORT_TYPE_PARAM) as ArticleType | null | undefined;
+        const sortType = searchParams?.get(SORT_TYPE_PARAM) as ArticleType | null | undefined;
 
         if (sortField) {
             dispatch(articlesListActions.setSortField(sortField));
@@ -43,6 +43,9 @@ export const initArticlesPage = createAsyncThunk<
         }
         if (search) {
             dispatch(articlesListActions.setSearch(search));
+        }
+        if (sortType) {
+            dispatch(articlesListActions.setSortType(sortType));
         }
 
         const isMounted = getArticlesListIsMounted(getState());

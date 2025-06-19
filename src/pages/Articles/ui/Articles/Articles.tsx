@@ -5,9 +5,7 @@ import {
     ArticleFilters
 } from 'features/Article/ArticleFilters';
 import { ArticleViewSwitcher } from 'features/Article/ViewSwitcher';
-import { SEARCH_PARAM, SORT_FIELD_PARAM, SORT_ORDER_PARAM } from 'pages/Articles/constants';
-import { fetchArticles } from 'pages/Articles/model/services/fetchArticles/fetchArticles';
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames';
@@ -18,6 +16,12 @@ import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect';
 import { Page } from 'widgets/Page';
 
 import {
+    SEARCH_PARAM,
+    SORT_FIELD_PARAM,
+    SORT_ORDER_PARAM,
+    SORT_TYPE_PARAM
+} from '../../constants';
+import {
     getArticles,
     getArticlesListIsLoading,
     getArticlesListSearch,
@@ -26,6 +30,7 @@ import {
     getArticlesListSortType,
     getArticlesListView
 } from '../../model/selectors/articlesListSelectors';
+import { fetchArticles } from '../../model/services/fetchArticles/fetchArticles';
 import { fetchNextArticles } from '../../model/services/fetchNextArticles/fetchNextArticles';
 import { initArticlesPage } from '../../model/services/initArticlePage/initArticlesPage';
 import { articlesListActions, articlesListReducer } from '../../model/slices/articlePageSlice';
@@ -75,30 +80,18 @@ const Articles = (props: ArticlesProps) => {
 
     const onSortFieldChange = useCallback((sortField: ArticleFilterField) => {
         dispatch(articlesListActions.setSortField(sortField));
-        setSearchParams((searchParams) => {
-            searchParams.set(SORT_FIELD_PARAM, sortField);
-            return searchParams;
-        });
         onChangeFilter();
-    }, [dispatch, onChangeFilter, setSearchParams]);
+    }, [dispatch, onChangeFilter]);
 
     const onSortOrderChange = useCallback((sortOrder: ArticleFilterOrder) => {
         dispatch(articlesListActions.setSortOrder(sortOrder));
-        setSearchParams((searchParams) => {
-            searchParams.set(SORT_ORDER_PARAM, sortOrder);
-            return searchParams;
-        });
         onChangeFilter();
-    }, [dispatch, onChangeFilter, setSearchParams]);
+    }, [dispatch, onChangeFilter]);
 
-    const onSearch = useCallback((search: string) => {
+    const onSearch = useCallback(async (search: string) => {
         dispatch(articlesListActions.setSearch(search));
-        setSearchParams((searchParams) => {
-            searchParams.set(SEARCH_PARAM, search);
-            return searchParams;
-        });
         debouncedChangeFilter();
-    }, [debouncedChangeFilter, dispatch, setSearchParams]);
+    }, [debouncedChangeFilter, dispatch]);
 
     const onSortTypeChange = useCallback((sortType: ArticleType) => {
         dispatch(articlesListActions.setSortType(sortType));
@@ -108,6 +101,16 @@ const Articles = (props: ArticlesProps) => {
     const onScrollEnd = useCallback(() => {
         dispatch(fetchNextArticles());
     }, [dispatch]);
+
+    useEffect(() => {
+        setSearchParams((searchParams) => {
+            searchParams.set(SORT_FIELD_PARAM, sortField);
+            searchParams.set(SORT_ORDER_PARAM, sortOrder);
+            searchParams.set(SEARCH_PARAM, search);
+            searchParams.set(SORT_TYPE_PARAM, sortType);
+            return searchParams;
+        });
+    }, [search, setSearchParams, sortField, sortOrder, sortType]);
 
     return (
         <Page
