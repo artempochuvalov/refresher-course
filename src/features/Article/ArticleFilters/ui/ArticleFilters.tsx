@@ -1,9 +1,11 @@
+import { ArticleType } from 'entities/Article';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames';
 import { Card } from 'shared/ui/Card/Card';
 import { Input } from 'shared/ui/Input/Input';
 import { Select, SelectOption } from 'shared/ui/Select/Select';
+import { TabItem, Tabs } from 'shared/ui/Tabs/Tabs';
 
 import { ArticleFilterField, ArticleFilterOrder } from '../model/types';
 import cls from './ArticleFilters.module.scss';
@@ -13,8 +15,10 @@ type ArticleFiltersProps = {
     field?: ArticleFilterField;
     order?: ArticleFilterOrder;
     search?: string;
+    type: ArticleType;
     onFieldChange: (field: ArticleFilterField) => void;
     onOrderChange: (order: ArticleFilterOrder) => void;
+    onTypeChange: (type: ArticleType) => void;
     onSearch: (search: string) => void;
 };
 
@@ -23,10 +27,12 @@ export const ArticleFilters = memo((props: ArticleFiltersProps) => {
         field,
         order,
         search,
+        type,
         className,
         onFieldChange,
         onOrderChange,
         onSearch,
+        onTypeChange,
     } = props;
 
     const { t } = useTranslation();
@@ -57,6 +63,25 @@ export const ArticleFilters = memo((props: ArticleFiltersProps) => {
         },
     ], [t]);
 
+    const sortTypeTabs = useMemo<TabItem<ArticleType>[]>(() => [
+        {
+            value: ArticleType.ECONOMICS,
+            content: t('Экономика'),
+        },
+        {
+            value: ArticleType.SCIENCE,
+            content: t('Наука'),
+        },
+        {
+            value: ArticleType.IT,
+            content: t('IT'),
+        },
+        {
+            value: ArticleType.ALL,
+            content: t('Все'),
+        },
+    ], [t]);
+
     return (
         <div className={classNames(cls.ArticleFilters, {}, [className])}>
             <Card className={cls.sortFilters}>
@@ -78,6 +103,13 @@ export const ArticleFilters = memo((props: ArticleFiltersProps) => {
             <Card className={cls.searchCard}>
                 <Input value={search} onChange={onSearch} placeholder={t('Поиск')} />
             </Card>
+
+            <Tabs
+                className={cls.tabs}
+                tabs={sortTypeTabs}
+                value={type}
+                onTabClick={onTypeChange}
+            />
         </div>
     );
 });

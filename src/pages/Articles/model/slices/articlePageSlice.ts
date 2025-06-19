@@ -1,5 +1,5 @@
 import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Article, ArticleListView } from 'entities/Article';
+import { Article, ArticleListView, ArticleType } from 'entities/Article';
 import { ArticleFilterField, ArticleFilterOrder } from 'features/Article/ArticleFilters';
 
 import { ARTICLES_VIEW_LOCALSTORAGE_KEY } from '../../constants';
@@ -17,6 +17,7 @@ const initialState: ArticlesListSchema = {
     sortField: undefined,
     sortOrder: undefined,
     search: undefined,
+    sortType: undefined,
     entities: {},
     ids: [],
 };
@@ -46,6 +47,9 @@ const articleCommentsSlice = createSlice({
         },
         setSearch(state, action: PayloadAction<string>) {
             state.search = action.payload;
+        },
+        setSortType(state, action: PayloadAction<ArticleType>) {
+            state.sortType = action.payload;
         },
         initState(state) {
             const view = (

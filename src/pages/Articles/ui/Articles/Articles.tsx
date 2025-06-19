@@ -1,4 +1,4 @@
-import { type ArticleListView, ArticlesList } from 'entities/Article';
+import { type ArticleListView, ArticlesList, ArticleType } from 'entities/Article';
 import {
     type ArticleFilterField,
     type ArticleFilterOrder,
@@ -23,6 +23,7 @@ import {
     getArticlesListSearch,
     getArticlesListSortField,
     getArticlesListSortOrder,
+    getArticlesListSortType,
     getArticlesListView
 } from '../../model/selectors/articlesListSelectors';
 import { fetchNextArticles } from '../../model/services/fetchNextArticles/fetchNextArticles';
@@ -59,6 +60,7 @@ const Articles = (props: ArticlesProps) => {
     const sortField = useSelector(getArticlesListSortField);
     const sortOrder = useSelector(getArticlesListSortOrder);
     const search = useSelector(getArticlesListSearch);
+    const sortType = useSelector(getArticlesListSortType);
 
     const onChangeView = useCallback((view: ArticleListView) => {
         dispatch(articlesListActions.setView(view));
@@ -98,6 +100,11 @@ const Articles = (props: ArticlesProps) => {
         debouncedChangeFilter();
     }, [debouncedChangeFilter, dispatch, setSearchParams]);
 
+    const onSortTypeChange = useCallback((sortType: ArticleType) => {
+        dispatch(articlesListActions.setSortType(sortType));
+        onChangeFilter();
+    }, [dispatch, onChangeFilter]);
+
     const onScrollEnd = useCallback(() => {
         dispatch(fetchNextArticles());
     }, [dispatch]);
@@ -112,10 +119,13 @@ const Articles = (props: ArticlesProps) => {
                     field={sortField}
                     order={sortOrder}
                     search={search}
+                    type={sortType}
                     onFieldChange={onSortFieldChange}
                     onOrderChange={onSortOrderChange}
                     onSearch={onSearch}
+                    onTypeChange={onSortTypeChange}
                 />
+
                 <ArticleViewSwitcher
                     className={cls.viewSwitcher}
                     view={view}

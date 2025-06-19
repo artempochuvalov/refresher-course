@@ -1,4 +1,5 @@
 import { StateSchema } from 'app/providers/StoreProvider';
+import { ArticleType } from 'entities/Article';
 
 import {
     getArticlesListError,
@@ -10,6 +11,7 @@ import {
     getArticlesListSearch,
     getArticlesListSortField,
     getArticlesListSortOrder,
+    getArticlesListSortType,
     getArticlesListView
 } from './articlesListSelectors';
 
@@ -170,5 +172,21 @@ describe('getArticlesListSearch.test', () => {
     test('should work with empty state', () => {
         const state: DeepPartial<StateSchema> = {};
         expect(getArticlesListSearch(state as StateSchema)).toBe(undefined);
+    });
+});
+
+describe('getArticlesListSortType.test', () => {
+    test('should return value', () => {
+        const state: DeepPartial<StateSchema> = {
+            articlesList: {
+                sortType: ArticleType.IT,
+            },
+        };
+        expect(getArticlesListSortType(state as StateSchema)).toBe('IT');
+    });
+
+    test('should work with empty state', () => {
+        const state: DeepPartial<StateSchema> = {};
+        expect(getArticlesListSortType(state as StateSchema)).toBe('ALL');
     });
 });

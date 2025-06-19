@@ -1,4 +1,5 @@
 import { StateSchema } from 'app/providers/StoreProvider';
+import { ArticleType } from 'entities/Article';
 
 import { articlesAdapter } from '../slices/articlePageSlice';
 
@@ -34,4 +35,7 @@ export const getArticlesListSortOrder = (state: StateSchema) => (
 );
 export const getArticlesListSearch = (state: StateSchema) => (
     state.articlesList?.search ?? ''
+);
+export const getArticlesListSortType = (state: StateSchema) => (
+    state.articlesList?.sortType ?? ArticleType.ALL
 );
