@@ -1,4 +1,4 @@
-import { ArticleDetails } from 'entities/Article';
+import { ArticleDetails, ArticlesList } from 'entities/Article';
 import { AddCommentForm, CommentList } from 'entities/Comment';
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -21,11 +21,19 @@ import {
     getArticleComments,
     getArticleCommentsIsLoading
 } from '../../model/selectors/articleCommentsSelectors';
+import {
+    getArticleRecommendations,
+    getArticleRecommendationsIsLoading
+} from '../../model/selectors/articleRecommendationsSelectors';
 import { addArticleComment } from '../../model/services/addArticleComment/addArticleComment';
+import {
+    fetchRecommendations
+} from '../../model/services/fetchArticleRecommendations/fetchArticleRecommendations';
 import {
     fetchCommentsByArticleId
 } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import { articleCommentsReducer } from '../../model/slices/articleCommentsSlice';
+import { articleRecommendationsReducer } from '../../model/slices/articleRecommendations';
 import cls from './ArticleDetailsPage.module.scss';
 
 type ArticleDetailsPageProps = {
@@ -41,8 +49,9 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
 
     const comments = useSelector(getArticleComments.selectAll);
     const areCommentsLoading = useSelector(getArticleCommentsIsLoading);
-
     const addCommentError = useSelector(getArticleCommentAddError);
+    const recommendations = useSelector(getArticleRecommendations.selectAll);
+    const recommendationsIsLoading = useSelector(getArticleRecommendationsIsLoading);
 
     const onSendComment = useCallback(async (text: string) => {
         await dispatch(addArticleComment(text));
@@ -51,6 +60,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
     useDynamicModuleLoader({
         reducers: {
             articleComments: articleCommentsReducer,
+            articleRecommendations: articleRecommendationsReducer,
         },
     });
 
@@ -60,6 +70,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
         }
 
         dispatch(fetchCommentsByArticleId(id));
+        dispatch(fetchRecommendations());
     });
 
     if (!id) {
@@ -77,6 +88,19 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
     return (
         <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>
             <ArticleDetails articleId={id} />
+
+            <div className={cls.recomendationsContainer}>
+                <TextAtom
+                    size={TextAtomSize.L}
+                    text={t('Мы рекоммендуем')}
+                />
+
+                <ArticlesList
+                    articles={recommendations}
+                    isLoading={recommendationsIsLoading}
+                    className={cls.recommendations}
+                />
+            </div>
 
             <div className={cls.commentsBlock}>
                 <TextAtom size={TextAtomSize.L} title={t('Комментарии')} />
