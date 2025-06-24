@@ -7,6 +7,7 @@
 }
 
 .ArticleCard.grid {
+    display: flex;
     max-width: 200px;
     position: relative;
     transition: opacity, transform 0.2s ease;

@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import { useDispatch, useStore } from 'react-redux';
 
 export type ReducersList = {
-    [key in StateSchemaKey]?: Reducer;
+    [name in StateSchemaKey]?: Reducer;
 };
 
 type DynamicModuleLoaderProps = {

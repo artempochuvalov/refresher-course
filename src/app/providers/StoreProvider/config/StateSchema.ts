@@ -11,9 +11,8 @@ import type { ProfileSchema } from 'entities/Profile';
 import type { UserSchema } from 'entities/User';
 import type { LoginSchema } from 'features/AuthByUsername';
 import type {
-    ArticleRecommendationsSchema
+    ArticleDetailsPageSchema
 } from 'pages/ArticleDetails';
-import { ArticleCommentsSchema } from 'pages/ArticleDetails';
 import { ArticlesListSchema } from 'pages/Articles';
 import { ScrollPositionSchema } from 'widgets/Page';
 
@@ -25,8 +24,7 @@ export type StateSchema = {
     loginForm?: LoginSchema;
     profile?: ProfileSchema;
     articleDetails?: ArticleDetailsSchema;
-    articleRecommendations?: ArticleRecommendationsSchema;
-    articleComments?: ArticleCommentsSchema;
+    articleDetailsPage?: ArticleDetailsPageSchema;
     articlesList?: ArticlesListSchema;
 };
 

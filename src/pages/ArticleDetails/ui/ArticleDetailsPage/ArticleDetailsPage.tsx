@@ -32,8 +32,7 @@ import {
 import {
     fetchCommentsByArticleId
 } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
-import { articleCommentsReducer } from '../../model/slices/articleCommentsSlice';
-import { articleRecommendationsReducer } from '../../model/slices/articleRecommendations';
+import { articleDetailsPageReducer } from '../../model/slices';
 import cls from './ArticleDetailsPage.module.scss';
 
 type ArticleDetailsPageProps = {
@@ -59,8 +58,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
 
     useDynamicModuleLoader({
         reducers: {
-            articleComments: articleCommentsReducer,
-            articleRecommendations: articleRecommendationsReducer,
+            articleDetailsPage: articleDetailsPageReducer,
         },
     });
 
@@ -98,6 +96,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
                 <ArticlesList
                     articles={recommendations}
                     isLoading={recommendationsIsLoading}
+                    target="_blank"
                     className={cls.recommendations}
                 />
             </div>

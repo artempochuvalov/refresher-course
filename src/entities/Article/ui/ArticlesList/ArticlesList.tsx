@@ -1,4 +1,4 @@
-import { memo, useMemo } from 'react';
+import { HTMLAttributeAnchorTarget, memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames';
 import { TextAtom, TextAtomAlign, TextAtomTheme } from 'shared/ui/TextAtom/TextAtom';
@@ -13,6 +13,7 @@ type ArticlesListProps = {
     view?: ArticleListView;
     isLoading?: boolean;
     className?: string;
+    target?: HTMLAttributeAnchorTarget;
 };
 
 export const ArticlesList = memo((props: ArticlesListProps) => {
@@ -20,6 +21,7 @@ export const ArticlesList = memo((props: ArticlesListProps) => {
         articles,
         view = 'grid',
         isLoading,
+        target,
         className,
     } = props;
 
@@ -41,10 +43,11 @@ export const ArticlesList = memo((props: ArticlesListProps) => {
         <div className={classNames(cls.ArticlesList, {}, [className, cls[view]])}>
             {articles.length > 0 && articles.map((article) => (
                 <ArticleCard
-                    className={cls.ArticleCard}
                     article={article}
-                    key={article.id}
                     view={view}
+                    target={target}
+                    key={article.id}
+                    className={cls.ArticleCard}
                 />
             ))}
             {isLoading && skeletonList}

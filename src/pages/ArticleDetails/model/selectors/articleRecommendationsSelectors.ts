@@ -3,11 +3,11 @@ import { StateSchema } from 'app/providers/StoreProvider';
 import { recommendationsAdapter } from '../slices/articleRecommendations';
 
 export const getArticleRecommendations = recommendationsAdapter.getSelectors<StateSchema>(
-    (state) => state.articleRecommendations ?? recommendationsAdapter.getInitialState()
+    (state) => state.articleDetailsPage?.recommendations ?? recommendationsAdapter.getInitialState()
 );
 export const getArticleRecommendationsIsLoading = (state: StateSchema) => (
-    state.articleRecommendations?.isLoading ?? false
+    state.articleDetailsPage?.recommendations?.isLoading ?? false
 );
 export const getArticleRecommendationsError = (state: StateSchema) => (
-    state.articleRecommendations?.error
+    state.articleDetailsPage?.recommendations?.error
 );
