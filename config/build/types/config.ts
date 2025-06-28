@@ -11,6 +11,8 @@ export type BuildPaths = {
     build: string;
     HTML: string;
     src: string;
+    locales: string;
+    buildLocales: string;
 };
 
 export type BuildOptions = {
