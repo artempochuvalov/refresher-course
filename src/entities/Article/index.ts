@@ -1,4 +1,9 @@
-export { getArticleDetailsData } from './model/selectors/articleDetailsSelectors';
+export {
+    getArticleDetailsData,
+    getArticleDetailsError,
+    getArticleDetailsIsLoading,
+    getIfCanEditArticle
+} from './model/selectors/articleDetailsSelectors';
 export type {
     ArticleListView
 } from './model/types/article';

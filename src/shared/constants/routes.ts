@@ -5,6 +5,8 @@ export enum RouteNames {
     Profile = 'Profile',
     Articles = 'Articles',
     ArticleDetails = 'ArticleDetails',
+    ArticleEdit = 'ArticleEdit',
+    ArticleNew = 'ArticleNew',
 }
 
 export const RoutePaths: Record<RouteNames, string> = {
@@ -13,5 +15,7 @@ export const RoutePaths: Record<RouteNames, string> = {
     [RouteNames.Profile]: '/profile/', // + :id
     [RouteNames.Articles]: '/articles',
     [RouteNames.ArticleDetails]: '/articles/', // + :id
+    [RouteNames.ArticleEdit]: '/articles/:id/edit',
+    [RouteNames.ArticleNew]: '/articles/new',
     [RouteNames.NotFound]: '*',
 };

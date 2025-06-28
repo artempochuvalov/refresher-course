@@ -3,6 +3,26 @@
     color: var(--primary-color);
 }
 
+.Error {
+    .title {
+        color: var(--red-light);
+    }
+
+    .text {
+        color: var(--red-dark);
+    }
+}
+
+.Inverted {
+    .title {
+        color: var(--inverted-primary-color);
+    }
+
+    .text {
+        color: var(--inverted-secondary-color);
+    }
+}
+
 .m {
     .title {
         font: var(--font-l);
@@ -20,16 +40,6 @@
 
     .text {
         font: var(--font-l);
-    }
-}
-
-.Error {
-    .title {
-        color: var(--red-light);
-    }
-
-    .text {
-        color: var(--red-dark);
     }
 }
 
