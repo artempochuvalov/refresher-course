@@ -11,11 +11,14 @@ export default (env: BuildEnv) => {
     } = env;
     const isDev = mode === 'development';
 
+    const buildPath = path.resolve(__dirname, 'build');
     const paths: BuildPaths = {
         entry: path.resolve(__dirname, 'src', 'index.tsx'),
-        build: path.resolve(__dirname, 'build'),
+        build: buildPath,
         HTML: path.resolve(__dirname, 'public', 'index.html'),
         src: path.resolve(__dirname, 'src'),
+        locales: path.resolve(__dirname, 'public', 'locales'),
+        buildLocales: path.join(buildPath, 'locales'),
     };
 
     const config = buildWebpackConfig({
@@ -23,7 +26,7 @@ export default (env: BuildEnv) => {
         isDev,
         paths,
         port: PORT,
-        apiUrl: apiUrl ?? 'http://localhost:8000',
+        apiUrl,
         project: JSON.stringify('frontend') as 'frontend',
     });
 

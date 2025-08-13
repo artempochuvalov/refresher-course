@@ -9,8 +9,10 @@ import {
 describe('getArticleCommentsFetchError.test', () => {
     test('should return value', () => {
         const state: DeepPartial<StateSchema> = {
-            articleComments: {
-                fetchCommentsError: 'error',
+            articleDetailsPage: {
+                comments: {
+                    fetchCommentsError: 'error',
+                },
             },
         };
         expect(getArticleCommentsFetchError(state as StateSchema)).toEqual('error');
@@ -25,8 +27,10 @@ describe('getArticleCommentsFetchError.test', () => {
 describe('getArticleCommentsAddError.test', () => {
     test('should return value', () => {
         const state: DeepPartial<StateSchema> = {
-            articleComments: {
-                addCommentError: 'error',
+            articleDetailsPage: {
+                comments: {
+                    addCommentError: 'error',
+                },
             },
         };
         expect(getArticleCommentAddError(state as StateSchema)).toEqual('error');
@@ -41,8 +45,10 @@ describe('getArticleCommentsAddError.test', () => {
 describe('getArticleCommentsIsLoading.test', () => {
     test('should return value', () => {
         const state: DeepPartial<StateSchema> = {
-            articleComments: {
-                isLoading: true,
+            articleDetailsPage: {
+                comments: {
+                    isLoading: true,
+                },
             },
         };
         expect(getArticleCommentsIsLoading(state as StateSchema)).toEqual(true);

@@ -12,7 +12,7 @@ type CurrencySelectProps = {
     onChange?: (value: Currency) => void;
 };
 
-const options: SelectOption[] = Object.values(Currency).map((currency) => ({
+const options: SelectOption<Currency>[] = Object.values(Currency).map((currency) => ({
     text: currency,
     value: currency,
 }));

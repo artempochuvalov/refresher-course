@@ -1,4 +1,4 @@
-import { memo, useMemo } from 'react';
+import { HTMLAttributeAnchorTarget, memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames';
 import { TextAtom, TextAtomAlign, TextAtomTheme } from 'shared/ui/TextAtom/TextAtom';
@@ -13,6 +13,7 @@ type ArticlesListProps = {
     view?: ArticleListView;
     isLoading?: boolean;
     className?: string;
+    target?: HTMLAttributeAnchorTarget;
 };
 
 export const ArticlesList = memo((props: ArticlesListProps) => {
@@ -20,6 +21,7 @@ export const ArticlesList = memo((props: ArticlesListProps) => {
         articles,
         view = 'grid',
         isLoading,
+        target,
         className,
     } = props;
 
@@ -28,23 +30,24 @@ export const ArticlesList = memo((props: ArticlesListProps) => {
     const skeletonList = useMemo(() => {
         const skeletonNumber = view === 'grid' ? 16 : 3;
         return (
-            <div className={classNames(cls.ArticlesList, {}, [className, cls[view]])}>
+            <>
                 {Array.from({ length: skeletonNumber }).map((_, idx) => (
                     // eslint-disable-next-line react/no-array-index-key
-                    <ArticleCardSkeleton view={view} key={idx} />
+                    <ArticleCardSkeleton className={cls.ArticleCard} view={view} key={idx} />
                 ))}
-            </div>
+            </>
         );
-    }, [className, view]);
+    }, [view]);
 
     return (
         <div className={classNames(cls.ArticlesList, {}, [className, cls[view]])}>
             {articles.length > 0 && articles.map((article) => (
                 <ArticleCard
-                    className={cls.ArticleCard}
                     article={article}
-                    key={article.id}
                     view={view}
+                    target={target}
+                    key={article.id}
+                    className={cls.ArticleCard}
                 />
             ))}
             {isLoading && skeletonList}

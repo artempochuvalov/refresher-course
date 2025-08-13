@@ -10,18 +10,21 @@ import { ArticleDetailsSchema } from 'entities/Article';
 import type { ProfileSchema } from 'entities/Profile';
 import type { UserSchema } from 'entities/User';
 import type { LoginSchema } from 'features/AuthByUsername';
-import { ArticleCommentsSchema } from 'pages/ArticleDetails';
+import type {
+    ArticleDetailsPageSchema
+} from 'pages/ArticleDetails';
 import { ArticlesListSchema } from 'pages/Articles';
-import type { NavigateFunction } from 'react-router-dom';
+import { ScrollPositionSchema } from 'widgets/Page';
 
 export type StateSchema = {
     user: UserSchema;
+    scrollPosition: ScrollPositionSchema;
 
     // Async reducers
     loginForm?: LoginSchema;
     profile?: ProfileSchema;
     articleDetails?: ArticleDetailsSchema;
-    articleComments?: ArticleCommentsSchema;
+    articleDetailsPage?: ArticleDetailsPageSchema;
     articlesList?: ArticlesListSchema;
 };
 
@@ -40,7 +43,6 @@ export type ReduxStoreWithReducerManager = EnhancedStore<StateSchema> & {
 
 type ThunkExtraArg = {
     api: AxiosInstance;
-    navigate?: NavigateFunction;
 };
 
 export type ThunkConfig<T> = {

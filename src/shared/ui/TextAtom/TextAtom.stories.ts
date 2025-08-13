@@ -68,6 +68,14 @@ export const Error: Story = {
     },
 };
 
+export const Inverted: Story = {
+    args: {
+        title: 'Это крутой текст с крутым текстом',
+        text: 'А это крутой текст с крутым заголовком',
+        theme: TextAtomTheme.Inverted,
+    },
+};
+
 export const SizeL: Story = {
     args: {
         title: 'Это крутой текст с крутым текстом',

@@ -5,5 +5,13 @@
     background-color: var(--inverted-bg-color);
     display: flex;
     align-items: center;
-    justify-content: end;
+}
+
+.loginButton,
+.logoutButton {
+    margin-left: 1.5rem;
+}
+
+.createNewArticleLink {
+    margin-left: auto;
 }

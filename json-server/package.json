@@ -1,0 +1,21 @@
+{
+  "name": "json-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "install": "^0.13.0",
+    "json-server": "0.17.4"
+  },
+  "files": [
+    "*.js",
+    "db.json"
+  ]
+}

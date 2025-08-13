@@ -53,6 +53,7 @@ module.exports = {
                     'data-testid',
                     'to',
                     'form',
+                    'target',
                 ],
             },
         ],

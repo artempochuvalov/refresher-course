@@ -1,0 +1,11 @@
+.Tabs {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    cursor: pointer;
+}
+
+.Tab.Outlined {
+    background-color: var(--bg-color);
+    outline: 1px solid var(--primary-color);
+}

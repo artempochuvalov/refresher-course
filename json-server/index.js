@@ -51,7 +51,14 @@ server.use((req, res, next) => {
 
 server.use(router);
 
-// запуск сервера
-server.listen(8000, () => {
-    console.info('server is running on 8000 port');
-});
+const PORT = process.env.PORT || 3000;
+
+if (require.main === module) {
+    server.listen(PORT, () => {
+        console.info(`server is running on ${PORT} port`);
+    });
+} else {
+    module.exports = (req, res) => {
+        server(req, res);
+    };
+}

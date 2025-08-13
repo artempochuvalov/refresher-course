@@ -1,4 +1,5 @@
 import { StateSchema } from 'app/providers/StoreProvider';
+import { ArticleType } from 'entities/Article';
 
 import { articlesAdapter } from '../slices/articlePageSlice';
 
@@ -18,8 +19,23 @@ export const getArticlesListPageNum = (state: StateSchema) => (
     state.articlesList?.page ?? 1
 );
 export const getArticlesListLimit = (state: StateSchema) => (
-    getArticlesListView(state) === 'grid' ? 9 : 3
+    state.articlesList?.limit
 );
 export const getArticlesListHasMore = (state: StateSchema) => (
     state.articlesList?.hasMore ?? true
+);
+export const getArticlesListIsMounted = (state: StateSchema) => (
+    state.articlesList?._mounted ?? false
+);
+export const getArticlesListSortField = (state: StateSchema) => (
+    state.articlesList?.sortField ?? 'createdAt'
+);
+export const getArticlesListSortOrder = (state: StateSchema) => (
+    state.articlesList?.sortOrder ?? 'asc'
+);
+export const getArticlesListSearch = (state: StateSchema) => (
+    state.articlesList?.search ?? ''
+);
+export const getArticlesListSortType = (state: StateSchema) => (
+    state.articlesList?.sortType ?? ArticleType.ALL
 );

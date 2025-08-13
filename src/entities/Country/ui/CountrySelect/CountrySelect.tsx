@@ -31,7 +31,7 @@ export const CountrySelect = memo((props: CountrySelectProps) => {
 
     const { t } = useTranslation();
 
-    const options: SelectOption[] = useMemo(() => (
+    const options: SelectOption<Country>[] = useMemo(() => (
         Object.values(Country).map((country: Country) => ({
             text: t(countryNames[country]),
             value: country,

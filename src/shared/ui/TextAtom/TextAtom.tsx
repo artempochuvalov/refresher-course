@@ -6,6 +6,7 @@ import cls from './TextAtom.module.scss';
 export enum TextAtomTheme {
     Default = 'Default',
     Error = 'Error',
+    Inverted = 'Inverted',
 }
 
 export enum TextAtomSize {

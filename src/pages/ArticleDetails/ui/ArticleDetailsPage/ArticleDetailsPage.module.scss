@@ -13,3 +13,14 @@
 .comments {
     margin-top: 1.5rem;
 }
+
+.recomendationsContainer {
+    margin: 1.5rem 0;
+}
+
+.recomendationsContainer .recommendations {
+    margin-top: 1rem;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-x: visible;
+}

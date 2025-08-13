@@ -1,10 +1,10 @@
-import { memo, useCallback, useMemo } from 'react';
+import { HTMLAttributeAnchorTarget, memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 import { ViewEye } from 'shared/assets/icons';
 import { RoutePaths } from 'shared/constants/routes';
 import { classNames } from 'shared/lib/classNames';
 import { useHover } from 'shared/lib/hooks/useHover';
+import { AppLink } from 'shared/ui/AppLink';
 import { Avatar } from 'shared/ui/Avatar';
 import { Button, ButtonTheme } from 'shared/ui/Button';
 import { Card } from 'shared/ui/Card/Card';
@@ -22,46 +22,51 @@ type ArticleCardProps = {
     article: Article;
     view: ArticleListView;
     className?: string;
+    target?: HTMLAttributeAnchorTarget;
 };
 
 export const ArticleCard = memo((props: ArticleCardProps) => {
-    const { article, view, className } = props;
+    const {
+        article,
+        view,
+        className,
+        target,
+    } = props;
 
     const { t } = useTranslation();
-    const navigate = useNavigate();
     const [isHovered, bindHover] = useHover();
 
     const categories = useMemo(() => (
         <TextAtom className={cls.categories} text={article.type.join(', ')} />
     ), [article]);
 
-    const gotoArticle = useCallback(() => {
-        navigate(`${RoutePaths.ArticleDetails}${article.id}`);
-    }, [article, navigate]);
-
     if (view === 'grid') {
         return (
-            <Card
-                {...bindHover}
-                onClick={gotoArticle}
+            <AppLink
+                to={`${RoutePaths.ArticleDetails}${article.id}`}
                 className={classNames(cls.ArticleCard, {}, [className, cls[view]])}
+                target={target}
             >
-                <div className={cls.preview}>
-                    <img className={cls.image} src={article.img} alt={article.title} />
-                    {isHovered && <TextAtom className={cls.createdAt} text={article.createdAt} />}
-                </div>
-
-                <div className={cls.meta}>
-                    {categories}
-
-                    <div className={cls.views}>
-                        <TextAtom text={String(article.views)} />
-                        <ViewEye className={cls.icon} />
+                <Card {...bindHover}>
+                    <div className={cls.preview}>
+                        <img className={cls.image} src={article.img} alt={article.title} />
+                        {isHovered && (
+                            <TextAtom className={cls.createdAt} text={article.createdAt} />
+                        )}
                     </div>
-                </div>
 
-                <TextAtom className={cls.title} text={article.title} />
-            </Card>
+                    <div className={cls.meta}>
+                        {categories}
+
+                        <div className={cls.views}>
+                            <TextAtom text={String(article.views)} />
+                            <ViewEye className={cls.icon} />
+                        </div>
+                    </div>
+
+                    <TextAtom className={cls.title} text={article.title} />
+                </Card>
+            </AppLink>
         );
     }
 
@@ -91,9 +96,14 @@ export const ArticleCard = memo((props: ArticleCardProps) => {
             )}
 
             <div className={cls.footer}>
-                <Button theme={ButtonTheme.Outline} onClick={gotoArticle}>
-                    {`${t('Читать далее')}...`}
-                </Button>
+                <AppLink
+                    to={`${RoutePaths.ArticleDetails}${article.id}`}
+                    target={target}
+                >
+                    <Button theme={ButtonTheme.Outline}>
+                        {`${t('Читать далее')}...`}
+                    </Button>
+                </AppLink>
 
                 <div className={cls.views}>
                     <TextAtom text={String(article.views)} />

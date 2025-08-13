@@ -20,7 +20,7 @@ export const commentsAdapter = createEntityAdapter({
 });
 
 const articleCommentsSlice = createSlice({
-    name: 'articleComments',
+    name: 'articleDetails/comments',
     initialState,
     reducers: {},
     extraReducers: (builder) => {
