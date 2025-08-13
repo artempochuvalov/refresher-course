@@ -67,5 +67,6 @@
             "};\n"
         ],
     },
-    "i18n-ally.keystyle": "flat"
+    "i18n-ally.keystyle": "flat",
+    "nuxt.isNuxtApp": false
 }

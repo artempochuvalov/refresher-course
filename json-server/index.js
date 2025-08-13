@@ -53,7 +53,12 @@ server.use(router);
 
 const PORT = process.env.PORT || 3000;
 
-// запуск сервера
-server.listen(PORT, () => {
-    console.info(`server is running on ${PORT} port`);
-});
+if (require.main === module) {
+    server.listen(PORT, () => {
+        console.info(`server is running on ${PORT} port`);
+    });
+} else {
+    module.exports = (req, res) => {
+        server(req, res);
+    };
+}
