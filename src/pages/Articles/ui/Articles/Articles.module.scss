@@ -1,9 +1,11 @@
 .Articles {
-    display: block;
+    display: flex;
+    flex-direction: column;
 }
 
 .list {
     margin-top: 1.5rem;
+    flex: 1 1 auto;
 }
 
 .header {

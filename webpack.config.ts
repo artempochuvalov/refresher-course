@@ -26,7 +26,7 @@ export default (env: BuildEnv) => {
         isDev,
         paths,
         port: PORT,
-        apiUrl: JSON.stringify(apiUrl),
+        apiUrl,
         project: JSON.stringify('frontend') as 'frontend',
     });
 
