@@ -76,7 +76,9 @@ module.exports = {
         'no-param-reassign': 'off',
         'no-undef': 'off',
         'radix': 'off',
-        'fsd/import-checker': 'warn',
+        'fsd/import-checker': 'error',
+        'no-use-before-define': 'off',
+        'quote-props': 'off',
     },
     overrides: [
         {

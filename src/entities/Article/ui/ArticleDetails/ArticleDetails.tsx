@@ -1,11 +1,3 @@
-import {
-    getArticleDetailsData,
-    getArticleDetailsError,
-    getArticleDetailsIsLoading,
-    getIfCanEditArticle
-} from 'entities/Article';
-import { articleDetailsReducer } from 'entities/Article/model/slice/articleDetailsSlice';
-import { ArticleBlock, ArticleBlockType } from 'entities/Article/model/types/article';
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -23,7 +15,15 @@ import {
     TextAtomTheme
 } from 'shared/ui/TextAtom/TextAtom';
 
+import {
+    getArticleDetailsData,
+    getArticleDetailsError,
+    getArticleDetailsIsLoading,
+    getIfCanEditArticle
+} from '../../model/selectors/articleDetailsSelectors';
 import { fetchArticleById } from '../../model/services/fetchArticleById/fetchArticleById';
+import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
+import { ArticleBlock, ArticleBlockType } from '../../model/types/article';
 import { ArticleCodeBlockComponent } from '../ArticleCodeBlockComponent/ArticleCodeBlockComponent';
 import { ArticleDetailsHeader } from '../ArticleDetailsHeader/ArticleDetailsHeader';
 import {
