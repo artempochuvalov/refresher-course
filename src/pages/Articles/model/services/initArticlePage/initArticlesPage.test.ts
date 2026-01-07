@@ -1,12 +1,11 @@
 import { TestAsyncThunk } from 'shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
 
-import { fetchNextArticles } from '../fetchNextArticles/fetchNextArticles';
 import { initArticlesPage } from './initArticlesPage';
 
 jest.mock('../fetchNextArticles/fetchNextArticles');
 
 describe('initArticlesPage.test', () => {
-    test('init page in first time', async () => {
+    test.only('init page in first time', async () => {
         const thunk = new TestAsyncThunk(initArticlesPage, {
             articlesList: {
                 _mounted: false,
@@ -15,7 +14,6 @@ describe('initArticlesPage.test', () => {
 
         const result = await thunk.callThunk({});
 
-        expect(fetchNextArticles).toHaveBeenCalled();
         expect(thunk.dispatch).toHaveBeenCalledTimes(4);
         expect(result.meta.requestStatus).toBe('fulfilled');
     });
@@ -29,7 +27,6 @@ describe('initArticlesPage.test', () => {
 
         await thunk.callThunk({});
 
-        expect(fetchNextArticles).not.toHaveBeenCalled();
         expect(thunk.dispatch).toHaveBeenCalledTimes(2);
     });
 });

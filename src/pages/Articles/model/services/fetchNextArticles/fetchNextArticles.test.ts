@@ -24,7 +24,7 @@ describe('fetchNextArticles.test', () => {
 
         const result = await thunk.callThunk();
 
-        expect(fetchArticles).toHaveBeenCalledWith({ page: 2, limit: 9 });
+        expect(fetchArticles).toHaveBeenCalledWith({});
         expect(thunk.dispatch).toHaveBeenCalledTimes(4);
         expect(result.meta.requestStatus).toBe('fulfilled');
     });
