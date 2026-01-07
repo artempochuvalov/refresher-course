@@ -7,7 +7,7 @@ export default (env: BuildEnv) => {
     const {
         port: PORT = 3000,
         mode = 'development',
-        apiUrl = JSON.stringify('http://localhost:8000'),
+        apiUrl = 'http://localhost:8000',
     } = env;
     const isDev = mode === 'development';
 
@@ -26,7 +26,7 @@ export default (env: BuildEnv) => {
         isDev,
         paths,
         port: PORT,
-        apiUrl,
+        apiUrl: JSON.stringify(apiUrl),
         project: JSON.stringify('frontend') as 'frontend',
     });
 
