@@ -6,6 +6,7 @@ import { classNames, type ClassNamesMods } from 'shared/lib/classNames';
 import { Avatar } from 'shared/ui/Avatar/';
 import { Input } from 'shared/ui/Input/Input';
 import { Loader } from 'shared/ui/Loader';
+import { HStack, VStack } from 'shared/ui/Stack';
 import { TextAtom, TextAtomAlign, TextAtomTheme } from 'shared/ui/TextAtom/TextAtom';
 
 import { Profile } from '../../model/types';
@@ -46,22 +47,22 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
 
     if (isLoading) {
         return (
-            <div className={classNames(cls.ProfileCard, {}, [className, cls.loading])}>
+            <HStack className={cls.ProfileCard} justify="center" align="center" fullWidth>
                 <Loader />
-            </div>
+            </HStack>
         );
     }
 
     if (error) {
         return (
-            <div className={classNames(cls.ProfileCard, {}, [className, cls.error])}>
+            <HStack className={cls.ProfileCard} justify="center" align="center" fullWidth>
                 <TextAtom
                     theme={TextAtomTheme.Error}
                     align={TextAtomAlign.Center}
                     title={t('Произозошла ошибка загрузки профиля')}
                     text={t('Попробуйте загрузить страницу ещё раз')}
                 />
-            </div>
+            </HStack>
         );
     }
 
@@ -74,33 +75,30 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
     };
 
     return (
-        <div className={classNames(cls.ProfileCard, mods, [className])}>
-            <div className={cls.data}>
-                {profileData?.avatar && (
-                    <div className={cls.avatarWrapper}>
-                        <Avatar
-                            src={profileData.avatar}
-                            alt={t('Изображение профиля')}
-                        />
-                    </div>
-                )}
+        <VStack className={classNames(cls.ProfileCard, mods, [className])} fullWidth>
+            {profileData?.avatar && (
+                <HStack justify="center" className={cls.avatarWrapper}>
+                    <Avatar
+                        src={profileData.avatar}
+                        alt={t('Изображение профиля')}
+                    />
+                </HStack>
+            )}
 
+            <VStack gap="8">
                 <Input
-                    className={cls.input}
                     value={profileData?.first}
                     placeholder={t('Ваше имя')}
                     readonly={readonly}
                     onChange={onFirstnameChange}
                 />
                 <Input
-                    className={cls.input}
                     value={profileData?.lastname}
                     placeholder={t('Ваша фамилия')}
                     readonly={readonly}
                     onChange={onLastnameChange}
                 />
                 <Input
-                    className={cls.input}
                     value={String(profileData?.age)}
                     numeric
                     placeholder={t('Возраст')}
@@ -108,32 +106,28 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
                     onChange={onAgeChange}
                 />
                 <Input
-                    className={cls.input}
                     value={profileData?.city}
                     placeholder={t('Город')}
                     readonly={readonly}
                     onChange={onCityChange}
                 />
                 <Input
-                    className={cls.input}
                     value={avatarSource}
                     placeholder={t('Ссылка на изображение профиля')}
                     readonly={readonly}
                     onChange={onAvatarChange}
                 />
                 <CurrencySelect
-                    className={cls.input}
                     value={profileData?.currency}
                     readonly={readonly}
                     onChange={onCurrencyChange}
                 />
                 <CountrySelect
-                    className={cls.input}
                     value={profileData?.country}
                     readonly={readonly}
                     onChange={onCountryChange}
                 />
-            </div>
-        </div>
+            </VStack>
+        </VStack>
     );
 });
