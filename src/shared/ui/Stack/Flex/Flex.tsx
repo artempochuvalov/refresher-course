@@ -30,9 +30,10 @@ const gapClasses: Record<FlexGap, string> = {
     32: cls.gap32,
 };
 
-type FlexProps = {
+export type FlexProps = {
     children: ReactNode;
     className?: string;
+    fullWidth?: boolean;
     justify?: FlexJustify,
     align?: FlexAlign,
     direction?: FlexDirection,
@@ -43,12 +44,16 @@ export const Flex = (props: FlexProps) => {
     const {
         children,
         className,
+        fullWidth,
         justify = 'start',
         align = 'start',
         direction = 'row',
         gap,
     } = props;
 
+    const mods = {
+        [cls.fullWidth]: fullWidth,
+    };
     const classes = [
         className,
         justifyClasses[justify],
@@ -58,7 +63,7 @@ export const Flex = (props: FlexProps) => {
     ];
 
     return (
-        <div className={classNames(cls.Flex, {}, classes)}>
+        <div className={classNames(cls.Flex, mods, classes)}>
             {children}
         </div>
     );

@@ -6,13 +6,14 @@
     transition: width 0.3s;
 }
 
+.items {
+    margin-top: 32px;
+    margin-left: 24px;
+}
+
 .switchers {
     position: absolute;
     bottom: 2.25rem;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
 }
 
 .collapsedBtn {
@@ -23,18 +24,6 @@
     transform: translateX(calc(100% + 0.5rem));
 }
 
-.items {
-    margin-top: 2.5rem;
-    margin-left: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-}
-
 .collapsed {
     width: var(--sidebar-width-collapsed);
-
-    .switchers {
-        flex-direction: column;
-    }
 }
