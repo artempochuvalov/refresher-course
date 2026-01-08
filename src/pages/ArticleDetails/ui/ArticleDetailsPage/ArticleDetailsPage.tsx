@@ -4,10 +4,10 @@ import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { classNames } from 'shared/lib/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { useDynamicModuleLoader } from 'shared/lib/hooks/useDynamicModuleLoader';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect';
+import { VStack } from 'shared/ui/Stack';
 import {
     TextAtom,
     TextAtomAlign,
@@ -35,13 +35,7 @@ import {
 import { articleDetailsPageReducer } from '../../model/slices';
 import cls from './ArticleDetailsPage.module.scss';
 
-type ArticleDetailsPageProps = {
-    className?: string;
-};
-
-const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
-    const { className } = props;
-
+const ArticleDetailsPage = () => {
     const { t } = useTranslation('article');
     const { id } = useParams<{ id: string; }>();
     const dispatch = useAppDispatch();
@@ -73,7 +67,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
 
     if (!id) {
         return (
-            <Page className={cls.noData}>
+            <Page>
                 <TextAtom
                     align={TextAtomAlign.Center}
                     theme={TextAtomTheme.Error}
@@ -84,38 +78,40 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
     }
 
     return (
-        <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>
-            <ArticleDetails articleId={id} />
+        <Page>
+            <VStack fullWidth gap="32">
+                <VStack fullWidth gap="32">
+                    <ArticleDetails articleId={id} />
 
-            <div className={cls.recomendationsContainer}>
-                <TextAtom
-                    size={TextAtomSize.L}
-                    text={t('Мы рекоммендуем')}
-                />
+                    <VStack fullWidth gap="16">
+                        <TextAtom
+                            size={TextAtomSize.L}
+                            text={t('Мы рекоммендуем')}
+                        />
 
-                <ArticlesList
-                    articles={recommendations}
-                    isLoading={recommendationsIsLoading}
-                    target="_blank"
-                    className={cls.recommendations}
-                />
-            </div>
+                        <ArticlesList
+                            articles={recommendations}
+                            isLoading={recommendationsIsLoading}
+                            target="_blank"
+                            className={cls.recommendations}
+                        />
+                    </VStack>
+                </VStack>
 
-            <div className={cls.commentsBlock}>
-                <TextAtom size={TextAtomSize.L} title={t('Комментарии')} />
+                <VStack fullWidth gap="16">
+                    <TextAtom size={TextAtomSize.L} title={t('Комментарии')} />
 
-                <AddCommentForm
-                    className={cls.addCommentForm}
-                    onSendComment={onSendComment}
-                    error={addCommentError}
-                />
+                    <AddCommentForm
+                        onSendComment={onSendComment}
+                        error={addCommentError}
+                    />
 
-                <CommentList
-                    className={cls.comments}
-                    comments={comments}
-                    isLoading={areCommentsLoading}
-                />
-            </div>
+                    <CommentList
+                        comments={comments}
+                        isLoading={areCommentsLoading}
+                    />
+                </VStack>
+            </VStack>
         </Page>
     );
 };
