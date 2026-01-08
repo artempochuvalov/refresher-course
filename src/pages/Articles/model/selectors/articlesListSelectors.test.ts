@@ -171,7 +171,7 @@ describe('getArticlesListSearch.test', () => {
 
     test('should work with empty state', () => {
         const state: DeepPartial<StateSchema> = {};
-        expect(getArticlesListSearch(state as StateSchema)).toBe(undefined);
+        expect(getArticlesListSearch(state as StateSchema)).toBe('');
     });
 });
 

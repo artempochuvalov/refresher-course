@@ -9,8 +9,8 @@ import {
 } from 'react';
 import { classNames, ClassNamesMods } from 'shared/lib/classNames';
 import { useTheme } from 'shared/providers/theme';
-import { Portal } from 'shared/ui/Portal';
 
+import { Portal } from '../../ui/Portal';
 import cls from './Modal.module.scss';
 
 type ModalProps = {

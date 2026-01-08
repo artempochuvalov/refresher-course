@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 module.exports = {
     env: {
         browser: true,
@@ -23,6 +24,7 @@ module.exports = {
         'simple-import-sort',
         'i18next',
         'react-hooks',
+        'fsd',
     ],
     rules: {
         'react/jsx-indent': [2, 4],
@@ -73,7 +75,10 @@ module.exports = {
         'react-hooks/exhaustive-deps': 'error',
         'no-param-reassign': 'off',
         'no-undef': 'off',
-        radix: 'off',
+        'radix': 'off',
+        'fsd/import-checker': 'error',
+        'no-use-before-define': 'off',
+        'quote-props': 'off',
     },
     overrides: [
         {

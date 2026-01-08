@@ -28,12 +28,27 @@ describe('articlePageSlice.test', () => {
             isLoading: true,
             hasMore: true,
             entities: {},
+            limit: 1,
             ids: [],
         };
 
         const articles: Article[] = [
             {
                 id: '1',
+                title: 'Random article',
+                subtitle: 'Subtitle',
+                user: {
+                    id: '1',
+                    username: 'random',
+                },
+                img: '',
+                views: 1001,
+                createdAt: '2002.02.02',
+                type: [ArticleType.IT],
+                blocks: [],
+            },
+            {
+                id: '2',
                 title: 'Random article',
                 subtitle: 'Subtitle',
                 user: {
@@ -57,8 +72,10 @@ describe('articlePageSlice.test', () => {
             isLoading: false,
             entities: {
                 1: articles[0],
+                2: articles[1],
             },
-            ids: ['1'],
+            limit: 1,
+            ids: ['1', '2'],
             hasMore: true,
         });
     });
