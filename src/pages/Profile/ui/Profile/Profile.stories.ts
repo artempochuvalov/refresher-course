@@ -12,6 +12,11 @@ const meta = {
     component: Profile,
     argTypes: {},
     args: {},
+    parameters: {
+        loki: {
+            skip: true,
+        },
+    },
 } satisfies Meta<typeof Profile>;
 
 export default meta;
