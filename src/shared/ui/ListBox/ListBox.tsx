@@ -18,14 +18,22 @@ export type ListBoxOption<T extends string> = {
     disabled?: boolean;
 };
 
+export type ListBoxAnchorPosition = 'top' | 'bottom';
+
 type ListBoxProps<T extends string> = {
     value?: string;
     defaultValue?: string;
     label?: string;
     options?: ListBoxOption<T>[];
+    anchorPosition?: ListBoxAnchorPosition;
     disabled?: boolean;
     className?: string;
-    onChange: (value: string) => void;
+    onChange: (value: T) => void;
+};
+
+const ListBoxAnchorPositionClasses: Record<ListBoxAnchorPosition, string> = {
+    top: cls.top,
+    bottom: cls.bottom,
 };
 
 export const ListBox = <T extends string>(props: ListBoxProps<T>) => {
@@ -35,13 +43,16 @@ export const ListBox = <T extends string>(props: ListBoxProps<T>) => {
         disabled,
         options,
         label,
+        anchorPosition = 'bottom',
         className,
         onChange,
     } = props;
 
     const handleOnChange = useCallback((value: string) => {
-        onChange?.(value);
+        onChange?.(value as T);
     }, [onChange]);
+
+    const optionsClasses = [ListBoxAnchorPositionClasses[anchorPosition]];
 
     return (
         <HStack
@@ -71,7 +82,10 @@ export const ListBox = <T extends string>(props: ListBoxProps<T>) => {
                 </HListBoxButton>
 
                 {options?.length && (
-                    <HListBoxOptions as="ul" className={cls.options}>
+                    <HListBoxOptions
+                        as="ul"
+                        className={classNames(cls.options, {}, optionsClasses)}
+                    >
                         {options.map((option) => (
                             <HListBoxOption
                                 as="li"

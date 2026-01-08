@@ -88,3 +88,18 @@ export const Disabled: Story = {
         },
     },
 };
+
+export const TopAnchor: Story = {
+    args: {
+        value: 'second',
+        anchorPosition: 'top',
+        options: [
+            { value: 'first', content: 'First' },
+            { value: 'second', content: 'Second' },
+            { value: 'third', content: 'Third' },
+        ],
+        onChange: (value: string) => {
+            console.info(value);
+        },
+    },
+};

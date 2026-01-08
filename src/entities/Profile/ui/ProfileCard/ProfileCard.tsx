@@ -120,11 +120,13 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
                 <CurrencySelect
                     value={profileData?.currency}
                     readonly={readonly}
+                    anchorPosition="top"
                     onChange={onCurrencyChange}
                 />
                 <CountrySelect
                     value={profileData?.country}
                     readonly={readonly}
+                    anchorPosition="top"
                     onChange={onCountryChange}
                 />
             </VStack>

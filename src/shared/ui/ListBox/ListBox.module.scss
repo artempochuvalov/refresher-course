@@ -4,8 +4,6 @@
 }
 
 .options {
-    --anchor-gap: 8px;
-
     position: absolute;
     min-width: 100%;
     overflow: hidden;
@@ -13,6 +11,14 @@
     background-color: var(--list-box-bg);
     border-radius: 12px;
     box-shadow: 4px 4px 8px var(--bg-overlay);
+}
+
+.options.top {
+    bottom: 100%;
+}
+
+.options.bottom {
+    bottom: 0;
 }
 
 .option {
@@ -34,4 +40,8 @@
 .disabled {
     cursor: not-allowed;
     opacity: 0.7;
+}
+
+.icon {
+    flex-shrink: 0;
 }
