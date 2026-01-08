@@ -30,7 +30,7 @@ const gapClasses: Record<FlexGap, string> = {
     32: cls.gap32,
 };
 
-export type FlexProps = {
+export interface FlexProps extends React.HTMLAttributes<HTMLDivElement> {
     children: ReactNode;
     className?: string;
     fullWidth?: boolean;
@@ -38,7 +38,7 @@ export type FlexProps = {
     align?: FlexAlign,
     direction?: FlexDirection,
     gap?: FlexGap,
-};
+}
 
 export const Flex = (props: FlexProps) => {
     const {

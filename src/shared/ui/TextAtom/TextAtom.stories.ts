@@ -76,6 +76,14 @@ export const Inverted: Story = {
     },
 };
 
+export const SizeS: Story = {
+    args: {
+        title: 'Это крутой текст с крутым текстом',
+        text: 'А это крутой текст с крутым заголовком',
+        size: TextAtomSize.S,
+    },
+};
+
 export const SizeL: Story = {
     args: {
         title: 'Это крутой текст с крутым текстом',
