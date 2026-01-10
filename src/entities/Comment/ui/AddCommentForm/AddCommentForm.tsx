@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames';
 import { Button, ButtonTheme } from 'shared/ui/Button';
 import { Input } from 'shared/ui/Input/Input';
+import { HStack, VStack } from 'shared/ui/Stack';
 import { TextAtom, TextAtomTheme } from 'shared/ui/TextAtom/TextAtom';
 
 import cls from './AddCommentForm.module.scss';
@@ -36,8 +37,8 @@ const AddCommentForm = memo((props: AddCommentFormProps) => {
     }, [onSendComment, value, error]);
 
     return (
-        <div className={classNames(cls.AddCommentForm, {}, [className])}>
-            <div className={cls.contentWrapper}>
+        <VStack className={classNames(cls.AddCommentForm, {}, [className])} fullWidth gap="8">
+            <HStack fullWidth justify="between" align="center">
                 <Input
                     value={value}
                     onChange={onChange}
@@ -46,15 +47,14 @@ const AddCommentForm = memo((props: AddCommentFormProps) => {
                 <Button theme={ButtonTheme.Outline} onClick={onClickSend}>
                     {t('Отправить')}
                 </Button>
-            </div>
+            </HStack>
             {error && (
                 <TextAtom
-                    className={cls.error}
                     text={t('Ошибка отправки комментария')}
                     theme={TextAtomTheme.Error}
                 />
             )}
-        </div>
+        </VStack>
     );
 });
 

@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames';
 import { Card } from 'shared/ui/Card/Card';
 import { Input } from 'shared/ui/Input/Input';
-import { Select, SelectOption } from 'shared/ui/Select/Select';
-import { TabItem, Tabs } from 'shared/ui/Tabs/Tabs';
+import { ListBox, ListBoxOption } from 'shared/ui/ListBox/ListBox';
+import { Tabs } from 'shared/ui/Tabs/Tabs';
 
 import { ArticleFilterField, ArticleFilterOrder } from '../model/types';
 import cls from './ArticleFilters.module.scss';
@@ -37,33 +37,33 @@ export const ArticleFilters = memo((props: ArticleFiltersProps) => {
 
     const { t } = useTranslation();
 
-    const sortFieldOptions = useMemo<SelectOption<ArticleFilterField>[]>(() => [
+    const sortFieldOptions = useMemo<ListBoxOption<ArticleFilterField>[]>(() => [
         {
-            text: t('Время создания'),
+            content: t('Время создания'),
             value: 'createdAt',
         },
         {
-            text: t('Количество просмотров'),
+            content: t('Количество просмотров'),
             value: 'views',
         },
         {
-            text: t('Название'),
+            content: t('Название'),
             value: 'title',
         },
     ], [t]);
 
-    const sortOrderOptions = useMemo<SelectOption<ArticleFilterOrder>[]>(() => [
+    const sortOrderOptions = useMemo<ListBoxOption<ArticleFilterOrder>[]>(() => [
         {
-            text: t('По возрастанию'),
+            content: t('По возрастанию'),
             value: 'asc',
         },
         {
-            text: t('По убыванию'),
+            content: t('По убыванию'),
             value: 'desc',
         },
     ], [t]);
 
-    const sortTypeTabs = useMemo<TabItem<ArticleType>[]>(() => [
+    const sortTypeTabs = useMemo<ListBoxOption<ArticleType>[]>(() => [
         {
             value: ArticleType.ECONOMICS,
             content: t('Экономика'),
@@ -85,14 +85,14 @@ export const ArticleFilters = memo((props: ArticleFiltersProps) => {
     return (
         <div className={classNames(cls.ArticleFilters, {}, [className])}>
             <Card className={cls.sortFilters}>
-                <Select
+                <ListBox
                     options={sortFieldOptions}
                     value={field}
                     onChange={onFieldChange}
                     label={t('Сортировать по ')}
                 />
 
-                <Select
+                <ListBox
                     options={sortOrderOptions}
                     value={order}
                     onChange={onOrderChange}

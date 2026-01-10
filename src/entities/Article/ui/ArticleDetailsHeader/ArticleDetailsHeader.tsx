@@ -2,19 +2,16 @@ import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { RoutePaths } from 'shared/constants/routes';
-import { classNames } from 'shared/lib/classNames';
 import { Button, ButtonTheme } from 'shared/ui/Button';
-
-import cls from './ArticleDetailsHeader.module.scss';
+import { HStack } from 'shared/ui/Stack';
 
 type ArticleDetailsHeaderProps = {
     showEditButton: boolean;
     articleId?: string;
-    className?: string;
 };
 
 export const ArticleDetailsHeader = memo((props: ArticleDetailsHeaderProps) => {
-    const { showEditButton, articleId, className } = props;
+    const { showEditButton, articleId } = props;
 
     const { t } = useTranslation('article');
     const navigate = useNavigate();
@@ -28,9 +25,8 @@ export const ArticleDetailsHeader = memo((props: ArticleDetailsHeaderProps) => {
     }, [navigate, articleId]);
 
     return (
-        <div className={classNames(cls.ArticleDetailsHeader, {}, [className])}>
+        <HStack justify="between" fullWidth>
             <Button
-                className={cls.backButton}
                 theme={ButtonTheme.Outline}
                 onClick={gotoArticles}
             >
@@ -39,13 +35,12 @@ export const ArticleDetailsHeader = memo((props: ArticleDetailsHeaderProps) => {
 
             {showEditButton && articleId && (
                 <Button
-                    className={cls.editButton}
                     theme={ButtonTheme.Outline}
                     onClick={gotoEditArticle}
                 >
                     {t('Редактировать')}
                 </Button>
             )}
-        </div>
+        </HStack>
     );
 });

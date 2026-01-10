@@ -10,6 +10,7 @@ export enum TextAtomTheme {
 }
 
 export enum TextAtomSize {
+    S = 's',
     M = 'm',
     L = 'l',
 }
@@ -29,6 +30,13 @@ type TextAtomProps = {
     align?: TextAtomAlign;
 };
 
+type TitleTag = 'h1' | 'h2' | 'h3';
+const SizeToTitleTag: Record<TextAtomSize, TitleTag> = {
+    s: 'h1',
+    m: 'h2',
+    l: 'h3',
+};
+
 export const TextAtom = memo((props: TextAtomProps) => {
     const {
         className,
@@ -39,6 +47,8 @@ export const TextAtom = memo((props: TextAtomProps) => {
         align = TextAtomAlign.Left,
     } = props;
 
+    const TitleTag = SizeToTitleTag[size];
+
     const additionalClasses = [
         className,
         cls[theme],
@@ -48,7 +58,7 @@ export const TextAtom = memo((props: TextAtomProps) => {
 
     return (
         <div className={classNames(cls.TextAtom, {}, additionalClasses)}>
-            {title && <p className={cls.title}>{title}</p>}
+            {title && <TitleTag className={cls.title}>{title}</TitleTag>}
             {text && <p className={cls.text}>{text}</p>}
         </div>
     );

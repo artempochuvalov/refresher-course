@@ -68,13 +68,13 @@
     "css-loader": "^6.6.0",
     "eslint": "^8.10.0",
     "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-fsd": "file:./plugins/fsd/index.js",
     "eslint-plugin-i18next": "^5.1.2",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.29.2",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-simple-import-sort": "^12.1.0",
-    "eslint-plugin-fsd": "file:./plugins/fsd/index.js",
     "html-webpack-plugin": "^5.6.0",
     "husky": "^9.1.7",
     "identity-obj-proxy": "^3.0.0",
@@ -103,6 +103,7 @@
     "webpack-dev-server": "^5.0.4"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.9",
     "@reduxjs/toolkit": "^1.8.0",
     "axios": "^1.7.9",
     "i18next": "^23.11.2",

@@ -2,20 +2,17 @@ import { getProfileReadonly, profileActions, updateProfile } from 'entities/Prof
 import { memo, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { classNames } from 'shared/lib/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { Button, ButtonTheme } from 'shared/ui/Button';
+import { HStack } from 'shared/ui/Stack';
 import { TextAtom } from 'shared/ui/TextAtom/TextAtom';
 
-import cls from './ProfileHeader.module.scss';
-
 type ProfileHeaderProps = {
-    className?: string;
     isEditable?: boolean;
 };
 
 export const ProfileHeader = memo((props: ProfileHeaderProps) => {
-    const { className, isEditable } = props;
+    const { isEditable } = props;
 
     const { t } = useTranslation('profile');
 
@@ -37,16 +34,16 @@ export const ProfileHeader = memo((props: ProfileHeaderProps) => {
 
     const actionButtons = useMemo(() => (
         readonly ? (
-            <div className={cls.ProfileHeaderControls}>
+            <HStack>
                 <Button
                     theme={ButtonTheme.Outline}
                     onClick={onEditClick}
                 >
                     {t('Редактировать')}
                 </Button>
-            </div>
+            </HStack>
         ) : (
-            <div className={cls.ProfileHeaderControls}>
+            <HStack gap="8">
                 <Button
                     theme={ButtonTheme.OutlineRed}
                     onClick={onCancelClick}
@@ -59,14 +56,14 @@ export const ProfileHeader = memo((props: ProfileHeaderProps) => {
                 >
                     {t('Сохранить')}
                 </Button>
-            </div>
+            </HStack>
         )
     ), [onCancelClick, onEditClick, onSave, readonly, t]);
 
     return (
-        <div className={classNames(cls.ProfileHeader, {}, [className])}>
+        <HStack align="center" justify="between" fullWidth>
             <TextAtom title={t('Профиль пользователя')} />
             {isEditable && actionButtons}
-        </div>
+        </HStack>
     );
 });

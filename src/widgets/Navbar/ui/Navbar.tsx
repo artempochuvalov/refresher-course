@@ -10,7 +10,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RoutePaths } from 'shared/constants/routes';
 import { classNames } from 'shared/lib/classNames';
 import { AppLink } from 'shared/ui/AppLink';
+import { Avatar } from 'shared/ui/Avatar';
 import { Button, ButtonTheme } from 'shared/ui/Button';
+import { Dropdown } from 'shared/ui/Dropdown/Dropdown';
+import { HStack } from 'shared/ui/Stack';
 import { TextAtom, TextAtomTheme } from 'shared/ui/TextAtom/TextAtom';
 
 import cls from './Navbar.module.scss';
@@ -42,28 +45,49 @@ export const Navbar = memo((props: NavbarProps) => {
 
     if (authData) {
         return (
-            <div className={classNames(cls.navbar, {}, [className])}>
+            <HStack
+                justify="between"
+                align="center"
+                fullWidth
+                className={classNames(cls.navbar, {}, [className])}
+            >
                 <TextAtom theme={TextAtomTheme.Inverted} title={t('Article App')} />
 
-                <AppLink to={RoutePaths.ArticleNew} className={cls.createNewArticleLink}>
-                    <Button theme={ButtonTheme.Blank}>
-                        {t('Создать новую статью', { ns: 'artilce' })}
-                    </Button>
-                </AppLink>
+                <HStack gap="16">
+                    <AppLink to={RoutePaths.ArticleNew} className={cls.createNewArticleLink}>
+                        <Button theme={ButtonTheme.Blank}>
+                            {t('Создать новую статью', { ns: 'artilce' })}
+                        </Button>
+                    </AppLink>
 
-                <Button
-                    className={cls.logoutButton}
-                    theme={ButtonTheme.Blank}
-                    onClick={onLogout}
-                >
-                    {t('Выйти')}
-                </Button>
-            </div>
+                    <Dropdown
+                        trigger={(
+                            <Avatar src={authData.avatar!} size={32} />
+                        )}
+                        items={[
+                            {
+                                content: t('Профиль'),
+                                href: RoutePaths.Profile + authData.id,
+                            },
+                            {
+                                content: t('Выйти'),
+                                onClick: onLogout,
+                            },
+                        ]}
+                        anchorPosition="bottom right"
+                    />
+                </HStack>
+            </HStack>
         );
     }
 
     return (
-        <div className={classNames(cls.navbar, {}, [className])}>
+        <HStack
+            className={classNames(cls.navbar, {}, [className])}
+            justify="between"
+            align="center"
+            fullWidth
+        >
             <TextAtom theme={TextAtomTheme.Inverted} title={t('Article App')} />
 
             <Button
@@ -78,6 +102,6 @@ export const Navbar = memo((props: NavbarProps) => {
                 isOpen={showAuthModal}
                 onClose={onCloseModal}
             />
-        </div>
+        </HStack>
     );
 });

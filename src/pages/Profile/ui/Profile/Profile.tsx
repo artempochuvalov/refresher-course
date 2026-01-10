@@ -21,11 +21,11 @@ import { classNames } from 'shared/lib/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { useDynamicModuleLoader } from 'shared/lib/hooks/useDynamicModuleLoader';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect';
+import { VStack } from 'shared/ui/Stack';
 import { TextAtom, TextAtomTheme } from 'shared/ui/TextAtom/TextAtom';
 import { Page } from 'widgets/Page';
 
 import { ProfileHeader } from '../ProfileHeader/ProfileHeader';
-import cls from './Profile.module.scss';
 
 type ProfileProps = {
     className?: string;
@@ -103,21 +103,21 @@ const Profile = memo((props: ProfileProps) => {
 
     return (
         <Page className={classNames('', {}, [className])}>
-            <ProfileHeader isEditable={isCurrentUserProfile} />
+            <VStack fullWidth gap="32">
+                <ProfileHeader isEditable={isCurrentUserProfile} />
 
-            {validationProfileErrors?.length && (
-                <div className={cls.validationErrors}>
-                    {validationProfileErrors.map((error) => (
-                        <TextAtom
-                            key={error}
-                            theme={TextAtomTheme.Error}
-                            text={t(validationErrorsText[error])}
-                        />
-                    ))}
-                </div>
-            )}
+                {validationProfileErrors?.length && (
+                    <>
+                        {validationProfileErrors.map((error) => (
+                            <TextAtom
+                                key={error}
+                                theme={TextAtomTheme.Error}
+                                text={t(validationErrorsText[error])}
+                            />
+                        ))}
+                    </>
+                )}
 
-            <div className={cls.profileCardWrapper}>
                 <ProfileCard
                     profileData={editableProfileData}
                     readonly={readonly}
@@ -131,7 +131,7 @@ const Profile = memo((props: ProfileProps) => {
                     onCurrencyChange={onCurrencyChange}
                     onCountryChange={onCountryChange}
                 />
-            </div>
+            </VStack>
         </Page>
     );
 });
