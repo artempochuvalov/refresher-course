@@ -38,6 +38,7 @@ export const CurrencySelect = memo((props: CurrencySelectProps) => {
         <ListBox
             className={classNames('', {}, [className])}
             value={value}
+            defaultValue={String(options[0].content)}
             options={options}
             label={t('Выберите валюту')}
             disabled={readonly}
