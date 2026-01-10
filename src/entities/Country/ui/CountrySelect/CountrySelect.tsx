@@ -1,13 +1,14 @@
 import { memo, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames';
-import { ListBox, ListBoxAnchorPosition, ListBoxOption } from 'shared/ui/ListBox/ListBox';
+import { DropdownAnchorPosition } from 'shared/types/dropdown';
+import { ListBox, ListBoxOption } from 'shared/ui/ListBox/ListBox';
 
 import { Country } from '../../model/types';
 
 type CountrySelectProps = {
     className?: string;
-    anchorPosition?: ListBoxAnchorPosition;
+    anchorPosition?: DropdownAnchorPosition;
     value?: Country;
     readonly?: boolean;
     onChange?: (value: Country) => void;

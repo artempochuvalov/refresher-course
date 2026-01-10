@@ -58,6 +58,7 @@ export const Sidebar = memo((props: SidebarProps) => {
             <Flex
                 gap="8"
                 justify="center"
+                align="center"
                 fullWidth
                 direction={collapsed ? 'column' : 'row'}
                 className={cls.switchers}

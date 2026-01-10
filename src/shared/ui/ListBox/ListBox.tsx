@@ -7,6 +7,7 @@ import {
 import { ReactNode, useCallback } from 'react';
 import { Select } from 'shared/assets/icons';
 import { classNames } from 'shared/lib/classNames';
+import { DropdownAnchorPosition } from 'shared/types/dropdown';
 
 import { Button } from '../Button';
 import { HStack } from '../Stack';
@@ -18,22 +19,22 @@ export type ListBoxOption<T extends string> = {
     disabled?: boolean;
 };
 
-export type ListBoxAnchorPosition = 'top' | 'bottom';
-
 type ListBoxProps<T extends string> = {
     value?: string;
     defaultValue?: string;
     label?: string;
     options?: ListBoxOption<T>[];
-    anchorPosition?: ListBoxAnchorPosition;
+    anchorPosition?: DropdownAnchorPosition;
     disabled?: boolean;
     className?: string;
     onChange: (value: T) => void;
 };
 
-const ListBoxAnchorPositionClasses: Record<ListBoxAnchorPosition, string> = {
-    top: cls.top,
-    bottom: cls.bottom,
+const ListBoxAnchorPositionClasses: Record<DropdownAnchorPosition, string> = {
+    'top left': cls.topLeft,
+    'top right': cls.topRight,
+    'bottom left': cls.bottomLeft,
+    'bottom right': cls.bottomRight,
 };
 
 export const ListBox = <T extends string>(props: ListBoxProps<T>) => {
@@ -43,7 +44,7 @@ export const ListBox = <T extends string>(props: ListBoxProps<T>) => {
         disabled,
         options,
         label,
-        anchorPosition = 'bottom',
+        anchorPosition = 'bottom left',
         className,
         onChange,
     } = props;

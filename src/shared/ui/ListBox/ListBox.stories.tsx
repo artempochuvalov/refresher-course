@@ -9,6 +9,11 @@ const meta = {
     component: ListBox,
     argTypes: {},
     args: {},
+    decorators: [
+        (Story) => (
+            <div style={{ padding: '100px' }}><Story /></div>
+        ),
+    ],
 } satisfies Meta<typeof ListBox>;
 
 export default meta;
@@ -23,7 +28,7 @@ export const Default: Story = {
             { value: 'third', content: 'Third' },
         ],
         onChange: (value: string) => {
-            console.info(value);
+            alert(value);
         },
     },
 };
@@ -37,7 +42,7 @@ export const Dark: Story = {
             { value: 'third', content: 'Third' },
         ],
         onChange: (value: string) => {
-            console.info(value);
+            alert(value);
         },
     },
     decorators: [
@@ -55,7 +60,7 @@ export const WithLabel: Story = {
             { value: 'third', content: 'Third' },
         ],
         onChange: (value: string) => {
-            console.info(value);
+            alert(value);
         },
     },
 };
@@ -69,7 +74,7 @@ export const WithDisabledOption: Story = {
             { value: 'third', content: 'Third' },
         ],
         onChange: (value: string) => {
-            console.info(value);
+            alert(value);
         },
     },
 };
@@ -84,22 +89,67 @@ export const Disabled: Story = {
             { value: 'third', content: 'Third' },
         ],
         onChange: (value: string) => {
-            console.info(value);
+            alert(value);
         },
     },
 };
 
-export const TopAnchor: Story = {
+export const TopLeft: Story = {
     args: {
         value: 'second',
-        anchorPosition: 'top',
+        anchorPosition: 'top left',
         options: [
             { value: 'first', content: 'First' },
             { value: 'second', content: 'Second' },
             { value: 'third', content: 'Third' },
         ],
         onChange: (value: string) => {
-            console.info(value);
+            alert(value);
+        },
+    },
+};
+
+export const TopRight: Story = {
+    args: {
+        value: 'second',
+        anchorPosition: 'top right',
+        options: [
+            { value: 'first', content: 'First' },
+            { value: 'second', content: 'Second' },
+            { value: 'third', content: 'Third' },
+        ],
+        onChange: (value: string) => {
+            alert(value);
+        },
+    },
+};
+
+export const BottomLeft: Story = {
+    args: {
+        value: 'second',
+        anchorPosition: 'bottom left',
+        options: [
+            { value: 'first', content: 'First' },
+            { value: 'second', content: 'Second' },
+            { value: 'third', content: 'Third' },
+        ],
+        onChange: (value: string) => {
+            alert(value);
+        },
+    },
+};
+
+export const BottomRight: Story = {
+    args: {
+        value: 'second',
+        anchorPosition: 'bottom right',
+        options: [
+            { value: 'first', content: 'First' },
+            { value: 'second', content: 'Second' },
+            { value: 'third', content: 'Third' },
+        ],
+        onChange: (value: string) => {
+            alert(value);
         },
     },
 };

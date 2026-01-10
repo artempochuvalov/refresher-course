@@ -1,5 +1,6 @@
 .Dropdown {
     position: relative;
+    display: flex inline;
 }
 
 .button {
@@ -19,6 +20,26 @@
     background-color: var(--card-bg);
     border-radius: 8px;
     border: 1px solid var(--primary-color);
+}
+
+.menu.topLeft {
+    bottom: 100%;
+    left: 0;
+}
+
+.menu.topRight {
+    bottom: 100%;
+    right: 0;
+}
+
+.menu.bottomLeft {
+    left: 0;
+    top: 100%;
+}
+
+.menu.bottomRight {
+    right: 0;
+    top: 100%;
 }
 
 .item {

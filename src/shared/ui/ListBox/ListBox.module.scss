@@ -13,12 +13,24 @@
     box-shadow: 4px 4px 8px var(--bg-overlay);
 }
 
-.options.top {
+.options.topLeft {
     bottom: 100%;
+    left: 0;
 }
 
-.options.bottom {
-    bottom: 0;
+.options.topRight {
+    bottom: 100%;
+    right: 0;
+}
+
+.options.bottomLeft {
+    left: 0;
+    top: 100%;
+}
+
+.options.bottomRight {
+    right: 0;
+    top: 100%;
 }
 
 .option {
