@@ -1,5 +1,6 @@
-import { ArticleDetails, ArticlesList } from 'entities/Article';
+import { ArticleDetails } from 'entities/Article';
 import { AddCommentForm, CommentList } from 'entities/Comment';
+import { ArticleRecommendationsList } from 'features/ArticleRecommendationsList';
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -21,19 +22,11 @@ import {
     getArticleComments,
     getArticleCommentsIsLoading
 } from '../../model/selectors/articleCommentsSelectors';
-import {
-    getArticleRecommendations,
-    getArticleRecommendationsIsLoading
-} from '../../model/selectors/articleRecommendationsSelectors';
 import { addArticleComment } from '../../model/services/addArticleComment/addArticleComment';
-import {
-    fetchRecommendations
-} from '../../model/services/fetchArticleRecommendations/fetchArticleRecommendations';
 import {
     fetchCommentsByArticleId
 } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import { articleDetailsPageReducer } from '../../model/slices';
-import cls from './ArticleDetailsPage.module.scss';
 
 const ArticleDetailsPage = () => {
     const { t } = useTranslation('article');
@@ -43,8 +36,6 @@ const ArticleDetailsPage = () => {
     const comments = useSelector(getArticleComments.selectAll);
     const areCommentsLoading = useSelector(getArticleCommentsIsLoading);
     const addCommentError = useSelector(getArticleCommentAddError);
-    const recommendations = useSelector(getArticleRecommendations.selectAll);
-    const recommendationsIsLoading = useSelector(getArticleRecommendationsIsLoading);
 
     const onSendComment = useCallback(async (text: string) => {
         await dispatch(addArticleComment(text));
@@ -62,7 +53,6 @@ const ArticleDetailsPage = () => {
         }
 
         dispatch(fetchCommentsByArticleId(id));
-        dispatch(fetchRecommendations());
     });
 
     if (!id) {
@@ -83,19 +73,7 @@ const ArticleDetailsPage = () => {
                 <VStack fullWidth gap="32">
                     <ArticleDetails articleId={id} />
 
-                    <VStack fullWidth gap="16">
-                        <TextAtom
-                            size={TextAtomSize.L}
-                            text={t('Мы рекоммендуем')}
-                        />
-
-                        <ArticlesList
-                            articles={recommendations}
-                            isLoading={recommendationsIsLoading}
-                            target="_blank"
-                            className={cls.recommendations}
-                        />
-                    </VStack>
+                    <ArticleRecommendationsList />
                 </VStack>
 
                 <VStack fullWidth gap="16">

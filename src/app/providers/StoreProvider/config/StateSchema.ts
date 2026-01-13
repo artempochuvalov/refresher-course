@@ -14,11 +14,13 @@ import type {
     ArticleDetailsPageSchema
 } from 'pages/ArticleDetails';
 import { ArticlesListSchema } from 'pages/Articles';
+import { rtkApi } from 'shared/api/rtkApi';
 import { ScrollPositionSchema } from 'widgets/Page';
 
 export type StateSchema = {
     user: UserSchema;
     scrollPosition: ScrollPositionSchema;
+    [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
 
     // Async reducers
     loginForm?: LoginSchema;
