@@ -1,12 +1,14 @@
 import { memo, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames';
-import { Select, type SelectOption } from 'shared/ui/Select/Select';
+import { DropdownAnchorPosition } from 'shared/types/dropdown';
+import { ListBox, ListBoxOption } from 'shared/ui/ListBox/ListBox';
 
 import { Country } from '../../model/types';
 
 type CountrySelectProps = {
     className?: string;
+    anchorPosition?: DropdownAnchorPosition;
     value?: Country;
     readonly?: boolean;
     onChange?: (value: Country) => void;
@@ -24,6 +26,7 @@ const countryNames: Record<Country, string> = {
 export const CountrySelect = memo((props: CountrySelectProps) => {
     const {
         value,
+        anchorPosition,
         className,
         readonly,
         onChange,
@@ -31,9 +34,9 @@ export const CountrySelect = memo((props: CountrySelectProps) => {
 
     const { t } = useTranslation();
 
-    const options: SelectOption<Country>[] = useMemo(() => (
+    const options: ListBoxOption<Country>[] = useMemo(() => (
         Object.values(Country).map((country: Country) => ({
-            text: t(countryNames[country]),
+            content: t(countryNames[country]),
             value: country,
         }))
     ), [t]);
@@ -43,12 +46,14 @@ export const CountrySelect = memo((props: CountrySelectProps) => {
     }, [onChange]);
 
     return (
-        <Select
+        <ListBox
             className={classNames('', {}, [className])}
             value={value}
+            defaultValue={String(options[0].content)}
             options={options}
             label={t('Выберите страну')}
-            readonly={readonly}
+            disabled={readonly}
+            anchorPosition={anchorPosition}
             onChange={onChangeHandler}
         />
     );

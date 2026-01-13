@@ -1,0 +1,59 @@
+.listBox {
+    position: relative;
+    width: fit-content;
+}
+
+.options {
+    position: absolute;
+    min-width: 100%;
+    overflow: hidden;
+    z-index: var(--z-index-modal);
+    background-color: var(--list-box-bg);
+    border-radius: 12px;
+    box-shadow: 4px 4px 8px var(--bg-overlay);
+}
+
+.options.topLeft {
+    bottom: 100%;
+    left: 0;
+}
+
+.options.topRight {
+    bottom: 100%;
+    right: 0;
+}
+
+.options.bottomLeft {
+    left: 0;
+    top: 100%;
+}
+
+.options.bottomRight {
+    right: 0;
+    top: 100%;
+}
+
+.option {
+    cursor: pointer;
+}
+
+.optionContent {
+    padding: 8px 12px 8px calc(24px + 8px + 4px);
+
+    &.focus {
+        background-color: var(--inverted-primary-color);
+    }
+
+    &.selected {
+        padding-left: 4px;
+    }
+}
+
+.disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.icon {
+    flex-shrink: 0;
+}

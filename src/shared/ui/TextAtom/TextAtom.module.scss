@@ -23,6 +23,16 @@
     }
 }
 
+.s {
+    .title {
+        font: var(--font-m);
+    }
+
+    .text {
+        font: var(--font-s);
+    }
+}
+
 .m {
     .title {
         font: var(--font-l);

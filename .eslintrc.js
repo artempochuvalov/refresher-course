@@ -52,10 +52,17 @@ module.exports = {
             {
                 markupOnly: true,
                 ignoreAttribute: [
+                    'as',
+                    'role',
                     'data-testid',
                     'to',
                     'form',
                     'target',
+                    'direction',
+                    'align',
+                    'justify',
+                    'gap',
+                    'anchorPosition',
                 ],
             },
         ],
