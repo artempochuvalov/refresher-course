@@ -15,5 +15,6 @@
     "Некорректный город": "Incorrect city",
     "Имя и фамилия обязательны": "First and last names are required",
     "Нет данных": "No data was provided",
-    "Произошла ошибка на сервере": "Some server error occured"
+    "Произошла ошибка на сервере": "Some server error occured",
+    "Профиль не найден": "No profile found"
 }

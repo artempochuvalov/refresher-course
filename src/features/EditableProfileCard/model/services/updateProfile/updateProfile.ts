@@ -3,7 +3,7 @@ import { ThunkConfig } from 'app/providers/StoreProvider';
 
 import {
     getEditableProfileData
-} from '../../selectors/getEditableProfileData/getEditableProfileData';
+} from '../../selectors/editableProfileCardSelectors';
 import { Profile, ValidationProfileError } from '../../types';
 import { validateProfile } from '../validateProfile/validateProfile';
 

@@ -1,4 +1,3 @@
-import { getProfileReadonly, profileActions, updateProfile } from 'entities/Profile';
 import { memo, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -7,15 +6,18 @@ import { Button, ButtonTheme } from 'shared/ui/Button';
 import { HStack } from 'shared/ui/Stack';
 import { TextAtom } from 'shared/ui/TextAtom/TextAtom';
 
-type ProfileHeaderProps = {
-    isEditable?: boolean;
-};
+import { getProfileReadonly } from '../../model/selectors/editableProfileCardSelectors';
+import { updateProfile } from '../../model/services/updateProfile/updateProfile';
+import { profileActions } from '../../model/slices/profileSlice';
 
-export const ProfileHeader = memo((props: ProfileHeaderProps) => {
+interface EditableProfileCardHeaderProps {
+    isEditable: boolean;
+}
+
+export const EditableProfileCardHeader = memo((props: EditableProfileCardHeaderProps) => {
     const { isEditable } = props;
 
     const { t } = useTranslation('profile');
-
     const dispatch = useAppDispatch();
 
     const readonly = useSelector(getProfileReadonly);

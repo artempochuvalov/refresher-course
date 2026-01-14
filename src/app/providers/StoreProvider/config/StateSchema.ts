@@ -7,9 +7,9 @@ import type {
 } from '@reduxjs/toolkit';
 import type { AxiosInstance } from 'axios';
 import { ArticleDetailsSchema } from 'entities/Article';
-import type { ProfileSchema } from 'entities/Profile';
 import type { UserSchema } from 'entities/User';
 import type { LoginSchema } from 'features/AuthByUsername';
+import type { ProfileSchema } from 'features/EditableProfileCard';
 import type {
     ArticleDetailsPageSchema
 } from 'pages/ArticleDetails';
