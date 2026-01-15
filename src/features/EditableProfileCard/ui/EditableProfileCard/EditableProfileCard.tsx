@@ -115,6 +115,7 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
                             key={error}
                             theme={TextAtomTheme.Error}
                             text={t(validationErrorsText[error])}
+                            dataTestId="EditableProfileCard.Error"
                         />
                     ))}
                 </>
@@ -125,6 +126,7 @@ export const EditableProfileCard = memo((props: EditableProfileCardProps) => {
                 readonly={readonly}
                 isLoading={isLoading}
                 error={error}
+                dataTestId="EditableProfileCard"
                 onFirstnameChange={onFirstnameChange}
                 onLastnameChange={onLastnameChange}
                 onAgeChange={onAgeChange}

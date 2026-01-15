@@ -1,5 +1,4 @@
-import type { Country } from 'entities/Country';
-import type { Currency } from 'entities/Currency';
+import { Profile } from 'entities/Profile';
 
 export enum ValidationProfileError {
     NO_DATA = 'NO_DATA',
@@ -8,18 +7,6 @@ export enum ValidationProfileError {
     INCORRECT_CITY = 'INCORRECT_CITY',
     SERVER_ERROR = 'SERVER_ERROR'
 }
-
-export type Profile = {
-    id?: string;
-    first?: string;
-    lastname?: string;
-    age?: number;
-    currency?: Currency;
-    country?: Country,
-    city?: string,
-    username?: string,
-    avatar?: string;
-};
 
 export type ProfileSchema = {
     profile?: Profile;
