@@ -1,8 +1,11 @@
+import { UserRole } from 'entities/User';
 import { AboutPage } from 'pages/About';
+import { AdminPanel } from 'pages/AdminPanel';
 import { ArticleDetailsPage } from 'pages/ArticleDetails';
 import { ArticleEditPage } from 'pages/ArticleEdit';
 import { ArticleNewPage } from 'pages/ArticleNew';
 import { ArticlesPage } from 'pages/Articles';
+import { ForbiddenPage } from 'pages/Forbidden';
 import { MainPage } from 'pages/Main';
 import { NotFoundPage } from 'pages/NotFound';
 import { ProfilePage } from 'pages/Profile';
@@ -11,6 +14,7 @@ import { RouteNames, RoutePaths } from 'shared/constants/routes';
 
 export type AppRoutesProps = RouteProps & {
     authOnly?: boolean;
+    requiredRoles?: UserRole[];
 };
 
 export const routeConfig: Record<RouteNames, AppRoutesProps> = {
@@ -42,13 +46,24 @@ export const routeConfig: Record<RouteNames, AppRoutesProps> = {
         authOnly: true,
     },
     [RouteNames.ArticleEdit]: {
-        path: `${RoutePaths.ArticleEdit}`,
+        path: RoutePaths.ArticleEdit,
         element: <ArticleEditPage />,
         authOnly: true,
     },
     [RouteNames.ArticleNew]: {
-        path: `${RoutePaths.ArticleNew}`,
+        path: RoutePaths.ArticleNew,
         element: <ArticleNewPage />,
+        authOnly: true,
+    },
+    [RouteNames.AdminPanel]: {
+        path: RoutePaths.AdminPanel,
+        element: <AdminPanel />,
+        authOnly: true,
+        requiredRoles: [UserRole.Manager, UserRole.Admin],
+    },
+    [RouteNames.Forbidden]: {
+        path: RouteNames.Forbidden,
+        element: <ForbiddenPage />,
         authOnly: true,
     },
 };

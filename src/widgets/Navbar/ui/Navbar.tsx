@@ -1,8 +1,14 @@
-import { getUserAuthData, userActions } from 'entities/User';
+import {
+    getIfUserAdmin,
+    getIfUserManager,
+    getUserAuthData,
+    userActions
+} from 'entities/User';
 import { LoginModal } from 'features/AuthByUsername';
 import {
     memo,
     useCallback,
+    useMemo,
     useState
 } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -18,9 +24,9 @@ import { TextAtom, TextAtomTheme } from 'shared/ui/TextAtom/TextAtom';
 
 import cls from './Navbar.module.scss';
 
-type NavbarProps = {
+interface NavbarProps {
     className?: string;
-};
+}
 
 export const Navbar = memo((props: NavbarProps) => {
     const { className } = props;
@@ -31,6 +37,12 @@ export const Navbar = memo((props: NavbarProps) => {
 
     const [showAuthModal, setShowAuthModal] = useState(false);
     const authData = useSelector(getUserAuthData);
+
+    const isUserAdmin = useSelector(getIfUserAdmin);
+    const isUserManger = useSelector(getIfUserManager);
+    const isAdminPanelAvailable = useMemo(() => (
+        isUserAdmin || isUserManger
+    ), [isUserAdmin, isUserManger]);
 
     const onShowModal = useCallback(() => {
         setShowAuthModal(true);
@@ -69,6 +81,10 @@ export const Navbar = memo((props: NavbarProps) => {
                                 content: t('Профиль'),
                                 href: RoutePaths.Profile + authData.id,
                             },
+                            ...(isAdminPanelAvailable ? [{
+                                content: t('Админка'),
+                                href: RoutePaths.AdminPanel,
+                            }] : []),
                             {
                                 content: t('Выйти'),
                                 onClick: onLogout,
