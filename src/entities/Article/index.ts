@@ -1,3 +1,4 @@
+export { ArticleType } from './model/constants';
 export {
     getArticleDetailsData,
     getArticleDetailsError,
@@ -7,7 +8,7 @@ export {
 export type {
     ArticleListView
 } from './model/types/article';
-export { type Article, ArticleType } from './model/types/article';
+export type { Article } from './model/types/article';
 export type {
     ArticleDetailsSchema
 } from './model/types/articleDetailsSchema';

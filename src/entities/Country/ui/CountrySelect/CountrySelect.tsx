@@ -4,7 +4,7 @@ import { classNames } from 'shared/lib/classNames';
 import { DropdownAnchorPosition } from 'shared/types/dropdown';
 import { ListBox, ListBoxOption } from 'shared/ui/ListBox/ListBox';
 
-import { Country } from '../../model/types';
+import { Country } from '../../model/constants';
 
 type CountrySelectProps = {
     className?: string;

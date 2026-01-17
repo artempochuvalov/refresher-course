@@ -12,6 +12,7 @@ import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect';
 import { VStack } from 'shared/ui/Stack';
 import { TextAtom, TextAtomTheme } from 'shared/ui/TextAtom/TextAtom';
 
+import { ValidationProfileError } from '../../model/constants';
 import {
     getEditableProfileData,
     getProfileError,
@@ -21,7 +22,6 @@ import {
 } from '../../model/selectors/editableProfileCardSelectors';
 import { fetchProfileData } from '../../model/services/fetchProfileData/fetchProfileData';
 import { profileActions, profileReducer } from '../../model/slices/profileSlice';
-import { ValidationProfileError } from '../../model/types';
 import { EditableProfileCardHeader } from '../EditableProfileCardHeader/EditableProfileCardHeader';
 
 interface EditableProfileCardProps {

@@ -15,7 +15,8 @@
 			"*": ["./src/*"]
 		},
 		"skipLibCheck": true,
-		"types": ["@testing-library/jest-dom"]
+		"types": ["@testing-library/jest-dom"],
+		"isolatedModules": true
     },
 	"ts-node": {
 		"compilerOptions": {

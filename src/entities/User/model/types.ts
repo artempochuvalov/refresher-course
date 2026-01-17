@@ -1,8 +1,4 @@
-export enum UserRole {
-    Admin = 'ADMIN',
-    Manager = 'MANAGER',
-    User = 'USER',
-}
+import type { UserRole } from './constants';
 
 export type User = {
     id: string;

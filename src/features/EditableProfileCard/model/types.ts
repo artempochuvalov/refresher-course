@@ -1,12 +1,6 @@
 import { Profile } from 'entities/Profile';
 
-export enum ValidationProfileError {
-    NO_DATA = 'NO_DATA',
-    INCORRECT_PERSONAL_DATA = 'INCORRECT_PERSONAL_DATA',
-    INCORRECT_AGE = 'INCORRECT_AGE',
-    INCORRECT_CITY = 'INCORRECT_CITY',
-    SERVER_ERROR = 'SERVER_ERROR'
-}
+import type { ValidationProfileError } from './constants';
 
 export type ProfileSchema = {
     profile?: Profile;

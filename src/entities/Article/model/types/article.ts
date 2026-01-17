@@ -1,17 +1,6 @@
 import { User } from 'entities/User';
 
-export enum ArticleType {
-    IT = 'IT',
-    SCIENCE = 'SCIENCE',
-    ECONOMICS = 'ECONOMICS',
-    ALL = 'ALL',
-}
-
-export enum ArticleBlockType {
-    TEXT = 'TEXT',
-    CODE = 'CODE',
-    IMAGE = 'IMAGE',
-}
+import type { ArticleBlockType, ArticleType } from '../constants';
 
 export type ArticleBlockBase = {
     id: string;

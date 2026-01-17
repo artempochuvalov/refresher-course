@@ -4,7 +4,7 @@ import { classNames } from 'shared/lib/classNames';
 import { DropdownAnchorPosition } from 'shared/types/dropdown';
 import { ListBox, ListBoxOption } from 'shared/ui/ListBox/ListBox';
 
-import { Currency } from '../../model/types';
+import { Currency } from '../../model/constants';
 
 type CurrencySelectProps = {
     className?: string;

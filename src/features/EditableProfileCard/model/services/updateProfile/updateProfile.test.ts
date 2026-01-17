@@ -2,7 +2,7 @@ import { Country } from 'entities/Country';
 import { Currency } from 'entities/Currency';
 import { TestAsyncThunk } from 'shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
 
-import { ValidationProfileError } from '../../types';
+import { ValidationProfileError } from '../../constants';
 import { updateProfile } from './updateProfile';
 
 const profile = {

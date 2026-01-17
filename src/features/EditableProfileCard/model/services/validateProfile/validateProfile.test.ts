@@ -1,4 +1,4 @@
-import { ValidationProfileError } from '../../types';
+import { ValidationProfileError } from '../../constants';
 import { validateProfile } from './validateProfile';
 
 describe('validateProfile.test', () => {
