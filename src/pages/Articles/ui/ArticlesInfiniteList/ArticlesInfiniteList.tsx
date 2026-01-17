@@ -4,10 +4,10 @@ import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames';
 
 import {
-    getArticles,
     getArticlesListIsLoading,
     getArticlesListView
 } from '../../model/selectors/articlesListSelectors';
+import { getArticles } from '../../model/slices/articlePageSlice';
 
 interface ArticlesInfiniteListProps {
     className?: string;

@@ -1,11 +1,6 @@
 import { StateSchema } from 'app/providers/StoreProvider';
 import { ArticleType } from 'entities/Article';
 
-import { articlesAdapter } from '../slices/articlePageSlice';
-
-export const getArticles = articlesAdapter.getSelectors<StateSchema>(
-    (state) => state.articlesList ?? articlesAdapter.getInitialState()
-);
 export const getArticlesListIsLoading = (state: StateSchema) => (
     state.articlesList?.isLoading ?? false
 );
