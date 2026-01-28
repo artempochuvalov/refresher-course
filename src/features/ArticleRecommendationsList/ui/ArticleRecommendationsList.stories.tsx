@@ -10,6 +10,11 @@ const meta = {
     component: ArticleRecommendationsList,
     argTypes: {},
     args: {},
+    parameters: {
+        loki: {
+            skip: true,
+        },
+    },
     decorators: [StoreDecorator({})],
 } satisfies Meta<typeof ArticleRecommendationsList>;
 
