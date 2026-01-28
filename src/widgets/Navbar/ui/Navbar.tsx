@@ -13,12 +13,13 @@ import {
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
+import { RingBell } from 'shared/assets/icons';
 import { RoutePaths } from 'shared/constants/routes';
 import { classNames } from 'shared/lib/classNames';
 import { AppLink } from 'shared/ui/AppLink';
 import { Avatar } from 'shared/ui/Avatar';
 import { Button, ButtonTheme } from 'shared/ui/Button';
-import { Dropdown } from 'shared/ui/Popups';
+import { Dropdown, Popover } from 'shared/ui/Popups';
 import { HStack } from 'shared/ui/Stack';
 import { TextAtom, TextAtomTheme } from 'shared/ui/TextAtom/TextAtom';
 
@@ -65,12 +66,23 @@ export const Navbar = memo((props: NavbarProps) => {
             >
                 <TextAtom theme={TextAtomTheme.Inverted} title={t('Article App')} />
 
-                <HStack gap="16">
+                <HStack align="center" gap="16">
                     <AppLink to={RoutePaths.ArticleNew} className={cls.createNewArticleLink}>
                         <Button theme={ButtonTheme.Blank}>
                             {t('Создать новую статью', { ns: 'artilce' })}
                         </Button>
                     </AppLink>
+
+                    <Popover
+                        anchorPosition="bottom right"
+                        trigger={(
+                            <Button theme={ButtonTheme.Blank}>
+                                <RingBell className={cls.ringBellIcon} />
+                            </Button>
+                        )}
+                    >
+                        {t('Уведомление')}
+                    </Popover>
 
                     <Dropdown
                         trigger={(
