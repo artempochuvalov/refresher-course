@@ -1,0 +1,10 @@
+.Popover {
+    display: inline-flex;
+}
+
+.panel {
+    position: absolute;
+    z-index: var(--z-index-modal);
+    background-color: var(--card-bg);
+    border-radius: 8px;
+}

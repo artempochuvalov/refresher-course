@@ -7,10 +7,12 @@ import {
 import { ReactNode, useCallback } from 'react';
 import { Select } from 'shared/assets/icons';
 import { classNames } from 'shared/lib/classNames';
-import { DropdownAnchorPosition } from 'shared/types/dropdown';
 
-import { Button } from '../Button';
-import { HStack } from '../Stack';
+import { Button } from '../../../Button';
+import { HStack } from '../../../Stack';
+import { PopupAnchorPosition } from '../../model/types';
+import { PopupAnchorPositionClasses } from '../../styles/constants';
+import PopupCls from '../../styles/Popup.module.scss';
 import cls from './ListBox.module.scss';
 
 export type ListBoxOption<T extends string> = {
@@ -24,17 +26,10 @@ type ListBoxProps<T extends string> = {
     defaultValue?: string;
     label?: string;
     options?: ListBoxOption<T>[];
-    anchorPosition?: DropdownAnchorPosition;
+    anchorPosition?: PopupAnchorPosition;
     disabled?: boolean;
     className?: string;
     onChange: (value: T) => void;
-};
-
-const ListBoxAnchorPositionClasses: Record<DropdownAnchorPosition, string> = {
-    'top left': cls.topLeft,
-    'top right': cls.topRight,
-    'bottom left': cls.bottomLeft,
-    'bottom right': cls.bottomRight,
 };
 
 export const ListBox = <T extends string>(props: ListBoxProps<T>) => {
@@ -53,13 +48,13 @@ export const ListBox = <T extends string>(props: ListBoxProps<T>) => {
         onChange?.(value as T);
     }, [onChange]);
 
-    const optionsClasses = [ListBoxAnchorPositionClasses[anchorPosition]];
+    const optionsClasses = [PopupAnchorPositionClasses[anchorPosition]];
 
     return (
         <HStack
             gap="8"
             align="center"
-            className={classNames(cls.ListBox, {}, [className])}
+            className={classNames(cls.ListBox, {}, [className, PopupCls.Popup])}
         >
             {label && (
                 <span>
@@ -77,7 +72,7 @@ export const ListBox = <T extends string>(props: ListBoxProps<T>) => {
                 <HListBoxButton
                     as={Button}
                     disabled={disabled}
-                    className={classNames('', { [cls.disabled]: disabled })}
+                    className={classNames('', { [PopupCls.disabled]: disabled })}
                 >
                     {value || defaultValue}
                 </HListBoxButton>
@@ -94,7 +89,7 @@ export const ListBox = <T extends string>(props: ListBoxProps<T>) => {
                                 value={option.value}
                                 disabled={option.disabled}
                                 className={
-                                    classNames(cls.option, { [cls.disabled]: option.disabled })
+                                    classNames(cls.option, { [PopupCls.disabled]: option.disabled })
                                 }
                             >
                                 {({ focus, selected }) => (
@@ -104,8 +99,8 @@ export const ListBox = <T extends string>(props: ListBoxProps<T>) => {
                                             classNames(
                                                 cls.optionContent,
                                                 {
-                                                    [cls.focus]: focus,
-                                                    [cls.selected]: selected,
+                                                    [PopupCls.focus]: focus,
+                                                    [PopupCls.selected]: selected,
                                                 }
                                             )
                                         }

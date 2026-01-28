@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames';
 import { Card } from 'shared/ui/Card/Card';
 import { Input } from 'shared/ui/Input/Input';
-import { ListBox, ListBoxOption } from 'shared/ui/ListBox/ListBox';
+import { ListBox, ListBoxOption } from 'shared/ui/Popups';
 import { HStack, VStack } from 'shared/ui/Stack';
 import { Tabs } from 'shared/ui/Tabs/Tabs';
 

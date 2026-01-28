@@ -6,9 +6,11 @@ import {
 } from '@headlessui/react';
 import { Fragment, ReactNode } from 'react';
 import { classNames } from 'shared/lib/classNames';
-import { DropdownAnchorPosition } from 'shared/types/dropdown';
 
-import { AppLink } from '../AppLink';
+import { AppLink } from '../../../AppLink';
+import { PopupAnchorPosition } from '../../model/types';
+import { PopupAnchorPositionClasses } from '../../styles/constants';
+import PopupCls from '../../styles/Popup.module.scss';
 import cls from './Dropdown.module.scss';
 
 interface DropdownItem {
@@ -23,15 +25,8 @@ interface DropdownProps {
     trigger: ReactNode;
     items: DropdownItem[];
     disabled?: boolean;
-    anchorPosition?: DropdownAnchorPosition;
+    anchorPosition?: PopupAnchorPosition;
 }
-
-const DropdownAnchorPositionClasses: Record<DropdownAnchorPosition, string> = {
-    'top left': cls.topLeft,
-    'top right': cls.topRight,
-    'bottom left': cls.bottomLeft,
-    'bottom right': cls.bottomRight,
-};
 
 export const Dropdown = (props: DropdownProps) => {
     const {
@@ -42,14 +37,18 @@ export const Dropdown = (props: DropdownProps) => {
         anchorPosition = 'bottom left',
     } = props;
 
-    const menuClasses = [DropdownAnchorPositionClasses[anchorPosition]];
+    const menuClasses = [PopupAnchorPositionClasses[anchorPosition]];
 
     return (
         <Menu
             as="div"
-            className={classNames(cls.Dropdown, { [cls.disabled]: disabled }, [className])}
+            className={classNames(
+                cls.Dropdown,
+                { [cls.disabled]: disabled },
+                [className, PopupCls.Popup]
+            )}
         >
-            <MenuButton as="button" className={cls.button}>
+            <MenuButton as="button" className={PopupCls.trigger}>
                 {trigger}
             </MenuButton>
 
@@ -60,8 +59,8 @@ export const Dropdown = (props: DropdownProps) => {
                             className={classNames(
                                 cls.item,
                                 {
-                                    [cls.active]: focus,
-                                    [cls.disabled]: item.disabled,
+                                    [PopupCls.focus]: focus,
+                                    [PopupCls.disabled]: item.disabled,
                                 }
                             )}
                             disabled={item.disabled}

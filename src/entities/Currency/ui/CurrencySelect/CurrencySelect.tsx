@@ -1,15 +1,14 @@
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames';
-import { DropdownAnchorPosition } from 'shared/types/dropdown';
-import { ListBox, ListBoxOption } from 'shared/ui/ListBox/ListBox';
+import { ListBox, type ListBoxOption, type PopupAnchorPosition } from 'shared/ui/Popups';
 
 import { Currency } from '../../model/constants';
 
 type CurrencySelectProps = {
     className?: string;
     value?: Currency;
-    anchorPosition?: DropdownAnchorPosition;
+    anchorPosition?: PopupAnchorPosition;
     readonly?: boolean;
     onChange?: (value: Currency) => void;
 };
