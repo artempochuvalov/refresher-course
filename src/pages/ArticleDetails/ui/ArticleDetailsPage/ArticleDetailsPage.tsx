@@ -1,12 +1,9 @@
-import { ArticleDetails, ArticlesList } from 'entities/Article';
-import { AddCommentForm, CommentList } from 'entities/Comment';
-import { memo, useCallback } from 'react';
+import { ArticleDetails } from 'entities/Article';
+import { ArticleRecommendationsList } from 'features/ArticleRecommendationsList';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { useDynamicModuleLoader } from 'shared/lib/hooks/useDynamicModuleLoader';
-import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect';
 import { VStack } from 'shared/ui/Stack';
 import {
     TextAtom,
@@ -16,53 +13,17 @@ import {
 } from 'shared/ui/TextAtom/TextAtom';
 import { Page } from 'widgets/Page';
 
-import {
-    getArticleCommentAddError,
-    getArticleComments,
-    getArticleCommentsIsLoading
-} from '../../model/selectors/articleCommentsSelectors';
-import {
-    getArticleRecommendations,
-    getArticleRecommendationsIsLoading
-} from '../../model/selectors/articleRecommendationsSelectors';
-import { addArticleComment } from '../../model/services/addArticleComment/addArticleComment';
-import {
-    fetchRecommendations
-} from '../../model/services/fetchArticleRecommendations/fetchArticleRecommendations';
-import {
-    fetchCommentsByArticleId
-} from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import { articleDetailsPageReducer } from '../../model/slices';
-import cls from './ArticleDetailsPage.module.scss';
+import { ArticleDetailsComments } from '../ArticleDetailsComments/ArticleDetailsComments';
 
 const ArticleDetailsPage = () => {
     const { t } = useTranslation('article');
     const { id } = useParams<{ id: string; }>();
-    const dispatch = useAppDispatch();
-
-    const comments = useSelector(getArticleComments.selectAll);
-    const areCommentsLoading = useSelector(getArticleCommentsIsLoading);
-    const addCommentError = useSelector(getArticleCommentAddError);
-    const recommendations = useSelector(getArticleRecommendations.selectAll);
-    const recommendationsIsLoading = useSelector(getArticleRecommendationsIsLoading);
-
-    const onSendComment = useCallback(async (text: string) => {
-        await dispatch(addArticleComment(text));
-    }, [dispatch]);
 
     useDynamicModuleLoader({
         reducers: {
             articleDetailsPage: articleDetailsPageReducer,
         },
-    });
-
-    useInitialEffect(() => {
-        if (!id) {
-            return;
-        }
-
-        dispatch(fetchCommentsByArticleId(id));
-        dispatch(fetchRecommendations());
     });
 
     if (!id) {
@@ -83,33 +44,13 @@ const ArticleDetailsPage = () => {
                 <VStack fullWidth gap="32">
                     <ArticleDetails articleId={id} />
 
-                    <VStack fullWidth gap="16">
-                        <TextAtom
-                            size={TextAtomSize.L}
-                            text={t('Мы рекоммендуем')}
-                        />
-
-                        <ArticlesList
-                            articles={recommendations}
-                            isLoading={recommendationsIsLoading}
-                            target="_blank"
-                            className={cls.recommendations}
-                        />
-                    </VStack>
+                    <ArticleRecommendationsList />
                 </VStack>
 
                 <VStack fullWidth gap="16">
                     <TextAtom size={TextAtomSize.L} title={t('Комментарии')} />
 
-                    <AddCommentForm
-                        onSendComment={onSendComment}
-                        error={addCommentError}
-                    />
-
-                    <CommentList
-                        comments={comments}
-                        isLoading={areCommentsLoading}
-                    />
+                    <ArticleDetailsComments articleId={id} />
                 </VStack>
             </VStack>
         </Page>

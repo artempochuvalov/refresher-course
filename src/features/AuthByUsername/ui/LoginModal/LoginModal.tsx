@@ -1,3 +1,4 @@
+import { User } from 'entities/User';
 import { memo, Suspense, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { RoutePaths } from 'shared/constants/routes';
@@ -22,8 +23,8 @@ export const LoginModal = memo((props: LoginModalProps) => {
 
     const navigate = useNavigate();
 
-    const onSuccess = useCallback(() => {
-        navigate(RoutePaths.Profile);
+    const onSuccess = useCallback((user: User) => {
+        navigate(`${RoutePaths.Profile}${user.id}`);
         onClose?.();
     }, [navigate, onClose]);
 

@@ -55,6 +55,7 @@ module.exports = {
                     'as',
                     'role',
                     'data-testid',
+                    'dataTestId',
                     'to',
                     'form',
                     'target',

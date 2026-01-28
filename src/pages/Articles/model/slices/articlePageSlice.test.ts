@@ -1,5 +1,4 @@
-import { Article } from 'entities/Article';
-import { ArticleType } from 'entities/Article/model/types/article';
+import { type Article, ArticleType } from 'entities/Article';
 
 import { fetchArticles } from '../services/fetchArticles/fetchArticles';
 import { ArticlesListSchema } from '../types/articlePageSchema';

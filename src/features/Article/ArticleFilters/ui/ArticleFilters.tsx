@@ -5,6 +5,7 @@ import { classNames } from 'shared/lib/classNames';
 import { Card } from 'shared/ui/Card/Card';
 import { Input } from 'shared/ui/Input/Input';
 import { ListBox, ListBoxOption } from 'shared/ui/ListBox/ListBox';
+import { HStack, VStack } from 'shared/ui/Stack';
 import { Tabs } from 'shared/ui/Tabs/Tabs';
 
 import { ArticleFilterField, ArticleFilterOrder } from '../model/types';
@@ -83,33 +84,34 @@ export const ArticleFilters = memo((props: ArticleFiltersProps) => {
     ], [t]);
 
     return (
-        <div className={classNames(cls.ArticleFilters, {}, [className])}>
-            <Card className={cls.sortFilters}>
-                <ListBox
-                    options={sortFieldOptions}
-                    value={field}
-                    onChange={onFieldChange}
-                    label={t('Сортировать по ')}
-                />
+        <VStack fullWidth gap="16" className={classNames('', {}, [className])}>
+            <Card className={cls.filterCard}>
+                <HStack fullWidth gap="8" align="center">
+                    <ListBox
+                        options={sortFieldOptions}
+                        value={field}
+                        onChange={onFieldChange}
+                        label={t('Сортировать по ')}
+                    />
 
-                <ListBox
-                    options={sortOrderOptions}
-                    value={order}
-                    onChange={onOrderChange}
-                    label={t('порядок')}
-                />
+                    <ListBox
+                        options={sortOrderOptions}
+                        value={order}
+                        onChange={onOrderChange}
+                        label={t('порядок')}
+                    />
+                </HStack>
             </Card>
 
-            <Card className={cls.searchCard}>
+            <Card className={cls.filterCard}>
                 <Input value={search} onChange={onSearch} placeholder={t('Поиск')} />
             </Card>
 
             <Tabs
-                className={cls.tabs}
                 tabs={sortTypeTabs}
                 value={type}
                 onTabClick={onTypeChange}
             />
-        </div>
+        </VStack>
     );
 });

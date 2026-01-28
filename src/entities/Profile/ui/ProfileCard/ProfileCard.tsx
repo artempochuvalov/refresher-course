@@ -18,6 +18,7 @@ type ProfileCardProps = {
     isLoading?: boolean;
     readonly?: boolean;
     error?: string;
+    dataTestId?: string;
     onFirstnameChange?: (firstname?: string) => void;
     onLastnameChange?: (lastname?: string) => void;
     onAgeChange?: (age?: string) => void;
@@ -34,6 +35,7 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
         isLoading,
         error,
         readonly,
+        dataTestId,
         onFirstnameChange,
         onLastnameChange,
         onAgeChange,
@@ -91,12 +93,14 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
                     placeholder={t('Ваше имя')}
                     readonly={readonly}
                     onChange={onFirstnameChange}
+                    data-testid={`${dataTestId}.FirstNameInput`}
                 />
                 <Input
                     value={profileData?.lastname}
                     placeholder={t('Ваша фамилия')}
                     readonly={readonly}
                     onChange={onLastnameChange}
+                    data-testid={`${dataTestId}.LastNameInput`}
                 />
                 <Input
                     value={String(profileData?.age)}
@@ -104,18 +108,21 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
                     placeholder={t('Возраст')}
                     readonly={readonly}
                     onChange={onAgeChange}
+                    data-testid={`${dataTestId}.AgeInput`}
                 />
                 <Input
                     value={profileData?.city}
                     placeholder={t('Город')}
                     readonly={readonly}
                     onChange={onCityChange}
+                    data-testid={`${dataTestId}.CityInput`}
                 />
                 <Input
                     value={avatarSource}
                     placeholder={t('Ссылка на изображение профиля')}
                     readonly={readonly}
                     onChange={onAvatarChange}
+                    data-testid={`${dataTestId}.AvatarInput`}
                 />
                 <CurrencySelect
                     value={profileData?.currency}

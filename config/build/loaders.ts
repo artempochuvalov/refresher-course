@@ -8,11 +8,8 @@ import type { BuildOptions } from './types/config';
 export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
     const { isDev } = options;
 
-    const typescriptLoader = {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
-    };
+    const codeBabelLoader = buildBabelLoader({ isDev, isTsx: false });
+    const tsxBabelLoader = buildBabelLoader({ isDev, isTsx: true });
 
     const stylesLoader = buildCssLoader(isDev);
 
@@ -23,14 +20,11 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
         loader: 'url-loader',
         type: 'javascript/auto',
     };
-
-    const babelLoader = buildBabelLoader(isDev);
-
     return [
-        babelLoader,
-        typescriptLoader,
-        stylesLoader,
-        svgLoader,
         fileLoader,
+        svgLoader,
+        codeBabelLoader,
+        tsxBabelLoader,
+        stylesLoader,
     ];
 }

@@ -1,4 +1,5 @@
 import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { StateSchema } from 'app/providers/StoreProvider';
 import { Article, ArticleListView, ArticleType } from 'entities/Article';
 import { ArticleFilterField, ArticleFilterOrder } from 'features/Article/ArticleFilters';
 
@@ -25,6 +26,9 @@ const initialState: ArticlesListSchema = {
 export const articlesAdapter = createEntityAdapter({
     selectId: (article: Article) => article.id,
 });
+export const getArticles = articlesAdapter.getSelectors<StateSchema>(
+    (state) => state.articlesList ?? articlesAdapter.getInitialState()
+);
 
 const articleCommentsSlice = createSlice({
     name: 'articlesList',

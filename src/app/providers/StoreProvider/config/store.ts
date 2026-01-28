@@ -6,6 +6,7 @@ import {
 } from '@reduxjs/toolkit';
 import { userReducer } from 'entities/User';
 import { $api } from 'shared/api';
+import { rtkApi } from 'shared/api/rtkApi';
 import { scrollPositionReducer } from 'widgets/Page';
 
 import { createReducerManager } from './reducerManager';
@@ -16,9 +17,11 @@ export function createReduxStore(
     asyncReducers?: ReducersMapObject<StateSchema>
 ) {
     const rootReducers: ReducersMapObject<StateSchema> = {
-        ...asyncReducers,
         user: userReducer,
         scrollPosition: scrollPositionReducer,
+        [rtkApi.reducerPath]: rtkApi.reducer,
+
+        ...asyncReducers,
     };
 
     const reducerManager = createReducerManager(rootReducers);
@@ -33,7 +36,7 @@ export function createReduxStore(
                     api: $api,
                 },
             },
-        }),
+        }).concat(rtkApi.middleware),
     });
 
     // @ts-ignore

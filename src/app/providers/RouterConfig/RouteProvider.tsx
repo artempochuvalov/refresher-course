@@ -17,7 +17,18 @@ const RouteProvider = () => {
             <Route
                 key={route.path}
                 path={route.path}
-                element={route.authOnly ? <ProtectedRoute>{element}</ProtectedRoute> : element}
+                element={(
+                    route.authOnly
+                        ? (
+                            <ProtectedRoute
+                                authOnly={route.authOnly}
+                                requiredRoles={route.requiredRoles}
+                            >
+                                {element}
+                            </ProtectedRoute>
+                        )
+                        : element
+                )}
             />
         );
     }, []);

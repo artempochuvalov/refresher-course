@@ -1,3 +1,4 @@
+import { User } from 'entities/User';
 import {
     memo,
     useCallback
@@ -21,7 +22,7 @@ import cls from './LoginForm.module.scss';
 
 export type LoginFormProps = {
     className?: string;
-    onSuccess?: () => void;
+    onSuccess?: (user: User) => void;
 };
 
 const LoginForm = memo((props: LoginFormProps) => {
@@ -49,8 +50,11 @@ const LoginForm = memo((props: LoginFormProps) => {
     }, [dispatch]);
     const onLoginClick = useCallback(async () => {
         const result = await dispatch(loginByUsername({ username, password }));
-        if (result.meta.requestStatus === 'fulfilled') {
-            onSuccess?.();
+        if (
+            result.meta.requestStatus === 'fulfilled'
+            && typeof result.payload === 'object'
+        ) {
+            onSuccess?.(result.payload);
         }
     }, [username, password, dispatch, onSuccess]);
 

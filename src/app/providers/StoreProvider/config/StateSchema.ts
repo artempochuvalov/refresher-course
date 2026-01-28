@@ -7,18 +7,20 @@ import type {
 } from '@reduxjs/toolkit';
 import type { AxiosInstance } from 'axios';
 import { ArticleDetailsSchema } from 'entities/Article';
-import type { ProfileSchema } from 'entities/Profile';
 import type { UserSchema } from 'entities/User';
 import type { LoginSchema } from 'features/AuthByUsername';
+import type { ProfileSchema } from 'features/EditableProfileCard';
 import type {
     ArticleDetailsPageSchema
 } from 'pages/ArticleDetails';
 import { ArticlesListSchema } from 'pages/Articles';
+import { rtkApi } from 'shared/api/rtkApi';
 import { ScrollPositionSchema } from 'widgets/Page';
 
 export type StateSchema = {
     user: UserSchema;
     scrollPosition: ScrollPositionSchema;
+    [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
 
     // Async reducers
     loginForm?: LoginSchema;

@@ -28,6 +28,7 @@ type TextAtomProps = {
     theme?: TextAtomTheme;
     size?: TextAtomSize;
     align?: TextAtomAlign;
+    dataTestId?: string;
 };
 
 type TitleTag = 'h1' | 'h2' | 'h3';
@@ -45,6 +46,7 @@ export const TextAtom = memo((props: TextAtomProps) => {
         theme = TextAtomTheme.Default,
         size = TextAtomSize.M,
         align = TextAtomAlign.Left,
+        dataTestId,
     } = props;
 
     const TitleTag = SizeToTitleTag[size];
@@ -58,8 +60,12 @@ export const TextAtom = memo((props: TextAtomProps) => {
 
     return (
         <div className={classNames(cls.TextAtom, {}, additionalClasses)}>
-            {title && <TitleTag className={cls.title}>{title}</TitleTag>}
-            {text && <p className={cls.text}>{text}</p>}
+            {title && (
+                <TitleTag data-testid={`${dataTestId}.Title`} className={cls.title}>
+                    {title}
+                </TitleTag>
+            )}
+            {text && <p data-testid={`${dataTestId}.Paragraph`} className={cls.text}>{text}</p>}
         </div>
     );
 });
