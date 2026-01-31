@@ -1,4 +1,5 @@
-import { type ReactNode, useCallback, useEffect } from 'react';
+import type { ReactNode } from 'react';
+import { useModal } from 'shared/lib/hooks/useModal';
 
 import { classNames, ClassNamesMods } from '../../lib/classNames';
 import { useTheme } from '../../providers/theme';
@@ -9,6 +10,7 @@ import cls from './Drawer.module.scss';
 interface DrawerProps {
     isOpen: boolean;
     children: ReactNode;
+    lazy?: boolean;
     className?: string;
     onClose: () => void;
 }
@@ -16,37 +18,37 @@ interface DrawerProps {
 export const Drawer = (props: DrawerProps) => {
     const {
         isOpen,
+        lazy,
         children,
         className,
         onClose,
     } = props;
 
-    const mods: ClassNamesMods = {
-        [cls.opened]: isOpen,
-    };
-
     const { theme } = useTheme();
 
-    const handleEscape = useCallback((event: KeyboardEvent) => {
-        if (event.key === 'Escape') {
-            onClose();
-        }
-    }, [onClose]);
+    const {
+        isClosing,
+        isMounted,
+        close,
+    } = useModal({
+        isOpen,
+        animationDuration: 300,
+        onClose,
+    });
 
-    useEffect(() => {
-        if (isOpen) {
-            window.addEventListener('keydown', handleEscape);
-        }
+    const mods: ClassNamesMods = {
+        [cls.opened]: isOpen,
+        [cls.isClosing]: isClosing,
+    };
 
-        return () => {
-            window.removeEventListener('keydown', handleEscape);
-        };
-    }, [isOpen, handleEscape]);
+    if (lazy && !isMounted) {
+        return null;
+    }
 
     return (
         <Portal>
             <div className={classNames(cls.Drawer, mods, [className, theme])}>
-                <Overlay onClick={onClose} />
+                <Overlay onClick={close} />
                 <div
                     className={cls.content}
                     role="dialog"
