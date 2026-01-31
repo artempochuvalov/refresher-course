@@ -19,7 +19,7 @@
 .collapsedBtn {
     position: absolute;
     right: 0;
-    z-index: 100;
+    z-index: var(--z-index-modal);
     bottom: 1rem;
     transform: translateX(calc(100% + 0.5rem));
 }
