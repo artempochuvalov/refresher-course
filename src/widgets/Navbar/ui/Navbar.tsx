@@ -1,25 +1,20 @@
 import {
-    getIfUserAdmin,
-    getIfUserManager,
-    getUserAuthData,
-    userActions
+    getUserAuthData
 } from 'entities/User';
 import { LoginModal } from 'features/AuthByUsername';
+import { AvatarButton } from 'features/AvatarButton';
+import { NotificationButton } from 'features/NotificationButton';
 import {
     memo,
     useCallback,
-    useMemo,
     useState
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
-import { RingBell } from 'shared/assets/icons';
+import { useSelector } from 'react-redux';
 import { RoutePaths } from 'shared/constants/routes';
 import { classNames } from 'shared/lib/classNames';
 import { AppLink } from 'shared/ui/AppLink';
-import { Avatar } from 'shared/ui/Avatar';
 import { Button, ButtonTheme } from 'shared/ui/Button';
-import { Dropdown, Popover } from 'shared/ui/Popups';
 import { HStack } from 'shared/ui/Stack';
 import { TextAtom, TextAtomTheme } from 'shared/ui/TextAtom/TextAtom';
 
@@ -34,16 +29,8 @@ export const Navbar = memo((props: NavbarProps) => {
 
     const { t } = useTranslation();
 
-    const dispatch = useDispatch();
-
     const [showAuthModal, setShowAuthModal] = useState(false);
     const authData = useSelector(getUserAuthData);
-
-    const isUserAdmin = useSelector(getIfUserAdmin);
-    const isUserManger = useSelector(getIfUserManager);
-    const isAdminPanelAvailable = useMemo(() => (
-        isUserAdmin || isUserManger
-    ), [isUserAdmin, isUserManger]);
 
     const onShowModal = useCallback(() => {
         setShowAuthModal(true);
@@ -51,10 +38,6 @@ export const Navbar = memo((props: NavbarProps) => {
     const onCloseModal = useCallback(() => {
         setShowAuthModal(false);
     }, []);
-
-    const onLogout = useCallback(() => {
-        dispatch(userActions.logout());
-    }, [dispatch]);
 
     if (authData) {
         return (
@@ -73,37 +56,8 @@ export const Navbar = memo((props: NavbarProps) => {
                         </Button>
                     </AppLink>
 
-                    <Popover
-                        anchorPosition="bottom right"
-                        trigger={(
-                            <Button theme={ButtonTheme.Blank}>
-                                <RingBell className={cls.ringBellIcon} />
-                            </Button>
-                        )}
-                    >
-                        {t('Уведомление')}
-                    </Popover>
-
-                    <Dropdown
-                        trigger={(
-                            <Avatar src={authData.avatar!} size={32} />
-                        )}
-                        items={[
-                            {
-                                content: t('Профиль'),
-                                href: RoutePaths.Profile + authData.id,
-                            },
-                            ...(isAdminPanelAvailable ? [{
-                                content: t('Админка'),
-                                href: RoutePaths.AdminPanel,
-                            }] : []),
-                            {
-                                content: t('Выйти'),
-                                onClick: onLogout,
-                            },
-                        ]}
-                        anchorPosition="bottom right"
-                    />
+                    <NotificationButton />
+                    <AvatarButton />
                 </HStack>
             </HStack>
         );
