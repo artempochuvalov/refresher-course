@@ -24,8 +24,9 @@ export const NotificationList = memo((props: NotificationListProps) => {
                 gap="8"
                 className={classNames('', {}, [className])}
             >
-                {Array.from({ length: 3 }).map(() => (
-                    <Skeleton width="100%" height="80px" border="16px" />
+                {Array.from({ length: 3 }).map((_, index) => (
+                    // eslint-disable-next-line react/no-array-index-key
+                    <Skeleton key={String(index)} width="100%" height="80px" border="16px" />
                 ))}
             </VStack>
         );

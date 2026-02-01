@@ -8,6 +8,7 @@ import {
 import { BrowserView, MobileView } from 'react-device-detect';
 import { RingBell } from 'shared/assets/icons';
 import { classNames } from 'shared/lib/classNames';
+import { AnimationProvider } from 'shared/providers/animation';
 import { Button, ButtonTheme } from 'shared/ui/Button';
 import { Drawer } from 'shared/ui/Drawer/Drawer';
 import { Popover } from 'shared/ui/Popups';
@@ -50,9 +51,11 @@ export const NotificationButton = memo((props: NotificationButtonProps) => {
             </BrowserView>
             <MobileView>
                 {trigger}
-                <Drawer isOpen={isDrawOpen} onClose={closeDrawer}>
-                    <NotificationList />
-                </Drawer>
+                <AnimationProvider>
+                    <Drawer isOpen={isDrawOpen} onClose={closeDrawer}>
+                        <NotificationList />
+                    </Drawer>
+                </AnimationProvider>
             </MobileView>
         </>
     );
