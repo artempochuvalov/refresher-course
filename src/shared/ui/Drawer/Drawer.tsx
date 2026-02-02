@@ -1,10 +1,10 @@
 import {
-    memo,
     type ReactNode,
     useCallback,
     useEffect
 } from 'react';
 
+import { AnimationProvider } from '@/shared/providers/animation';
 import { useAnimationLibs } from '@/shared/providers/animation/lib/useAnimation';
 
 import { classNames } from '../../lib/classNames';
@@ -121,7 +121,7 @@ export const DrawerContent = (props: DrawerProps) => {
     );
 };
 
-export const Drawer = memo((props: DrawerProps) => {
+const DrawerAsync = (props: DrawerProps) => {
     const { isLoaded } = useAnimationLibs();
 
     if (!isLoaded) {
@@ -129,4 +129,10 @@ export const Drawer = memo((props: DrawerProps) => {
     }
 
     return <DrawerContent {...props} />;
-});
+};
+
+export const Drawer = (props: DrawerProps) => (
+    <AnimationProvider>
+        <DrawerAsync {...props} />
+    </AnimationProvider>
+);
