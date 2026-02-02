@@ -1,17 +1,18 @@
+import { memo, useCallback, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+
 import {
     getIfUserAdmin,
     getIfUserManager,
     getUserAuthData,
     userActions
-} from 'entities/User';
-import { memo, useCallback, useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
-import { RoutePaths } from 'shared/constants/routes';
-import { classNames } from 'shared/lib/classNames';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
-import { Avatar } from 'shared/ui/Avatar';
-import { Dropdown } from 'shared/ui/Popups';
+} from '@/entities/User';
+import { RoutePaths } from '@/shared/constants/routes';
+import { classNames } from '@/shared/lib/classNames';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
+import { Avatar } from '@/shared/ui/Avatar';
+import { Dropdown } from '@/shared/ui/Popups';
 
 interface AvatarButtonProps {
     className?: string;

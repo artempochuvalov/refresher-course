@@ -1,10 +1,11 @@
 import { memo, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
-import { Button, ButtonTheme } from 'shared/ui/Button';
-import { HStack } from 'shared/ui/Stack';
-import { TextAtom } from 'shared/ui/TextAtom/TextAtom';
+
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
+import { Button, ButtonTheme } from '@/shared/ui/Button';
+import { HStack } from '@/shared/ui/Stack';
+import { TextAtom } from '@/shared/ui/TextAtom/TextAtom';
 
 import { getProfileReadonly } from '../../model/selectors/editableProfileCardSelectors';
 import { updateProfile } from '../../model/services/updateProfile/updateProfile';

@@ -1,9 +1,10 @@
-import { AddCommentForm, CommentList } from 'entities/Comment';
 import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import { classNames } from 'shared/lib/classNames';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
-import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect';
+
+import { AddCommentForm, CommentList } from '@/entities/Comment';
+import { classNames } from '@/shared/lib/classNames';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
+import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect';
 
 import {
     getArticleCommentAddError,

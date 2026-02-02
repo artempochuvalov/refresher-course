@@ -1,22 +1,23 @@
 import {
-    getUserAuthData
-} from 'entities/User';
-import { LoginModal } from 'features/AuthByUsername';
-import { AvatarButton } from 'features/AvatarButton';
-import { NotificationButton } from 'features/NotificationButton';
-import {
     memo,
     useCallback,
     useState
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { RoutePaths } from 'shared/constants/routes';
-import { classNames } from 'shared/lib/classNames';
-import { AppLink } from 'shared/ui/AppLink';
-import { Button, ButtonTheme } from 'shared/ui/Button';
-import { HStack } from 'shared/ui/Stack';
-import { TextAtom, TextAtomTheme } from 'shared/ui/TextAtom/TextAtom';
+
+import {
+    getUserAuthData
+} from '@/entities/User';
+import { LoginModal } from '@/features/AuthByUsername';
+import { AvatarButton } from '@/features/AvatarButton';
+import { NotificationButton } from '@/features/NotificationButton';
+import { RoutePaths } from '@/shared/constants/routes';
+import { classNames } from '@/shared/lib/classNames';
+import { AppLink } from '@/shared/ui/AppLink';
+import { Button, ButtonTheme } from '@/shared/ui/Button';
+import { HStack } from '@/shared/ui/Stack';
+import { TextAtom, TextAtomTheme } from '@/shared/ui/TextAtom/TextAtom';
 
 import cls from './Navbar.module.scss';
 

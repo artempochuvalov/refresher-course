@@ -1,8 +1,9 @@
-import { getUserAuthData, getUserRoles, UserRole } from 'entities/User';
 import { type FC, type ReactNode, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate, useLocation } from 'react-router-dom';
-import { RoutePaths } from 'shared/constants/routes';
+
+import { getUserAuthData, getUserRoles, UserRole } from '@/entities/User';
+import { RoutePaths } from '@/shared/constants/routes';
 
 interface ProtectedRouteProps {
     children: ReactNode;

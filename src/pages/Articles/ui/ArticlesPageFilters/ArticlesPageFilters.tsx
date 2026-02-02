@@ -1,17 +1,18 @@
-import { ArticleListView, ArticleType } from 'entities/Article';
+import { memo, useCallback } from 'react';
+import { useSelector } from 'react-redux';
+
+import { ArticleListView, ArticleType } from '@/entities/Article';
 import {
     type ArticleFilterField,
     type ArticleFilterOrder,
     ArticleFilters
-} from 'features/Article/ArticleFilters';
-import { ArticleViewSwitcher } from 'features/Article/ViewSwitcher';
-import { articlesListActions } from 'pages/Articles/model/slices/articlePageSlice';
-import { memo, useCallback } from 'react';
-import { useSelector } from 'react-redux';
-import { classNames } from 'shared/lib/classNames';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
-import { useDebounce } from 'shared/lib/hooks/useDebounce';
-import { HStack, VStack } from 'shared/ui/Stack';
+} from '@/features/Article/ArticleFilters';
+import { ArticleViewSwitcher } from '@/features/Article/ViewSwitcher';
+import { articlesListActions } from '@/pages/Articles/model/slices/articlePageSlice';
+import { classNames } from '@/shared/lib/classNames';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
+import { useDebounce } from '@/shared/lib/hooks/useDebounce';
+import { HStack, VStack } from '@/shared/ui/Stack';
 
 import {
     getArticlesListSearch,

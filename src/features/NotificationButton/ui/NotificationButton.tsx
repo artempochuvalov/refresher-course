@@ -1,4 +1,3 @@
-import { NotificationList } from 'entities/Notification';
 import {
     memo,
     useCallback,
@@ -6,12 +5,14 @@ import {
     useState
 } from 'react';
 import { BrowserView, MobileView } from 'react-device-detect';
-import { RingBell } from 'shared/assets/icons';
-import { classNames } from 'shared/lib/classNames';
-import { AnimationProvider } from 'shared/providers/animation';
-import { Button, ButtonTheme } from 'shared/ui/Button';
-import { Drawer } from 'shared/ui/Drawer/Drawer';
-import { Popover } from 'shared/ui/Popups';
+
+import { NotificationList } from '@/entities/Notification';
+import { RingBell } from '@/shared/assets/icons';
+import { classNames } from '@/shared/lib/classNames';
+import { AnimationProvider } from '@/shared/providers/animation';
+import { Button, ButtonTheme } from '@/shared/ui/Button';
+import { Drawer } from '@/shared/ui/Drawer/Drawer';
+import { Popover } from '@/shared/ui/Popups';
 
 import cls from './NotificationButton.module.scss';
 

@@ -1,19 +1,20 @@
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { Calendar, ViewEye } from 'shared/assets/icons';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
-import { useDynamicModuleLoader } from 'shared/lib/hooks/useDynamicModuleLoader';
-import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect';
-import { Avatar } from 'shared/ui/Avatar';
-import { Skeleton } from 'shared/ui/Skeleton';
-import { HStack, VStack } from 'shared/ui/Stack';
+
+import { Calendar, ViewEye } from '@/shared/assets/icons';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
+import { useDynamicModuleLoader } from '@/shared/lib/hooks/useDynamicModuleLoader';
+import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect';
+import { Avatar } from '@/shared/ui/Avatar';
+import { Skeleton } from '@/shared/ui/Skeleton';
+import { HStack, VStack } from '@/shared/ui/Stack';
 import {
     TextAtom,
     TextAtomAlign,
     TextAtomSize,
     TextAtomTheme
-} from 'shared/ui/TextAtom/TextAtom';
+} from '@/shared/ui/TextAtom/TextAtom';
 
 import { ArticleBlockType } from '../../model/constants';
 import {

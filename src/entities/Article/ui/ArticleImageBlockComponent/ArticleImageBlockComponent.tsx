@@ -1,6 +1,7 @@
 import { memo } from 'react';
-import { classNames } from 'shared/lib/classNames';
-import { TextAtom } from 'shared/ui/TextAtom/TextAtom';
+
+import { classNames } from '@/shared/lib/classNames';
+import { TextAtom } from '@/shared/ui/TextAtom/TextAtom';
 
 import { ArticleImageBlock } from '../../model/types/article';
 import cls from './ArticleImageBlockComponent.module.scss';

@@ -1,8 +1,9 @@
 import { memo, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/classNames';
-import { ListBox, ListBoxOption } from 'shared/ui/Popups';
-import { PopupAnchorPosition } from 'shared/ui/Popups/model/types';
+
+import { classNames } from '@/shared/lib/classNames';
+import { ListBox, ListBoxOption } from '@/shared/ui/Popups';
+import { PopupAnchorPosition } from '@/shared/ui/Popups/model/types';
 
 import { Country } from '../../model/constants';
 

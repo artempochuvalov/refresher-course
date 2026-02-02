@@ -5,7 +5,8 @@ import {
     MenuItems
 } from '@headlessui/react';
 import { Fragment, ReactNode } from 'react';
-import { classNames } from 'shared/lib/classNames';
+
+import { classNames } from '@/shared/lib/classNames';
 
 import { AppLink } from '../../../AppLink';
 import { PopupAnchorPosition } from '../../model/types';

@@ -1,11 +1,12 @@
 import { memo, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
-import { useDynamicModuleLoader } from 'shared/lib/hooks/useDynamicModuleLoader';
-import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect';
-import { VStack } from 'shared/ui/Stack';
-import { Page } from 'widgets/Page';
+
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
+import { useDynamicModuleLoader } from '@/shared/lib/hooks/useDynamicModuleLoader';
+import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect';
+import { VStack } from '@/shared/ui/Stack';
+import { Page } from '@/widgets/Page';
 
 import {
     SEARCH_PARAM,

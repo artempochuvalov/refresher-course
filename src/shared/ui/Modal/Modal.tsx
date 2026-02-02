@@ -2,9 +2,10 @@ import type {
     FC,
     ReactNode
 } from 'react';
-import { classNames, ClassNamesMods } from 'shared/lib/classNames';
-import { useModal } from 'shared/lib/hooks/useModal';
-import { useTheme } from 'shared/providers/theme';
+
+import { classNames, ClassNamesMods } from '@/shared/lib/classNames';
+import { useModal } from '@/shared/lib/hooks/useModal';
+import { useTheme } from '@/shared/providers/theme';
 
 import { Portal } from '../../ui/Portal';
 import { Overlay } from '../Overlay/Overlay';

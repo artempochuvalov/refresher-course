@@ -1,10 +1,11 @@
 import { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/classNames';
-import { Button, ButtonTheme } from 'shared/ui/Button';
-import { Input } from 'shared/ui/Input/Input';
-import { HStack, VStack } from 'shared/ui/Stack';
-import { TextAtom, TextAtomTheme } from 'shared/ui/TextAtom/TextAtom';
+
+import { classNames } from '@/shared/lib/classNames';
+import { Button, ButtonTheme } from '@/shared/ui/Button';
+import { Input } from '@/shared/ui/Input/Input';
+import { HStack, VStack } from '@/shared/ui/Stack';
+import { TextAtom, TextAtomTheme } from '@/shared/ui/TextAtom/TextAtom';
 
 import cls from './AddCommentForm.module.scss';
 

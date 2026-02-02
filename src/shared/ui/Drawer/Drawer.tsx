@@ -4,7 +4,8 @@ import {
     useCallback,
     useEffect
 } from 'react';
-import { useAnimationLibs } from 'shared/providers/animation/lib/useAnimation';
+
+import { useAnimationLibs } from '@/shared/providers/animation/lib/useAnimation';
 
 import { classNames } from '../../lib/classNames';
 import { useTheme } from '../../providers/theme';

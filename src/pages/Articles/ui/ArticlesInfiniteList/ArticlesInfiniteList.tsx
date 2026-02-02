@@ -1,7 +1,8 @@
-import { ArticlesList } from 'entities/Article';
 import { memo } from 'react';
 import { useSelector } from 'react-redux';
-import { classNames } from 'shared/lib/classNames';
+
+import { ArticlesList } from '@/entities/Article';
+import { classNames } from '@/shared/lib/classNames';
 
 import {
     getArticlesListIsLoading,

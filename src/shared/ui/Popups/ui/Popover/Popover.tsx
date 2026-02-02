@@ -4,7 +4,8 @@ import {
     PopoverPanel as HPopoverPanel
 } from '@headlessui/react';
 import type { ReactNode } from 'react';
-import { classNames } from 'shared/lib/classNames';
+
+import { classNames } from '@/shared/lib/classNames';
 
 import type { PopupAnchorPosition } from '../../model/types';
 import { PopupAnchorPositionClasses } from '../../styles/constants';

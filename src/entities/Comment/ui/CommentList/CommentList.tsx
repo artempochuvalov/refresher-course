@@ -1,7 +1,8 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { VStack } from 'shared/ui/Stack';
-import { TextAtom } from 'shared/ui/TextAtom/TextAtom';
+
+import { VStack } from '@/shared/ui/Stack';
+import { TextAtom } from '@/shared/ui/TextAtom/TextAtom';
 
 import type { Comment } from '../../model/types';
 import { CommentCard } from '../CommentCard/CommentCard';

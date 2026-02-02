@@ -1,5 +1,6 @@
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
-import { Comment } from 'entities/Comment';
+
+import { Comment } from '@/entities/Comment';
 
 import { addArticleComment } from '../services/addArticleComment/addArticleComment';
 import {

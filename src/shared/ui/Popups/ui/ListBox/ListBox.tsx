@@ -5,8 +5,9 @@ import {
     ListboxOptions as HListBoxOptions
 } from '@headlessui/react';
 import { ReactNode, useCallback } from 'react';
-import { Select } from 'shared/assets/icons';
-import { classNames } from 'shared/lib/classNames';
+
+import { Select } from '@/shared/assets/icons';
+import { classNames } from '@/shared/lib/classNames';
 
 import { Button } from '../../../Button';
 import { HStack } from '../../../Stack';

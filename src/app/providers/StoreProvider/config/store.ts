@@ -4,10 +4,11 @@ import {
     type Reducer,
     type ReducersMapObject
 } from '@reduxjs/toolkit';
-import { userReducer } from 'entities/User';
-import { $api } from 'shared/api';
-import { rtkApi } from 'shared/api/rtkApi';
-import { scrollPositionReducer } from 'widgets/Page';
+
+import { userReducer } from '@/entities/User';
+import { $api } from '@/shared/api';
+import { rtkApi } from '@/shared/api/rtkApi';
+import { scrollPositionReducer } from '@/widgets/Page';
 
 import { createReducerManager } from './reducerManager';
 import type { StateSchema } from './StateSchema';

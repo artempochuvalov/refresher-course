@@ -1,17 +1,18 @@
-import { ArticleDetails } from 'entities/Article';
-import { ArticleRecommendationsList } from 'features/ArticleRecommendationsList';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import { useDynamicModuleLoader } from 'shared/lib/hooks/useDynamicModuleLoader';
-import { VStack } from 'shared/ui/Stack';
+
+import { ArticleDetails } from '@/entities/Article';
+import { ArticleRecommendationsList } from '@/features/ArticleRecommendationsList';
+import { useDynamicModuleLoader } from '@/shared/lib/hooks/useDynamicModuleLoader';
+import { VStack } from '@/shared/ui/Stack';
 import {
     TextAtom,
     TextAtomAlign,
     TextAtomSize,
     TextAtomTheme
-} from 'shared/ui/TextAtom/TextAtom';
-import { Page } from 'widgets/Page';
+} from '@/shared/ui/TextAtom/TextAtom';
+import { Page } from '@/widgets/Page';
 
 import { articleDetailsPageReducer } from '../../model/slices';
 import { ArticleDetailsComments } from '../ArticleDetailsComments/ArticleDetailsComments';

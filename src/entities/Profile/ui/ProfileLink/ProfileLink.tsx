@@ -1,7 +1,8 @@
 import { ReactNode } from 'react';
-import { RoutePaths } from 'shared/constants/routes';
-import { classNames } from 'shared/lib/classNames';
-import { AppLink } from 'shared/ui/AppLink';
+
+import { RoutePaths } from '@/shared/constants/routes';
+import { classNames } from '@/shared/lib/classNames';
+import { AppLink } from '@/shared/ui/AppLink';
 
 type ProfileLinkProps = {
     children: ReactNode;
