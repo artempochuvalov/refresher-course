@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import {
     Menu,
     MenuButton,
@@ -54,7 +55,7 @@ export const Dropdown = (props: DropdownProps) => {
             </MenuButton>
 
             <MenuItems className={classNames(cls.menu, {}, menuClasses)}>
-                {items.map((item) => {
+                {items.map((item, index) => {
                     const content = (({ focus }: { focus: boolean }) => (
                         <button
                             className={classNames(
@@ -78,7 +79,7 @@ export const Dropdown = (props: DropdownProps) => {
                                 as={AppLink}
                                 to={item.href}
                                 disabled={item.disabled}
-                                key={item.content?.toString()}
+                                key={String(index)}
                             >
                                 {content}
                             </MenuItem>
@@ -89,7 +90,7 @@ export const Dropdown = (props: DropdownProps) => {
                         <MenuItem
                             as={Fragment}
                             disabled={item.disabled}
-                            key={item.content?.toString()}
+                            key={String(index)}
                         >
                             {content}
                         </MenuItem>
