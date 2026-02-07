@@ -8,6 +8,7 @@ export { default as Main } from './main.svg';
 export { default as Profile } from './profle.svg';
 export { default as RingBell } from './ring-bell.svg';
 export { default as Select } from './select.svg';
+export { default as Star } from './star.svg';
 export { default as ThemeDark } from './theme-dark.svg';
 export { default as ThemeLight } from './theme-light.svg';
 export { default as ViewEye } from './view-eye.svg';
