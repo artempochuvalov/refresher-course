@@ -126,3 +126,12 @@ export const Disabled: Story = {
         disabled: true,
     },
 };
+
+export const FullWidth: Story = {
+    args: {
+        theme: ButtonTheme.Outline,
+        children: 'Кнопка',
+        size: ButtonSize.XL,
+        fullWidth: true,
+    },
+};

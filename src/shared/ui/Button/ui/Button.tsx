@@ -26,6 +26,7 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
     theme?: ButtonTheme;
     squared?: boolean;
     disabled?: boolean;
+    fullWidth?: boolean;
 };
 
 export const Button = memo((props: ButtonProps) => {
@@ -36,12 +37,14 @@ export const Button = memo((props: ButtonProps) => {
         squared,
         children,
         disabled,
+        fullWidth,
         ...restProps
     } = props;
 
     const mods: ClassNamesMods = {
         [cls.squared]: squared,
         [cls.disabled]: disabled,
+        [cls.fullWidth]: fullWidth,
     };
     const additionalClasses = [
         className,
