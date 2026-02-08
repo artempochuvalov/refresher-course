@@ -1,0 +1,7 @@
+.Overlay {
+    cursor: pointer;
+    position: fixed;
+    inset: 0;
+    background-color: var(--bg-overlay);
+    z-index: -1;
+}

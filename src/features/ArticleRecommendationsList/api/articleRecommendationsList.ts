@@ -1,5 +1,5 @@
-import type { Article } from 'entities/Article';
-import { rtkApi } from 'shared/api/rtkApi';
+import type { Article } from '@/entities/Article';
+import { rtkApi } from '@/shared/api/rtkApi';
 
 import { RECOMMENDATIONS_SIZE } from '../constants';
 

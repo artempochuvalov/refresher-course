@@ -1,10 +1,11 @@
-import { User } from 'entities/User';
 import { memo, Suspense, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { RoutePaths } from 'shared/constants/routes';
-import { classNames } from 'shared/lib/classNames';
-import { Loader } from 'shared/ui/Loader';
-import { Modal } from 'shared/ui/Modal/Modal';
+
+import { User } from '@/entities/User';
+import { RoutePaths } from '@/shared/constants/routes';
+import { classNames } from '@/shared/lib/classNames';
+import { Loader } from '@/shared/ui/Loader';
+import { Modal } from '@/shared/ui/Modal/Modal';
 
 import { LoginFormLazy as LoginForm } from '../LoginForm/LoginForm.lazy';
 

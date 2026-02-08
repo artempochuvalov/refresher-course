@@ -1,4 +1,4 @@
-import { type Article, ArticleType } from 'entities/Article';
+import { type Article, ArticleType } from '@/entities/Article';
 
 import { fetchArticles } from '../services/fetchArticles/fetchArticles';
 import { ArticlesListSchema } from '../types/articlePageSchema';

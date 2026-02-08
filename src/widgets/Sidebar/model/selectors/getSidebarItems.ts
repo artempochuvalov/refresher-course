@@ -1,12 +1,13 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { getUserAuthData } from 'entities/User';
+
+import { getUserAuthData } from '@/entities/User';
 import {
     About,
     Articles,
     Main,
     Profile
-} from 'shared/assets/icons';
-import { RoutePaths } from 'shared/constants/routes';
+} from '@/shared/assets/icons';
+import { RoutePaths } from '@/shared/constants/routes';
 
 import { SidebarItemType } from '../types';
 

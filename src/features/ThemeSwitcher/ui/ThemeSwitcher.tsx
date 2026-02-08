@@ -1,8 +1,9 @@
 import { memo } from 'react';
-import { ThemeDark, ThemeLight } from 'shared/assets/icons';
-import { classNames } from 'shared/lib/classNames';
-import { Theme, useTheme } from 'shared/providers/theme';
-import { Button, ButtonTheme } from 'shared/ui/Button';
+
+import { ThemeDark, ThemeLight } from '@/shared/assets/icons';
+import { classNames } from '@/shared/lib/classNames';
+import { Theme, useTheme } from '@/shared/providers/theme';
+import { Button, ButtonTheme } from '@/shared/ui/Button';
 
 import cls from './ThemeSwitcher.module.scss';
 

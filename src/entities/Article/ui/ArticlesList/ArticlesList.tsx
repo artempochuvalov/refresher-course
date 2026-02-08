@@ -1,7 +1,8 @@
 import { HTMLAttributeAnchorTarget, memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/classNames';
-import { TextAtom, TextAtomAlign, TextAtomTheme } from 'shared/ui/TextAtom/TextAtom';
+
+import { classNames } from '@/shared/lib/classNames';
+import { TextAtom, TextAtomAlign, TextAtomTheme } from '@/shared/ui/TextAtom/TextAtom';
 
 import { Article, ArticleListView } from '../../model/types/article';
 import { ArticleCard } from '../ArticleCard/ArticleCard';

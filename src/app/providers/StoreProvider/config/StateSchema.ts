@@ -6,16 +6,17 @@ import type {
     ReducersMapObject
 } from '@reduxjs/toolkit';
 import type { AxiosInstance } from 'axios';
-import { ArticleDetailsSchema } from 'entities/Article';
-import type { UserSchema } from 'entities/User';
-import type { LoginSchema } from 'features/AuthByUsername';
-import type { ProfileSchema } from 'features/EditableProfileCard';
+
+import { ArticleDetailsSchema } from '@/entities/Article';
+import type { UserSchema } from '@/entities/User';
+import type { LoginSchema } from '@/features/AuthByUsername';
+import type { ProfileSchema } from '@/features/EditableProfileCard';
 import type {
     ArticleDetailsPageSchema
-} from 'pages/ArticleDetails';
-import { ArticlesListSchema } from 'pages/Articles';
-import { rtkApi } from 'shared/api/rtkApi';
-import { ScrollPositionSchema } from 'widgets/Page';
+} from '@/pages/ArticleDetails';
+import { ArticlesListSchema } from '@/pages/Articles';
+import { rtkApi } from '@/shared/api/rtkApi';
+import { ScrollPositionSchema } from '@/widgets/Page';
 
 export type StateSchema = {
     user: UserSchema;

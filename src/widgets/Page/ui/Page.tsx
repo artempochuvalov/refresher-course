@@ -1,4 +1,3 @@
-import { StateSchema } from 'app/providers/StoreProvider';
 import {
     type MutableRefObject,
     type ReactNode,
@@ -7,11 +6,13 @@ import {
 } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { classNames } from 'shared/lib/classNames';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
-import { useInfiniteScroll } from 'shared/lib/hooks/useInfiniteScroll';
-import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect';
-import { useThrottle } from 'shared/lib/hooks/useThrottle';
+
+import { StateSchema } from '@/app/providers/StoreProvider';
+import { classNames } from '@/shared/lib/classNames';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
+import { useInfiniteScroll } from '@/shared/lib/hooks/useInfiniteScroll';
+import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect';
+import { useThrottle } from '@/shared/lib/hooks/useThrottle';
 
 import { getScrollPositionByRoute } from '../model/selectors/scrollPositionSelectors';
 import { scrollPositionActions } from '../model/slices/scrollPositionSlice';

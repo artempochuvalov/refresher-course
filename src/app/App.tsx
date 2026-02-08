@@ -1,9 +1,10 @@
-import { RouteProvider } from 'app/providers/RouterConfig';
-import { getUserSliceInitted, userActions } from 'entities/User';
 import { Suspense, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navbar } from 'widgets/Navbar';
-import { Sidebar } from 'widgets/Sidebar';
+
+import { RouteProvider } from '@/app/providers/RouterConfig';
+import { getUserSliceInitted, userActions } from '@/entities/User';
+import { Navbar } from '@/widgets/Navbar';
+import { Sidebar } from '@/widgets/Sidebar';
 
 const App = () => {
     const dispatch = useDispatch();

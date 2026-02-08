@@ -1,0 +1,19 @@
+.Drawer {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-index-modal);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.sheet {
+    position: fixed;
+    width: 96vw;
+    height: calc(100% + 100px);
+    background-color: var(--bg-color);
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    touch-action: none;
+    padding: 24px;
+}

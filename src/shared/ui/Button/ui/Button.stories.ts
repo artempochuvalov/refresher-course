@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
-import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator';
-import { Theme } from 'shared/providers/theme';
+
+import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator';
+import { Theme } from '@/shared/providers/theme';
 
 import { Button, ButtonSize, ButtonTheme } from './Button';
 
@@ -123,5 +124,14 @@ export const Disabled: Story = {
         children: 'Кнопка',
         size: ButtonSize.XL,
         disabled: true,
+    },
+};
+
+export const FullWidth: Story = {
+    args: {
+        theme: ButtonTheme.Outline,
+        children: 'Кнопка',
+        size: ButtonSize.XL,
+        fullWidth: true,
     },
 };

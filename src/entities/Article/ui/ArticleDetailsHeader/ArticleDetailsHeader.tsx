@@ -1,9 +1,10 @@
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { RoutePaths } from 'shared/constants/routes';
-import { Button, ButtonTheme } from 'shared/ui/Button';
-import { HStack } from 'shared/ui/Stack';
+
+import { RoutePaths } from '@/shared/constants/routes';
+import { Button, ButtonTheme } from '@/shared/ui/Button';
+import { HStack } from '@/shared/ui/Stack';
 
 type ArticleDetailsHeaderProps = {
     showEditButton: boolean;

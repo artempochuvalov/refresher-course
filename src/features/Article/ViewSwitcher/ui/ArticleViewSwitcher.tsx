@@ -1,8 +1,9 @@
-import { ArticleListView } from 'entities/Article';
 import { FC, memo } from 'react';
-import { GridView, ListView } from 'shared/assets/icons';
-import { classNames } from 'shared/lib/classNames';
-import { Button, ButtonTheme } from 'shared/ui/Button';
+
+import { ArticleListView } from '@/entities/Article';
+import { GridView, ListView } from '@/shared/assets/icons';
+import { classNames } from '@/shared/lib/classNames';
+import { Button, ButtonTheme } from '@/shared/ui/Button';
 
 import cls from './ArticleViewSwitcher.module.scss';
 

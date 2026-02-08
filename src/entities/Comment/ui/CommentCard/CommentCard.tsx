@@ -1,9 +1,10 @@
-import { ProfileLink } from 'entities/Profile';
 import { memo } from 'react';
-import { classNames } from 'shared/lib/classNames';
-import { Avatar } from 'shared/ui/Avatar';
-import { Skeleton } from 'shared/ui/Skeleton';
-import { TextAtom } from 'shared/ui/TextAtom/TextAtom';
+
+import { ProfileLink } from '@/entities/Profile';
+import { classNames } from '@/shared/lib/classNames';
+import { Avatar } from '@/shared/ui/Avatar';
+import { Skeleton } from '@/shared/ui/Skeleton';
+import { TextAtom } from '@/shared/ui/TextAtom/TextAtom';
 
 import type { Comment } from '../../model/types';
 import cls from './CommentCard.module.scss';

@@ -7,7 +7,8 @@ import {
     useEffect,
     useRef
 } from 'react';
-import { classNames, type ClassNamesMods } from 'shared/lib/classNames';
+
+import { classNames, type ClassNamesMods } from '@/shared/lib/classNames';
 
 import cls from './Input.module.scss';
 

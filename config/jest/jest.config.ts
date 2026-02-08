@@ -32,6 +32,7 @@ const config: Config = {
     setupFilesAfterEnv: ['<rootDir>config/jest/setupTests.ts'],
     verbose: true,
     moduleNameMapper: {
+        '^@/(.*)$': '<rootDir>/src/$1',
         '\\.s?css$': 'identity-obj-proxy',
         '\\.svg$': path.resolve(__dirname, 'fileTransformer.tsx'),
     },

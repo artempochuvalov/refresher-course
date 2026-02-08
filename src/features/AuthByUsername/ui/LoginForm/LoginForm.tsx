@@ -1,16 +1,17 @@
-import { User } from 'entities/User';
 import {
     memo,
     useCallback
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { classNames } from 'shared/lib/classNames';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
-import { useDynamicModuleLoader } from 'shared/lib/hooks/useDynamicModuleLoader';
-import { Button, ButtonTheme } from 'shared/ui/Button';
-import { Input } from 'shared/ui/Input/Input';
-import { TextAtom, TextAtomTheme } from 'shared/ui/TextAtom/TextAtom';
+
+import { User } from '@/entities/User';
+import { classNames } from '@/shared/lib/classNames';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
+import { useDynamicModuleLoader } from '@/shared/lib/hooks/useDynamicModuleLoader';
+import { Button, ButtonTheme } from '@/shared/ui/Button';
+import { Input } from '@/shared/ui/Input/Input';
+import { TextAtom, TextAtomTheme } from '@/shared/ui/TextAtom/TextAtom';
 
 import { getLogginError } from '../../model/selectors/getLoginError';
 import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading';

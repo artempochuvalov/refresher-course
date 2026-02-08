@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
-import { classNames } from 'shared/lib/classNames';
+
+import { classNames } from '@/shared/lib/classNames';
 
 import cls from './Flex.module.scss';
 
@@ -49,6 +50,7 @@ export const Flex = (props: FlexProps) => {
         align = 'start',
         direction = 'row',
         gap,
+        ...restProps
     } = props;
 
     const mods = {
@@ -63,7 +65,10 @@ export const Flex = (props: FlexProps) => {
     ];
 
     return (
-        <div className={classNames(cls.Flex, mods, classes)}>
+        <div
+            className={classNames(cls.Flex, mods, classes)}
+            {...restProps}
+        >
             {children}
         </div>
     );

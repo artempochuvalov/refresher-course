@@ -1,26 +1,23 @@
 import {
-    getIfUserAdmin,
-    getIfUserManager,
-    getUserAuthData,
-    userActions
-} from 'entities/User';
-import { LoginModal } from 'features/AuthByUsername';
-import {
     memo,
     useCallback,
-    useMemo,
     useState
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
-import { RoutePaths } from 'shared/constants/routes';
-import { classNames } from 'shared/lib/classNames';
-import { AppLink } from 'shared/ui/AppLink';
-import { Avatar } from 'shared/ui/Avatar';
-import { Button, ButtonTheme } from 'shared/ui/Button';
-import { Dropdown } from 'shared/ui/Dropdown/Dropdown';
-import { HStack } from 'shared/ui/Stack';
-import { TextAtom, TextAtomTheme } from 'shared/ui/TextAtom/TextAtom';
+import { useSelector } from 'react-redux';
+
+import {
+    getUserAuthData
+} from '@/entities/User';
+import { LoginModal } from '@/features/AuthByUsername';
+import { AvatarButton } from '@/features/AvatarButton';
+import { NotificationButton } from '@/features/NotificationButton';
+import { RoutePaths } from '@/shared/constants/routes';
+import { classNames } from '@/shared/lib/classNames';
+import { AppLink } from '@/shared/ui/AppLink';
+import { Button, ButtonTheme } from '@/shared/ui/Button';
+import { HStack } from '@/shared/ui/Stack';
+import { TextAtom, TextAtomTheme } from '@/shared/ui/TextAtom/TextAtom';
 
 import cls from './Navbar.module.scss';
 
@@ -33,16 +30,8 @@ export const Navbar = memo((props: NavbarProps) => {
 
     const { t } = useTranslation();
 
-    const dispatch = useDispatch();
-
     const [showAuthModal, setShowAuthModal] = useState(false);
     const authData = useSelector(getUserAuthData);
-
-    const isUserAdmin = useSelector(getIfUserAdmin);
-    const isUserManger = useSelector(getIfUserManager);
-    const isAdminPanelAvailable = useMemo(() => (
-        isUserAdmin || isUserManger
-    ), [isUserAdmin, isUserManger]);
 
     const onShowModal = useCallback(() => {
         setShowAuthModal(true);
@@ -50,10 +39,6 @@ export const Navbar = memo((props: NavbarProps) => {
     const onCloseModal = useCallback(() => {
         setShowAuthModal(false);
     }, []);
-
-    const onLogout = useCallback(() => {
-        dispatch(userActions.logout());
-    }, [dispatch]);
 
     if (authData) {
         return (
@@ -65,33 +50,15 @@ export const Navbar = memo((props: NavbarProps) => {
             >
                 <TextAtom theme={TextAtomTheme.Inverted} title={t('Article App')} />
 
-                <HStack gap="16">
+                <HStack align="center" gap="16">
                     <AppLink to={RoutePaths.ArticleNew} className={cls.createNewArticleLink}>
                         <Button theme={ButtonTheme.Blank}>
                             {t('Создать новую статью', { ns: 'artilce' })}
                         </Button>
                     </AppLink>
 
-                    <Dropdown
-                        trigger={(
-                            <Avatar src={authData.avatar!} size={32} />
-                        )}
-                        items={[
-                            {
-                                content: t('Профиль'),
-                                href: RoutePaths.Profile + authData.id,
-                            },
-                            ...(isAdminPanelAvailable ? [{
-                                content: t('Админка'),
-                                href: RoutePaths.AdminPanel,
-                            }] : []),
-                            {
-                                content: t('Выйти'),
-                                onClick: onLogout,
-                            },
-                        ]}
-                        anchorPosition="bottom right"
-                    />
+                    <NotificationButton />
+                    <AvatarButton />
                 </HStack>
             </HStack>
         );

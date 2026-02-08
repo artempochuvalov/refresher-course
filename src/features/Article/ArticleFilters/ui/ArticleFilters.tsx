@@ -1,12 +1,13 @@
-import { ArticleType } from 'entities/Article';
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/classNames';
-import { Card } from 'shared/ui/Card/Card';
-import { Input } from 'shared/ui/Input/Input';
-import { ListBox, ListBoxOption } from 'shared/ui/ListBox/ListBox';
-import { HStack, VStack } from 'shared/ui/Stack';
-import { Tabs } from 'shared/ui/Tabs/Tabs';
+
+import { ArticleType } from '@/entities/Article';
+import { classNames } from '@/shared/lib/classNames';
+import { Card } from '@/shared/ui/Card/Card';
+import { Input } from '@/shared/ui/Input/Input';
+import { ListBox, ListBoxOption } from '@/shared/ui/Popups';
+import { HStack, VStack } from '@/shared/ui/Stack';
+import { Tabs } from '@/shared/ui/Tabs/Tabs';
 
 import { ArticleFilterField, ArticleFilterOrder } from '../model/types';
 import cls from './ArticleFilters.module.scss';

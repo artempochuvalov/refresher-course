@@ -1,14 +1,15 @@
 import { HTMLAttributeAnchorTarget, memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ViewEye } from 'shared/assets/icons';
-import { RoutePaths } from 'shared/constants/routes';
-import { classNames } from 'shared/lib/classNames';
-import { useHover } from 'shared/lib/hooks/useHover';
-import { AppLink } from 'shared/ui/AppLink';
-import { Avatar } from 'shared/ui/Avatar';
-import { Button, ButtonTheme } from 'shared/ui/Button';
-import { Card } from 'shared/ui/Card/Card';
-import { TextAtom, TextAtomSize } from 'shared/ui/TextAtom/TextAtom';
+
+import { ViewEye } from '@/shared/assets/icons';
+import { RoutePaths } from '@/shared/constants/routes';
+import { classNames } from '@/shared/lib/classNames';
+import { useHover } from '@/shared/lib/hooks/useHover';
+import { AppLink } from '@/shared/ui/AppLink';
+import { Avatar } from '@/shared/ui/Avatar';
+import { Button, ButtonTheme } from '@/shared/ui/Button';
+import { Card } from '@/shared/ui/Card/Card';
+import { TextAtom, TextAtomSize } from '@/shared/ui/TextAtom/TextAtom';
 
 import { ArticleBlockType } from '../../model/constants';
 import {

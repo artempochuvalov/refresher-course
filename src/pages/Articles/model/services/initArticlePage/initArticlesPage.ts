@@ -1,7 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { ThunkConfig } from 'app/providers/StoreProvider';
-import { ArticleType } from 'entities/Article';
-import { ArticleFilterField, ArticleFilterOrder } from 'features/Article/ArticleFilters';
+
+import { ThunkConfig } from '@/app/providers/StoreProvider';
+import { ArticleType } from '@/entities/Article';
+import { ArticleFilterField, ArticleFilterOrder } from '@/features/Article/ArticleFilters';
 
 import {
     SEARCH_PARAM,
