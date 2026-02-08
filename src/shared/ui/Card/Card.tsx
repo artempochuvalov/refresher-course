@@ -1,19 +1,29 @@
 import { type HTMLAttributes, ReactNode } from 'react';
 
-import { classNames } from '@/shared/lib/classNames';
+import { classNames, ClassNamesMods } from '@/shared/lib/classNames';
 
 import cls from './Card.module.scss';
 
 type CardProps = HTMLAttributes<HTMLDivElement> & {
+    fullWidth?: boolean;
     children: ReactNode;
     className?: string;
 };
 
 export const Card = (props: CardProps) => {
-    const { children, className, ...restProps } = props;
+    const {
+        fullWidth,
+        children,
+        className,
+        ...restProps
+    } = props;
+
+    const classMods: ClassNamesMods = {
+        [cls.fullWidth]: fullWidth,
+    };
 
     return (
-        <div className={classNames(cls.Card, {}, [className])} {...restProps}>
+        <div className={classNames(cls.Card, classMods, [className])} {...restProps}>
             {children}
         </div>
     );

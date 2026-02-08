@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 
 import { ArticleDetails } from '@/entities/Article';
+import { ArticleFeedback } from '@/features/ArticleFeedback';
 import { ArticleRecommendationsList } from '@/features/ArticleRecommendationsList';
 import { useDynamicModuleLoader } from '@/shared/lib/hooks/useDynamicModuleLoader';
 import { VStack } from '@/shared/ui/Stack';
@@ -44,13 +45,12 @@ const ArticleDetailsPage = () => {
             <VStack fullWidth gap="32">
                 <VStack fullWidth gap="32">
                     <ArticleDetails articleId={id} />
-
+                    <ArticleFeedback articleId={id} />
                     <ArticleRecommendationsList />
                 </VStack>
 
                 <VStack fullWidth gap="16">
                     <TextAtom size={TextAtomSize.L} title={t('Комментарии')} />
-
                     <ArticleDetailsComments articleId={id} />
                 </VStack>
             </VStack>

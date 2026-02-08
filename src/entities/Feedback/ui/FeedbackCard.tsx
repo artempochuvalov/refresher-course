@@ -13,6 +13,7 @@ import { StarRating } from '@/shared/ui/StarRating/StarRating';
 import { TextAtom } from '@/shared/ui/TextAtom/TextAtom';
 
 interface FeedbackCardProps {
+    currentStars?: number;
     title: string;
     feedbackTitle?: string;
     hasFeedback?: boolean;
@@ -23,6 +24,7 @@ interface FeedbackCardProps {
 
 export const FeedbackCard = memo((props: FeedbackCardProps) => {
     const {
+        currentStars = 0,
         title,
         feedbackTitle,
         hasFeedback,
@@ -33,7 +35,7 @@ export const FeedbackCard = memo((props: FeedbackCardProps) => {
     const { t } = useTranslation();
 
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [selectedStars, setSelectedStars] = useState(0);
+    const [selectedStars, setSelectedStars] = useState<number>(0);
     const [feedback, setFeedback] = useState<string>();
 
     const onStarsSelected = useCallback((stars: number) => {
@@ -46,11 +48,15 @@ export const FeedbackCard = memo((props: FeedbackCardProps) => {
     }, [hasFeedback, onAccept]);
     const onFeedbackCancel = useCallback(() => {
         setIsModalOpen(false);
-        onCancel?.(selectedStars);
+        if (selectedStars) {
+            onCancel?.(selectedStars);
+        }
     }, [onCancel, selectedStars]);
     const onFeedbackAccept = useCallback(() => {
         setIsModalOpen(false);
-        onAccept?.(selectedStars, feedback);
+        if (selectedStars) {
+            onAccept?.(selectedStars, feedback);
+        }
     }, [onAccept, selectedStars, feedback]);
 
     const modalContent = (
@@ -66,10 +72,11 @@ export const FeedbackCard = memo((props: FeedbackCardProps) => {
 
     return (
         <>
-            <Card className={classNames('', {}, [className])}>
+            <Card fullWidth className={classNames('', {}, [className])}>
                 <VStack gap="4" align="center">
                     <TextAtom title={title} />
                     <StarRating
+                        selectedStars={currentStars}
                         size={30}
                         onSelect={onStarsSelected}
                     />
@@ -94,7 +101,7 @@ export const FeedbackCard = memo((props: FeedbackCardProps) => {
                     <VStack gap="16">
                         {modalContent}
 
-                        <HStack gap="8" justify="end">
+                        <HStack fullWidth gap="8" justify="end">
                             <Button theme={ButtonTheme.OutlineRed} onClick={onFeedbackCancel}>
                                 {t('Отменить')}
                             </Button>

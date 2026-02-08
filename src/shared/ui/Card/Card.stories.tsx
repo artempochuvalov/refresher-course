@@ -18,3 +18,10 @@ export const Default: Story = {
         children: <TextAtom text="text" />,
     },
 };
+
+export const FullWidth: Story = {
+    args: {
+        children: <TextAtom text="text" />,
+        fullWidth: true,
+    },
+};
